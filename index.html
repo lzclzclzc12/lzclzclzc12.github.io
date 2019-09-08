@@ -381,7 +381,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  690
+                  712
                 </span>
               
 
@@ -397,7 +397,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  2
+                  3
                 </span>
               
             </div>
@@ -421,31 +421,28 @@
         
           <h2 id="区块元素"><a href="#区块元素" class="headerlink" title="#区块元素"></a>#区块元素</h2><p>##标题<br>Markdown支持两种标题的语法</p>
 <p>1.类Setext 形式利用底线的形式，利用=(表示最高阶题)，-（表示第二阶题）， 任何数量的 = 和 - 都可以有效果，例如：</p>
-<blockquote>
-<h1 id="This-is-an-H1"><a href="#This-is-an-H1" class="headerlink" title="This is an H1"></a>This is an H1</h1><h2 id="This-is-an-H2"><a href="#This-is-an-H2" class="headerlink" title="This is an H2"></a>This is an H2</h2></blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt; This is an H1</span><br><span class="line">&gt;=================</span><br><span class="line">&gt;This is an H2</span><br><span class="line">&gt;------------------</span><br></pre></td></tr></table></figure>
+
 <p>2.类Atx形式则是利用#的数量从1到6来表示标题的阶，例如：</p>
-<blockquote>
-<h1 id="This-is-H1"><a href="#This-is-H1" class="headerlink" title="This is H1"></a>This is H1</h1><h2 id="This-is-H2"><a href="#This-is-H2" class="headerlink" title="This is H2"></a>This is H2</h2><h6 id="This-is-H6"><a href="#This-is-H6" class="headerlink" title="This is H6"></a>This is H6</h6></blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="comment"># This is H1</span></span><br><span class="line">&gt;<span class="comment">## This is H2</span></span><br><span class="line">&gt;<span class="comment">###### This is H6</span></span><br></pre></td></tr></table></figure>
+
 <h2 id="区块引用"><a href="#区块引用" class="headerlink" title="区块引用"></a>区块引用</h2><p>先断好行，然后在每行前加&gt;，例如：</p>
-<blockquote>
-<p>&gt;This is a blockquote</p>
-</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;This is a blockquote</span><br></pre></td></tr></table></figure>
+
 <p>效果如下：</p>
 <blockquote>
 <p>This is a blockquote</p>
 </blockquote>
 <p>Markdown 也允许只在整个段落的第一行加 &gt; :</p>
-<blockquote>
-<p>&gt;This is a blockquote with two paragraphs. Lorem ipsum dolor sit amet,consectetuer adipiscing elit. Aliquam hendrerit mi posuere lectus.Vestibulum enim wisi, viverra nec, fringilla in, laoreet vitae, risus.</p>
-</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;This is a blockquote with two paragraphs. Lorem ipsum dolor sit amet,consectetuer adipiscing elit. Aliquam hendrerit mi posuere lectus.Vestibulum enim wisi, viverra nec, fringilla <span class="keyword">in</span>, laoreet vitae, risus.</span><br></pre></td></tr></table></figure>
+
 <p>效果如下：</p>
 <blockquote>
 <p>This is a blockquote with two paragraphs. Lorem ipsum dolor sit amet,consectetuer adipiscing elit. Aliquam hendrerit mi posuere lectus.Vestibulum enim wisi, viverra nec, fringilla in, laoreet vitae, risus.</p>
 </blockquote>
 <p>区块引用允许嵌套（引用内引用），根据层次不用加不同数量的&gt; ，例如：</p>
-<blockquote>
-<p>&gt;&gt;This is my House</p>
-</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;This is my House</span><br></pre></td></tr></table></figure>
+
 <p>效果如下：</p>
 <blockquote>
 <blockquote>
@@ -453,20 +450,17 @@
 </blockquote>
 </blockquote>
 <p>引用区块也可以使用其他Markdown 语法，例如：</p>
-<blockquote>
-<p>&gt; ## This is H1<br>&gt;<br>&gt; 1. 这是第一行列表项<br>&gt;<br>&gt; 代码：<br>&gt;<br>&gt;（这里要有两个缩进）return shell_exec(“echo $input | $markdown_script”);</p>
-</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="comment">## This is H1</span></span><br><span class="line">&gt;</span><br><span class="line">&gt; 1. 这是第一行列表项</span><br><span class="line">&gt;</span><br><span class="line">&gt; 代码：</span><br><span class="line">&gt;</span><br><span class="line">&gt;（这里要有两个缩进）<span class="built_in">return</span> shell_exec(<span class="string">"echo <span class="variable">$input</span> | <span class="variable">$markdown_script</span>"</span>);</span><br></pre></td></tr></table></figure>
+
 <p>效果如下：</p>
 <blockquote>
-<h2 id="This-is-H1-1"><a href="#This-is-H1-1" class="headerlink" title="This is H1"></a>This is H1</h2><p>1.这是第一行列表项</p>
+<h2 id="This-is-H1"><a href="#This-is-H1" class="headerlink" title="This is H1"></a>This is H1</h2><p>1.这是第一行列表项</p>
 <pre><code>return shell_exec(&quot;echo $input | $markdown_script&quot;);</code></pre></blockquote>
 <p>##列表<br>分为<strong>有序列表</strong>和<strong>无序列表</strong></p>
 <p>1.无序列表使用* + 或 - :</p>
-<blockquote>
-<p>* hhh<br>+ jjj<br>- kkk</p>
-</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">* hhh</span><br><span class="line">+ jjj</span><br><span class="line">- kkk</span><br></pre></td></tr></table></figure>
+
 <p>效果如下：</p>
-<blockquote>
 <ul>
 <li>hhh</li>
 </ul>
@@ -476,68 +470,42 @@
 <ul>
 <li>kkk</li>
 </ul>
-</blockquote>
 <p>可以看出，三者等同</p>
-<p>2.有序列表使用数字和一个英文句点：</p>
-<blockquote>
-<p>1.hhh<br>2.jjj<br>3.kkk</p>
-</blockquote>
+<p>2.有序列表使用数字和一个英文句点：<br>1.hhh<br>2.jjj<br>3.kkk</p>
 <p>##代码区块<br>具体语法如下：</p>
-<blockquote>
-<p>这是一个普通段落：</p>
-<pre><code>int a;
-int b;
-c = a + b;</code></pre></blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">这是一个普通段落：</span><br><span class="line"></span><br><span class="line">       int a;</span><br><span class="line">       int b;</span><br><span class="line">       c = a + b;</span><br></pre></td></tr></table></figure>
+
 <p>##分割线</p>
-<blockquote>
-<p>*<em>*<br>\</em> * *<br>- - -<br>-—————————</p>
-</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">***</span><br><span class="line">* * *</span><br><span class="line">- - -</span><br><span class="line">----------------------------</span><br></pre></td></tr></table></figure>
+
 <p>效果如下：</p>
-<blockquote>
 <hr>
 <hr>
 <hr>
 <hr>
-</blockquote>
 <p>效果都是一样的</p>
 <h2 id="区段元素"><a href="#区段元素" class="headerlink" title="#区段元素"></a>#区段元素</h2><h2 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h2><p>支持两种形式的链接语法，<strong>行内式</strong>和<strong>参考式</strong><br>这里仅介绍行内式<br>语法简单为：[]+()<br>[] 中为链接文字，() 中为网址链接<br>例如：</p>
-<blockquote>
-<p>This is [an example](<a href="http://example.com/" target="_blank" rel="noopener">http://example.com/</a> “Title”) inline link.<br>[This link](<a href="http://example.net/" target="_blank" rel="noopener">http://example.net/</a>) has no title attribute.</p>
-</blockquote>
-<p>效果如下：</p>
-<blockquote>
-<p>This is <a href="http://example.com/" title="Title" target="_blank" rel="noopener">an example</a> inline link.<br><a href="http://example.net/" target="_blank" rel="noopener">This link</a> has no title attribute.</p>
-</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">This is [an example](http://example.com/ <span class="string">"Title"</span>) inline link.</span><br><span class="line">[This link](http://example.net/) has no title attribute.</span><br></pre></td></tr></table></figure>
+
+<p>效果如下：<br>This is <a href="http://example.com/" title="Title" target="_blank" rel="noopener">an example</a> inline link.<br><a href="http://example.net/" target="_blank" rel="noopener">This link</a> has no title attribute.</p>
 <h2 id="强调"><a href="#强调" class="headerlink" title="强调"></a>强调</h2><p>文字用 * 或 _ 包围会变斜，用** 或 __ 包围会变粗<br>例如：</p>
-<blockquote>
-<p>*会变斜*<br>_会变斜_<br>**会变粗**<br>__会变粗__</p>
-</blockquote>
-<p>效果如下：</p>
-<blockquote>
-<p><em>会变斜</em><br><em>会变斜</em><br><strong>会变粗</strong><br><strong>会变粗</strong></p>
-</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">*会变斜*</span><br><span class="line">_会变斜_</span><br><span class="line">**会变粗**</span><br><span class="line">__会变粗__</span><br></pre></td></tr></table></figure>
+
+<p>效果如下：<br><em>会变斜</em><br><em>会变斜</em><br><strong>会变粗</strong><br><strong>会变粗</strong></p>
 <p>##代码<br>如果要标记一小段<strong>行内</strong>代码，可以用` 把他包起来：</p>
-<blockquote>
-<p>Use the `cout&lt;&lt;sddsff;` function.</p>
-</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Use the `cout&lt;&lt;sddsff;` <span class="keyword">function</span>.</span><br></pre></td></tr></table></figure>
+
 <p>效果如下：</p>
-<blockquote>
 <p>Use the <code>cout&lt;&lt;sddsff;</code> function.</p>
-</blockquote>
 <p>##图片<br>简单语法如下：<br>！+ [图片的替代文字] + (网址)<br>例如：</p>
-<blockquote>
-<p>![pkq!!!](2019-09-08-Markdown/pkq.jpg)</p>
-</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">![pkq!!!](2019-09-08-Markdown/pkq.jpg)</span><br></pre></td></tr></table></figure>
+
 <p>效果如下:<br><img src="/2019/09/08/Markdown/pkq.jpg" alt="pkq!!!"></p>
 <p>到目前为止，Markdown还没有办法指定图片的高和宽，可以用&lt;img&gt;标签</p>
 <h2 id="自动链接"><a href="#自动链接" class="headerlink" title="自动链接"></a>自动链接</h2><p>将链接用&lt;&gt;包起来<br>例如：</p>
-<blockquote>
-<p>&lt;<a href="http://example.com/&gt;" target="_blank" rel="noopener">http://example.com/&gt;</a></p>
-</blockquote>
-<p>效果如下：</p>
-<blockquote>
-<p><a href="http://example.com/" target="_blank" rel="noopener">http://example.com/</a></p>
-</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;http://example.com/&gt;</span><br></pre></td></tr></table></figure>
+
+<p>效果如下：<br><a href="http://example.com/" target="_blank" rel="noopener">http://example.com/</a></p>
 <h1 id="感谢"><a href="#感谢" class="headerlink" title="感谢"></a>感谢</h1><hr>
 <p>感谢<a href="http://www.markdown.cn/#code-blocks" target="_blank" rel="noopener">http://www.markdown.cn/#code-blocks</a></p>
           <!--noindex-->
@@ -1046,7 +1014,7 @@ c = a + b;</code></pre></blockquote>
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">763</span>
+    <span title="Site words total count">785</span>
   
 </div>
 
