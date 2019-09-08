@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Markdown 简单教程]]></title>
+    <url>%2F2019%2F09%2F08%2FMarkdown%2F</url>
+    <content type="text"><![CDATA[#区块元素##标题Markdown支持两种标题的语法 1.类Setext 形式利用底线的形式，利用=(表示最高阶题)，-（表示第二阶题）， 任何数量的 = 和 - 都可以有效果，例如： This is an H1This is an H2 2.类Atx形式则是利用#的数量从1到6来表示标题的阶，例如： This is H1This is H2This is H6 区块引用先断好行，然后在每行前加&gt;，例如： &gt;This is a blockquote 效果如下： This is a blockquote Markdown 也允许只在整个段落的第一行加 &gt; : &gt;This is a blockquote with two paragraphs. Lorem ipsum dolor sit amet,consectetuer adipiscing elit. Aliquam hendrerit mi posuere lectus.Vestibulum enim wisi, viverra nec, fringilla in, laoreet vitae, risus. 效果如下： This is a blockquote with two paragraphs. Lorem ipsum dolor sit amet,consectetuer adipiscing elit. Aliquam hendrerit mi posuere lectus.Vestibulum enim wisi, viverra nec, fringilla in, laoreet vitae, risus. 区块引用允许嵌套（引用内引用），根据层次不用加不同数量的&gt; ，例如： &gt;&gt;This is my House 效果如下： This is my House 引用区块也可以使用其他Markdown 语法，例如： &gt; ## This is H1&gt;&gt; 1. 这是第一行列表项&gt;&gt; 代码：&gt;&gt;（这里要有两个缩进）return shell_exec(“echo $input | $markdown_script”); 效果如下： This is H11.这是第一行列表项 return shell_exec(&quot;echo $input | $markdown_script&quot;); ##列表分为有序列表和无序列表 1.无序列表使用* + 或 - : * hhh+ jjj- kkk 效果如下： hhh jjj kkk 可以看出，三者等同 2.有序列表使用数字和一个英文句点： 1.hhh2.jjj3.kkk ##代码区块具体语法如下： 这是一个普通段落： int a; int b; c = a + b; ##分割线 **\ * *- - --————————— 效果如下： 效果都是一样的 #区段元素链接支持两种形式的链接语法，行内式和参考式这里仅介绍行内式语法简单为：[]+()[] 中为链接文字，() 中为网址链接例如： This is [an example](http://example.com/ “Title”) inline link.[This link](http://example.net/) has no title attribute. 效果如下： This is an example inline link.This link has no title attribute. 强调文字用 * 或 _ 包围会变斜，用** 或 __ 包围会变粗例如： *会变斜*_会变斜_**会变粗**__会变粗__ 效果如下： 会变斜会变斜会变粗会变粗 ##代码如果要标记一小段行内代码，可以用` 把他包起来： Use the `cout&lt;&lt;sddsff;` function. 效果如下： Use the cout&lt;&lt;sddsff; function. ##图片简单语法如下：！+ [图片的替代文字] + (网址)例如： ![pkq!!!](2019-09-08-Markdown/pkq.jpg) 效果如下: 到目前为止，Markdown还没有办法指定图片的高和宽，可以用&lt;img&gt;标签 自动链接将链接用&lt;&gt;包起来例如： &lt;http://example.com/&gt; 效果如下： http://example.com/ 感谢 感谢http://www.markdown.cn/#code-blocks]]></content>
+      <categories>
+        <category>教程</category>
+      </categories>
+      <tags>
+        <tag>Markdown</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[test]]></title>
     <url>%2F2019%2F09%2F07%2Ftest%2F</url>
     <content type="text"><![CDATA[]]></content>
