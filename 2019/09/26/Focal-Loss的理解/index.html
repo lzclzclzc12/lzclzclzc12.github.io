@@ -70,7 +70,7 @@
 
 
 
-  <meta name="keywords" content="Focal-Loss-OD,">
+  <meta name="keywords" content="Focal-Loss-OD,待补充,">
 
 
 
@@ -81,18 +81,23 @@
 
 
 
-<meta name="description" content="发生的进口量">
-<meta name="keywords" content="Focal-Loss-OD">
+<meta name="description" content="声明：这篇论文还未读，所以里面所有内容都是来自于各种网络大佬的理解，等自己读了论文后有待补充。 为什么要提出Focal-loss现在目标检测大概分为两种: one-stage和two-stage，one-stage虽然速度快，但是精度不如two-stage的，相反，two-stage虽然精度高，但是速度慢，后来Lin等人对于此问题的研究发现，one-stage的精度不高与训练时后景数据相比于前景数">
+<meta name="keywords" content="Focal-Loss-OD,待补充">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Focal Loss的理解">
 <meta property="og:url" content="http://yoursite.com/2019/09/26/Focal-Loss的理解/index.html">
 <meta property="og:site_name" content="I am Art">
-<meta property="og:description" content="发生的进口量">
+<meta property="og:description" content="声明：这篇论文还未读，所以里面所有内容都是来自于各种网络大佬的理解，等自己读了论文后有待补充。 为什么要提出Focal-loss现在目标检测大概分为两种: one-stage和two-stage，one-stage虽然速度快，但是精度不如two-stage的，相反，two-stage虽然精度高，但是速度慢，后来Lin等人对于此问题的研究发现，one-stage的精度不高与训练时后景数据相比于前景数">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-09-26T13:52:09.586Z">
+<meta property="og:image" content="http://yoursite.com/2019/09/26/Focal-Loss的理解/2019-09-26-Focal-Loss%E7%9A%84%E7%90%86%E8%A7%A3%5C1.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/09/26/Focal-Loss的理解/2019-09-26-Focal-Loss%E7%9A%84%E7%90%86%E8%A7%A3%5C2.png">
+<meta property="og:image" content="http://yoursite.com/2019/09/26/Focal-Loss的理解/2019-09-26-Focal-Loss%E7%9A%84%E7%90%86%E8%A7%A3%5C3.png">
+<meta property="og:image" content="http://yoursite.com/2019/09/26/Focal-Loss的理解/2019-09-26-Focal-Loss%E7%9A%84%E7%90%86%E8%A7%A3%5C4.png">
+<meta property="og:updated_time" content="2019-09-26T15:24:46.332Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Focal Loss的理解">
-<meta name="twitter:description" content="发生的进口量">
+<meta name="twitter:description" content="声明：这篇论文还未读，所以里面所有内容都是来自于各种网络大佬的理解，等自己读了论文后有待补充。 为什么要提出Focal-loss现在目标检测大概分为两种: one-stage和two-stage，one-stage虽然速度快，但是精度不如two-stage的，相反，two-stage虽然精度高，但是速度慢，后来Lin等人对于此问题的研究发现，one-stage的精度不高与训练时后景数据相比于前景数">
+<meta name="twitter:image" content="http://yoursite.com/2019/09/26/Focal-Loss的理解/2019-09-26-Focal-Loss%E7%9A%84%E7%90%86%E8%A7%A3%5C1.jpg">
 
 
 
@@ -386,7 +391,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  6
+                  689
                 </span>
               
 
@@ -402,7 +407,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1
+                  2
                 </span>
               
             </div>
@@ -423,7 +428,32 @@
       
 
       
-        <p>发生的进口量</p>
+        <h1 id="声明："><a href="#声明：" class="headerlink" title="声明："></a>声明：</h1><p>这篇论文还未读，所以里面所有内容都是来自于各种网络大佬的理解，等自己读了论文后有待补充。</p>
+<h1 id="为什么要提出Focal-loss"><a href="#为什么要提出Focal-loss" class="headerlink" title="为什么要提出Focal-loss"></a>为什么要提出Focal-loss</h1><p>现在目标检测大概分为两种: one-stage和two-stage，one-stage虽然速度快，但是精度不如two-stage的，相反，two-stage虽然精度高，但是速度慢，后来Lin等人对于此问题的研究发现，one-stage的精度不高与训练时后景数据相比于前景数据少的多有很大原因，因此Lin等人通过对交叉熵损失函数进行修改，提了Focal-loss，即会特别关注某些Loss的意思。</p>
+<h1 id="论文分析了One-stage精度不高的原因"><a href="#论文分析了One-stage精度不高的原因" class="headerlink" title="论文分析了One-stage精度不高的原因"></a>论文分析了One-stage精度不高的原因</h1><ul>
+<li><p><strong>正负样本极度不均衡</strong>：anchor的生成是用类似于sliding-windows的方式，这会导致正负样本的比例接近1:1000，而且绝大多数负样本为“easy example”；</p>
+</li>
+<li><p><strong>梯度优化过程中被easy example过度影响</strong>: 根据交叉熵损失函数，虽然easy example的Loss不高，但是数量多，所以在梯度优化时Loss函数会过度关注这些easy example，从而使得那些难以分类的类别得不到很好的训练。</p>
+<h1 id="对于Focal-loss-的理解"><a href="#对于Focal-loss-的理解" class="headerlink" title="对于Focal-loss 的理解"></a>对于Focal-loss 的理解</h1></li>
+<li><p><strong>首先回顾一下交叉熵损失函数</strong>：<br><img src="/2019/09/26/Focal-Loss的理解/2019-09-26-Focal-Loss%E7%9A%84%E7%90%86%E8%A7%A3%5C1.jpg" alt="交叉熵损失函数"><br>其中<img src="/2019/09/26/Focal-Loss的理解/2019-09-26-Focal-Loss%E7%9A%84%E7%90%86%E8%A7%A3%5C2.png" alt="2">是经过激活函数的输出，在0-1之间，所以普通的交叉熵就是正样本的输出概率越大，那么Loss就越小，对于负样本，输出概率越小，Loss就越小。</p>
+</li>
+<li><p><strong>再看加了gama后的Loss函数</strong>：<br><img src="/2019/09/26/Focal-Loss的理解/2019-09-26-Focal-Loss%E7%9A%84%E7%90%86%E8%A7%A3%5C3.png" alt="3"><br>在加入了gama后，就对难易样本的loss有了区分，对于正样本而言，如果输出为0.9，那么表明这个样本是容易训练的，所以Loss就变得比原来小，如果输出是0.5，表明难以训练，所以Loss就大，所以就使得Loss函数更加关注难训练的样本，所以减少了easy example的影响，<strong>论文实验发现gama=2是最优的</strong>。</p>
+</li>
+<li><p><strong>Focal-loss的最终版本</strong>：<br><img src="/2019/09/26/Focal-Loss的理解/2019-09-26-Focal-Loss%E7%9A%84%E7%90%86%E8%A7%A3%5C4.png" alt="4"><br>α的加入实际上是使交叉熵加权，<strong>α一般设置为类别比例的倒数或者直接设为超参数(人为设定)</strong>，这样使得正样本(数量少)得到Loss的重视，从而减少负样本的影响。</p>
+</li>
+<li><p><strong>为什么Focal loss没有用在two-stage上</strong></p>
+</li>
+<li><p>two-stage会在生成区域建议阶段来使用NMS，使得候选框大量减少，在此过程中，减少了大量的背景框；</p>
+</li>
+<li><p>训练时用minibatch的采样策略，比如Faster-rcnn使用正负样本为1:3，这实际上起到了α 的作用。</p>
+</li>
+</ul>
+<h1 id="感谢"><a href="#感谢" class="headerlink" title="感谢"></a>感谢</h1><ul>
+<li><p><a href="https://www.sogou.com/link?url=hedJjaC291OoAuWay7Ycy8qCqnS5BeBJZpR6MQDH4jecmW7u2WhTZknbb2GMMgFg6KnxECbDvSOfABNiu1prjGiLSQm6y_cjIxl1zdOoaQG8NQzjFsXswHMpU5R1W7o9LJ3yweXqb0A4XXtlfpMI6PAjn7Fnn5gA" target="_blank" rel="noopener">https://www.sogou.com/link?url=hedJjaC291OoAuWay7Ycy8qCqnS5BeBJZpR6MQDH4jecmW7u2WhTZknbb2GMMgFg6KnxECbDvSOfABNiu1prjGiLSQm6y_cjIxl1zdOoaQG8NQzjFsXswHMpU5R1W7o9LJ3yweXqb0A4XXtlfpMI6PAjn7Fnn5gA</a></p>
+</li>
+<li><p><a href="https://www.cnblogs.com/king-lps/p/9497836.html" target="_blank" rel="noopener">https://www.cnblogs.com/king-lps/p/9497836.html</a></p>
+</li>
+</ul>
 
       
     </div>
@@ -442,6 +472,8 @@
         <div class="post-tags">
           
             <a href="/tags/Focal-Loss-OD/" rel="tag"># Focal-Loss-OD</a>
+          
+            <a href="/tags/待补充/" rel="tag"># 待补充</a>
           
         </div>
       
@@ -514,8 +546,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -554,7 +595,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -577,6 +618,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#声明："><span class="nav-number">1.</span> <span class="nav-text">声明：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#为什么要提出Focal-loss"><span class="nav-number">2.</span> <span class="nav-text">为什么要提出Focal-loss</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#论文分析了One-stage精度不高的原因"><span class="nav-number">3.</span> <span class="nav-text">论文分析了One-stage精度不高的原因</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#对于Focal-loss-的理解"><span class="nav-number">4.</span> <span class="nav-text">对于Focal-loss 的理解</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#感谢"><span class="nav-number">5.</span> <span class="nav-text">感谢</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -606,7 +663,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">791</span>
+    <span title="Site words total count">1.5k</span>
   
 </div>
 
