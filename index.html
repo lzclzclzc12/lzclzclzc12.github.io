@@ -294,6 +294,219 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/27/CenterNet的理解/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lzc">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="I am Art">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/09/27/CenterNet的理解/" itemprop="url">对于CenterNet的理解</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-27T11:25:23+08:00">
+                2019-09-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/深度学习/" itemprop="url" rel="index">
+                    <span itemprop="name">深度学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+          
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.5k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  5
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><p>在CenterNet中，作者找到了更简单、更有效的方法，作者用bbox的中心点来代替此物体，其他特征，比如物体大小，维度，姿态等等则从物体中心点<strong>位置</strong>的图像特征来直接回归，所以目标检测就变成了关键点的预测问题。一开始将图像输入到一个全卷积中，然后生成一个<strong>热图</strong>，热图中的<strong>峰值</strong>就对应于物体的中心点，每个峰值的图像特征就用于预测物体bbox的高和宽，训练用<strong>标准的密集监督学习</strong>，推理过程是一个单一的向前传播，没有NMS的后处理。</p>
+<h1 id="Related-work"><a href="#Related-work" class="headerlink" title="Related work"></a>Related work</h1><p>CenterNet方法近似相当于锚点为基准的one-stage方法。</p>
+<ul>
+<li>CenterNet仅仅根据位置来分配’anchor’，而不是根据框重叠，也就是说，CenterNet的’anchor’仅仅会出现在当前目标的位置处而不是在整个图上都分配，所以不用手动调阈值来看框是正类还是负类；</li>
+<li>每个物体只有一个正框，所以<strong>不需要NMS来后处理</strong>，只需要在关键点热图上提取峰值；</li>
+<li>CenterNet输出的下采样因子是4，所以输出分辨率相比其他框架来说更大，这样就消除了对于多重锚点的需求；<blockquote>
+<p><strong>疑问</strong>：多重锚点是什么意思？？（原文是‘This eliminates the need for multiple anchors’）</p>
+</blockquote>
+<h1 id="Preliminary"><a href="#Preliminary" class="headerlink" title="Preliminary"></a>Preliminary</h1>假设输入图像的维度为(3 , W , H)，那么目标就是生成一个热图，Y∈[0,1] ，其中Y的维度是(C , W/R , H/R)，C在目标检测中是类别，论文用coco数据集，所以C=80，论文中作者取R=4，表示下采样的步幅是4，那么为什么要生成这样一个热图呢，原来这个三维张量Y中的每一个值如果是1的话，那么代表这是检测的关键点，如果是0的话代表的是背景，所以Y的值要在0和1之间，表示概率，论文中用了几种不同的encoder-decoder networks来预测图像中的Y:</li>
+</ul>
+<ol>
+<li>Hourglass Network </li>
+<li>带有转置卷积的ResNet</li>
+<li>原始的DLA和作者改造后的DLA；</li>
+</ol>
+<p>在训练过程中，CenterNet学习了CornerNet的方法，对于每个ground truth 的某一类C，我们需要把p(中心点)计算出来进行训练，计算方法为p = ((x1 + x2)/2 ，(y1 + y2)/2)，对于下采样后的坐标，我们设<img src="/2019/09/27/CenterNet的理解/1.png" alt="1">，其中R为下采样因子，并且向下取整，所以最终计算出来的中心点是对应低分辨率的中心点。有了中心点的坐标后，接下来的任务就是如何根据gt关键点的坐标来生成热图，作者用了一个高斯核<img src="/2019/09/27/CenterNet的理解/2.png" alt="2">来将计算好的关键点分布到如图中，其中 σp是一个对物体大小自适应的标准差。这样就生成了一个热图</p>
+<blockquote>
+<p><strong>疑问</strong>：px和py都是整数，那么x和px 在计算高斯核的时候是如何匹配的？？或者对于高斯核的理解一开始就是错的？？</p>
+</blockquote>
+<h1 id="损失函数"><a href="#损失函数" class="headerlink" title="损失函数"></a><strong>损失函数</strong></h1><p>重点看一下损失函数：</p>
+<h2 id="中心点预测的损失函数"><a href="#中心点预测的损失函数" class="headerlink" title="中心点预测的损失函数"></a>中心点预测的损失函数</h2><p><img src="/2019/09/27/CenterNet的理解/3.png" alt="3"></p>
+<p>作者对于中心点位置和类别的预测是通过Focal-loss来进行逻辑回归的， α and β是超参数，论文中α=2，β=4，N是图像中关键点的个数，目的是将Focal-loss归一化。</p>
+<blockquote>
+<p><strong>疑问</strong>：N的数量是不多的，但是Lk是对所有的点来算损失函数的，那么为什么N可以将Focal-loss归一化？？</p>
+</blockquote>
+<h2 id="目标中心的偏置损失"><a href="#目标中心的偏置损失" class="headerlink" title="目标中心的偏置损失"></a>目标中心的偏置损失</h2><p><img src="/2019/09/27/CenterNet的理解/4.png" alt="4"></p>
+<p>由于对于图像进行了R=4的下采样，但是中心点最终是要映射回原图的，这样会有精度损失，因此，对于每一个中心点，都额外采用一个局部偏移量<img src="/2019/09/27/CenterNet的理解/5.png" alt="5">，根据维度也可以看出，对于同一位置的所有类别，这个局部偏移量是共享的。注意上面的损失函数仅仅是对于关键点位置来算的，其他的点是要被忽略的。</p>
+<blockquote>
+<p><strong>疑问</strong>： 1. 中心点最终是如何映射到原图的？？是简单的乘4？？ 2. 为什么局部偏移量要对所有类进行共享？？是为了减少计算量？？ 3. 这个偏移量是在缩小后的图像上的偏移，但是在原图上的偏移和这个偏移应该是不一样的吧？？ 4. 回归的目的不就是为了减少偏移量吗？那为什么还要算偏移损失？？</p>
+</blockquote>
+<h2 id="目标大小的损失"><a href="#目标大小的损失" class="headerlink" title="目标大小的损失"></a>目标大小的损失</h2><p><img src="/2019/09/27/CenterNet的理解/6.png" alt="6"></p>
+<p>假设<img src="/2019/09/27/CenterNet的理解/7.png" alt="7">是Ck类的目标k的bbox，那么中心点的坐标就是pk = <img src="/2019/09/27/CenterNet的理解/8.png" alt="8">，我们用Y^来预测所有的关键点，然后对每个目标k的size 进行回归，Sk = <img src="/2019/09/27/CenterNet的理解/9.png" alt="9">，这是下采样后的长宽值，<img src="/2019/09/27/CenterNet的理解/10.png" alt="10">是预测值，由维度可知，这是所有的类别共享的size值。</p>
+<blockquote>
+<p><strong>疑问</strong>：为什么所有的类都在一个中心点出有相同的size？？</p>
+</blockquote>
+<p>总的损失函数为：<br><img src="/2019/09/27/CenterNet的理解/11.png" alt="11"></p>
+<p>论文中 λsize = 0.1,  λoff = 1。</p>
+<p>最终每个坐标点产生C+4个数据，分别是类别、长宽和偏移量，这三个量是用一个单独的网络来预测出来的，并且所有的输出共享一个backbone网络。</p>
+<h1 id="推测阶段"><a href="#推测阶段" class="headerlink" title="推测阶段"></a>推测阶段</h1><p>在预测阶段，首先对一张图像进行下采样，然后在下采样的特征图中预测中心点，然后就可以把输出图中的热点单独提取出来，提取过程是什么呢，首先，可以检测当前热点的值是否比周围八个邻近的热点单独地提取出来，然后提取出100个这样的点，这样，有了中心点的位置后就可以生产锚框了。<br><img src="/2019/09/27/CenterNet的理解/12.png" alt="12"><br>即变成(x1 , y1 , x2 , y2)的锚框</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/26/Focal-Loss的理解/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -561,7 +774,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  712
+                  711
                 </span>
               
 
@@ -852,7 +1065,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -874,7 +1087,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -926,7 +1139,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">1.5k</span>
+    <span title="Site words total count">2.9k</span>
   
 </div>
 
