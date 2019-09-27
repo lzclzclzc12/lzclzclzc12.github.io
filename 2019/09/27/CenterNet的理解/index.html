@@ -101,7 +101,7 @@
 <meta property="og:image" content="http://yoursite.com/2019/09/27/CenterNet的理解/10.png">
 <meta property="og:image" content="http://yoursite.com/2019/09/27/CenterNet的理解/11.png">
 <meta property="og:image" content="http://yoursite.com/2019/09/27/CenterNet的理解/12.png">
-<meta property="og:updated_time" content="2019-09-27T13:22:01.329Z">
+<meta property="og:updated_time" content="2019-09-27T13:22:52.361Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="对于CenterNet的理解">
 <meta name="twitter:description" content="Introduction在CenterNet中，作者找到了更简单、更有效的方法，作者用bbox的中心点来代替此物体，其他特征，比如物体大小，维度，姿态等等则从物体中心点位置的图像特征来直接回归，所以目标检测就变成了关键点的预测问题。一开始将图像输入到一个全卷积中，然后生成一个热图，热图中的峰值就对应于物体的中心点，每个峰值的图像特征就用于预测物体bbox的高和宽，训练用标准的密集监督学习，推理过程">
@@ -437,6 +437,7 @@
 
       
         <h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><p>在CenterNet中，作者找到了更简单、更有效的方法，作者用bbox的中心点来代替此物体，其他特征，比如物体大小，维度，姿态等等则从物体中心点<strong>位置</strong>的图像特征来直接回归，所以目标检测就变成了关键点的预测问题。一开始将图像输入到一个全卷积中，然后生成一个<strong>热图</strong>，热图中的<strong>峰值</strong>就对应于物体的中心点，每个峰值的图像特征就用于预测物体bbox的高和宽，训练用<strong>标准的密集监督学习</strong>，推理过程是一个单一的向前传播，没有NMS的后处理。</p>
+<a id="more"></a>
 <h1 id="Related-work"><a href="#Related-work" class="headerlink" title="Related work"></a>Related work</h1><p>CenterNet方法近似相当于锚点为基准的one-stage方法。</p>
 <ul>
 <li>CenterNet仅仅根据位置来分配’anchor’，而不是根据框重叠，也就是说，CenterNet的’anchor’仅仅会出现在当前目标的位置处而不是在整个图上都分配，所以不用手动调阈值来看框是正类还是负类；</li>
