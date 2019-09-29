@@ -70,7 +70,7 @@
 
 
 
-  <meta name="keywords" content="Markdown,">
+  <meta name="keywords" content="队列,">
 
 
 
@@ -81,20 +81,18 @@
 
 
 
-<meta name="description" content="区块元素 标题Markdown支持两种标题的语法 1.类Setext 形式利用底线的形式，利用=(表示最高阶题)，-（表示第二阶题）， 任何数量的 = 和 - 都可以有效果，例如： 1234&amp;gt; This is an H1&amp;gt;=================&amp;gt;This is an H2&amp;gt;------------------  2.类Atx形式则是利用#的数量从1到6来表示标题">
-<meta name="keywords" content="Markdown">
+<meta name="description" content="常规链队列的实现123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293#include &amp;lt;io">
+<meta name="keywords" content="队列">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Markdown 简单教程">
-<meta property="og:url" content="http://yoursite.com/2019/09/08/Markdown/index.html">
+<meta property="og:title" content="队列的实现">
+<meta property="og:url" content="http://yoursite.com/2019/09/29/队列的实现/index.html">
 <meta property="og:site_name" content="I am Art">
-<meta property="og:description" content="区块元素 标题Markdown支持两种标题的语法 1.类Setext 形式利用底线的形式，利用=(表示最高阶题)，-（表示第二阶题）， 任何数量的 = 和 - 都可以有效果，例如： 1234&amp;gt; This is an H1&amp;gt;=================&amp;gt;This is an H2&amp;gt;------------------  2.类Atx形式则是利用#的数量从1到6来表示标题">
+<meta property="og:description" content="常规链队列的实现123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293#include &amp;lt;io">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://yoursite.com/2019/09/08/Markdown/pkq.jpg">
-<meta property="og:updated_time" content="2019-09-27T12:50:08.371Z">
+<meta property="og:updated_time" content="2019-09-29T10:09:18.552Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Markdown 简单教程">
-<meta name="twitter:description" content="区块元素 标题Markdown支持两种标题的语法 1.类Setext 形式利用底线的形式，利用=(表示最高阶题)，-（表示第二阶题）， 任何数量的 = 和 - 都可以有效果，例如： 1234&amp;gt; This is an H1&amp;gt;=================&amp;gt;This is an H2&amp;gt;------------------  2.类Atx形式则是利用#的数量从1到6来表示标题">
-<meta name="twitter:image" content="http://yoursite.com/2019/09/08/Markdown/pkq.jpg">
+<meta name="twitter:title" content="队列的实现">
+<meta name="twitter:description" content="常规链队列的实现123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293#include &amp;lt;io">
 
 
 
@@ -124,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/09/08/Markdown/">
+  <link rel="canonical" href="http://yoursite.com/2019/09/29/队列的实现/">
 
 
 
 
 
-  <title>Markdown 简单教程 | I am Art</title>
+  <title>队列的实现 | I am Art</title>
   
 
 
@@ -300,7 +298,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/08/Markdown/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/29/队列的实现/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="lzc">
@@ -317,7 +315,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Markdown 简单教程</h1>
+          <h1 class="post-title" itemprop="name headline">队列的实现</h1>
         
 
         <div class="post-meta">
@@ -329,8 +327,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-08T10:26:47+08:00">
-                2019-09-08
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-29T17:26:20+08:00">
+                2019-09-29
               </time>
             
 
@@ -352,8 +350,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/教程/" itemprop="url" rel="index">
-                    <span itemprop="name">教程</span>
+                  <a href="/categories/数据结构/" itemprop="url" rel="index">
+                    <span itemprop="name">数据结构</span>
                   </a>
                 </span>
 
@@ -388,7 +386,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  711
+                  659
                 </span>
               
 
@@ -425,103 +423,10 @@
       
 
       
-        <h1 id="区块元素"><a href="#区块元素" class="headerlink" title="区块元素"></a>区块元素</h1><hr>
-<h2 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h2><p>Markdown支持两种标题的语法</p>
-<p>1.类Setext 形式利用底线的形式，利用=(表示最高阶题)，-（表示第二阶题）， 任何数量的 = 和 - 都可以有效果，例如：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt; This is an H1</span><br><span class="line">&gt;=================</span><br><span class="line">&gt;This is an H2</span><br><span class="line">&gt;------------------</span><br></pre></td></tr></table></figure>
+        <h1 id="常规链队列的实现"><a href="#常规链队列的实现" class="headerlink" title="常规链队列的实现"></a>常规链队列的实现</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#include &lt;iostream&gt;</span></span><br><span class="line"></span><br><span class="line">using namespace std;</span><br><span class="line"><span class="comment">#define OK true;</span></span><br><span class="line"><span class="comment">#define ERROR false;</span></span><br><span class="line"></span><br><span class="line">typedef struct QNode&#123;</span><br><span class="line">    int data;</span><br><span class="line">    QNode *Next;</span><br><span class="line">&#125;QNode , *QueuePtr;</span><br><span class="line"></span><br><span class="line">typedef struct&#123;</span><br><span class="line">    QueuePtr Front;</span><br><span class="line">    QueuePtr Rear;</span><br><span class="line">&#125;LinkQueue;</span><br><span class="line"></span><br><span class="line">bool Init(LinkQueue &amp;Q)&#123;</span><br><span class="line">    Q.Front = Q.Rear = (QueuePtr)malloc(sizeof(QNode));</span><br><span class="line">    <span class="keyword">if</span>(!Q.Front)&#123;</span><br><span class="line">        <span class="built_in">return</span> ERROR;</span><br><span class="line">    &#125;</span><br><span class="line">    Q.Front-&gt;Next = NULL;</span><br><span class="line">    <span class="built_in">return</span> OK;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//插入</span><br><span class="line">bool Insert(LinkQueue &amp;Q , int e)&#123;</span><br><span class="line">    QueuePtr p = (QueuePtr)malloc(sizeof(QNode));</span><br><span class="line">    <span class="keyword">if</span>(!p)&#123;</span><br><span class="line">        <span class="built_in">return</span> ERROR;</span><br><span class="line">    &#125;</span><br><span class="line">    p-&gt;data = e;</span><br><span class="line">    p-&gt;Next = NULL;</span><br><span class="line">    Q.Rear-&gt;Next = p;</span><br><span class="line">    Q.Rear = p;</span><br><span class="line">    <span class="built_in">return</span> OK;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//删除</span><br><span class="line">bool Delete(LinkQueue &amp;Q , int &amp;e)&#123;</span><br><span class="line">    <span class="keyword">if</span>(Q.Front == Q.Rear) <span class="built_in">return</span> ERROR;</span><br><span class="line">    QueuePtr p = Q.Front-&gt;Next;</span><br><span class="line">    e = p-&gt;data;</span><br><span class="line">    Q.Front-&gt;Next = p-&gt;Next;</span><br><span class="line">    <span class="keyword">if</span>(Q.Rear == p) Q.Rear = Q.Front;  //当队列中只有一个元素时</span><br><span class="line">    free(p);</span><br><span class="line">    <span class="built_in">return</span> OK;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//遍历</span><br><span class="line">void <span class="built_in">print</span>(LinkQueue Q)&#123;</span><br><span class="line">    <span class="keyword">if</span>(Q.Front == Q.Rear)&#123;</span><br><span class="line">        cout&lt;&lt;<span class="string">"没有元素"</span>&lt;&lt;endl;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        Q.Front = Q.Front-&gt;Next;</span><br><span class="line">        <span class="keyword">while</span>(Q.Front)&#123;</span><br><span class="line">            cout&lt;&lt;Q.Front-&gt;data&lt;&lt;<span class="string">' '</span>;</span><br><span class="line">            Q.Front = Q.Front-&gt;Next;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    cout&lt;&lt;endl;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//销毁队列</span><br><span class="line">bool DestroyQueue(LinkQueue &amp;Q)&#123;</span><br><span class="line">    <span class="keyword">while</span>(Q.Front)&#123;</span><br><span class="line">        Q.Rear = Q.Front-&gt;Next;</span><br><span class="line">        free(Q.Front);</span><br><span class="line">        Q.Front = Q.Rear;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">return</span> OK;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    LinkQueue Q;</span><br><span class="line">    Init(Q);</span><br><span class="line">    <span class="keyword">for</span>(int i = 0 ; i&lt;5 ; ++i)&#123;</span><br><span class="line">        int n;</span><br><span class="line">        cin&gt;&gt;n;</span><br><span class="line">        Insert(Q , n);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">print</span>(Q);</span><br><span class="line">    int e;</span><br><span class="line">    Delete(Q , e);</span><br><span class="line">    cout&lt;&lt;endl;</span><br><span class="line">    cout&lt;&lt;e&lt;&lt;endl;</span><br><span class="line">    <span class="built_in">print</span>(Q);</span><br><span class="line">    DestroyQueue(Q);</span><br><span class="line">    <span class="built_in">print</span>(Q);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>2.类Atx形式则是利用#的数量从1到6来表示标题的阶，例如：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="comment"># This is H1</span></span><br><span class="line">&gt;<span class="comment">## This is H2</span></span><br><span class="line">&gt;<span class="comment">###### This is H6</span></span><br></pre></td></tr></table></figure>
-
-<a id="more"></a>
-<h2 id="区块引用"><a href="#区块引用" class="headerlink" title="区块引用"></a>区块引用</h2><p>先断好行，然后在每行前加&gt;，例如：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;This is a blockquote</span><br></pre></td></tr></table></figure>
-
-<p>效果如下：</p>
-<blockquote>
-<p>This is a blockquote</p>
-</blockquote>
-<p>Markdown 也允许只在整个段落的第一行加 &gt; :</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;This is a blockquote with two paragraphs. Lorem ipsum dolor sit amet,consectetuer adipiscing elit. Aliquam hendrerit mi posuere lectus.Vestibulum enim wisi, viverra nec, fringilla <span class="keyword">in</span>, laoreet vitae, risus.</span><br></pre></td></tr></table></figure>
-
-<p>效果如下：</p>
-<blockquote>
-<p>This is a blockquote with two paragraphs. Lorem ipsum dolor sit amet,consectetuer adipiscing elit. Aliquam hendrerit mi posuere lectus.Vestibulum enim wisi, viverra nec, fringilla in, laoreet vitae, risus.</p>
-</blockquote>
-<p>区块引用允许嵌套（引用内引用），根据层次不用加不同数量的&gt; ，例如：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;This is my House</span><br></pre></td></tr></table></figure>
-
-<p>效果如下：</p>
-<blockquote>
-<blockquote>
-<p>This is my House</p>
-</blockquote>
-</blockquote>
-<p>引用区块也可以使用其他Markdown 语法，例如：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="comment">## This is H1</span></span><br><span class="line">&gt;</span><br><span class="line">&gt; 1. 这是第一行列表项</span><br><span class="line">&gt;</span><br><span class="line">&gt; 代码：</span><br><span class="line">&gt;</span><br><span class="line">&gt;（这里要有两个缩进）<span class="built_in">return</span> shell_exec(<span class="string">"echo <span class="variable">$input</span> | <span class="variable">$markdown_script</span>"</span>);</span><br></pre></td></tr></table></figure>
-
-<p>效果如下：</p>
-<blockquote>
-<p>##This is H1<br>1.这是第一行列表项</p>
-<pre><code>return shell_exec(&quot;echo $input | $markdown_script&quot;);</code></pre></blockquote>
-<h2 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h2><p>分为<strong>有序列表</strong>和<strong>无序列表</strong></p>
-<p>1.无序列表使用* + 或 - :</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">* hhh</span><br><span class="line">+ jjj</span><br><span class="line">- kkk</span><br></pre></td></tr></table></figure>
-
-<p>效果如下：</p>
-<ul>
-<li>hhh</li>
-</ul>
-<ul>
-<li>jjj</li>
-</ul>
-<ul>
-<li>kkk</li>
-</ul>
-<p>可以看出，三者等同</p>
-<p>2.有序列表使用数字和一个英文句点：</p>
-<ol>
-<li>hhh</li>
-<li>jjj</li>
-<li>kkk</li>
-</ol>
-<h2 id="代码区块"><a href="#代码区块" class="headerlink" title="代码区块"></a>代码区块</h2><p>具体语法如下：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">这是一个普通段落：</span><br><span class="line"></span><br><span class="line">       int a;</span><br><span class="line">       int b;</span><br><span class="line">       c = a + b;</span><br></pre></td></tr></table></figure>
-
-<h2 id="分割线"><a href="#分割线" class="headerlink" title="分割线"></a>分割线</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">***</span><br><span class="line">* * *</span><br><span class="line">- - -</span><br><span class="line">----------------------------</span><br></pre></td></tr></table></figure>
-
-<p>效果如下：</p>
-<hr>
-<hr>
-<hr>
-<hr>
-<p>效果都是一样的</p>
-<h1 id="区段元素"><a href="#区段元素" class="headerlink" title="区段元素"></a>区段元素</h1><hr>
-<h2 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h2><p>支持两种形式的链接语法，<strong>行内式</strong>和<strong>参考式</strong><br>这里仅介绍行内式<br>语法简单为：[]+()<br>[] 中为链接文字，() 中为网址链接<br>例如：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">This is [an example](http://example.com/ <span class="string">"Title"</span>) inline link.</span><br><span class="line">[This link](http://example.net/) has no title attribute.</span><br></pre></td></tr></table></figure>
-
-<p>效果如下：<br>This is <a href="http://example.com/" title="Title" target="_blank" rel="noopener">an example</a> inline link.<br><a href="http://example.net/" target="_blank" rel="noopener">This link</a> has no title attribute.</p>
-<h2 id="强调"><a href="#强调" class="headerlink" title="强调"></a>强调</h2><p>文字用 * 或 _ 包围会变斜，用** 或 __ 包围会变粗<br>例如：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">*会变斜*</span><br><span class="line">_会变斜_</span><br><span class="line">**会变粗**</span><br><span class="line">__会变粗__</span><br></pre></td></tr></table></figure>
-
-<p>效果如下：<br><em>会变斜</em><br><em>会变斜</em><br><strong>会变粗</strong><br><strong>会变粗</strong></p>
-<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>如果要标记一小段<strong>行内</strong>代码，可以用` 把他包起来：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Use the `cout&lt;&lt;sddsff;` <span class="keyword">function</span>.</span><br></pre></td></tr></table></figure>
-
-<p>效果如下：</p>
-<p>Use the <code>cout&lt;&lt;sddsff;</code> function.</p>
-<h2 id="图片"><a href="#图片" class="headerlink" title="图片"></a>图片</h2><p>简单语法如下：<br>！+ [图片的替代文字] + (网址)<br>例如：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">![pkq!!!](2019-09-08-Markdown/pkq.jpg)</span><br></pre></td></tr></table></figure>
-
-<p>效果如下:<br><img src="/2019/09/08/Markdown/pkq.jpg" alt="pkq!!!"></p>
-<p>到目前为止，Markdown还没有办法指定图片的高和宽，可以用&lt;img&gt;标签</p>
-<h2 id="自动链接"><a href="#自动链接" class="headerlink" title="自动链接"></a>自动链接</h2><p>将链接用&lt;&gt;包起来<br>例如：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;http://example.com/&gt;</span><br></pre></td></tr></table></figure>
-
-<p>效果如下：<br><a href="http://example.com/" target="_blank" rel="noopener">http://example.com/</a></p>
-<h1 id="感谢"><a href="#感谢" class="headerlink" title="感谢"></a>感谢</h1><hr>
-<p>感谢<a href="http://www.markdown.cn/#code-blocks" target="_blank" rel="noopener">http://www.markdown.cn/#code-blocks</a></p>
-
+<h1 id="循环队列的实现"><a href="#循环队列的实现" class="headerlink" title="循环队列的实现"></a>循环队列的实现</h1><p>循环队列主要是针对<strong>队列的顺序存储结构</strong>，主要目的是避免顺序存储中的内存空间的浪费。 下面的这种方法<strong>少用一个储存空间</strong>。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#include &lt;iostream&gt;</span></span><br><span class="line"></span><br><span class="line">using namespace std;</span><br><span class="line"><span class="comment">#define OK true;</span></span><br><span class="line"><span class="comment">#define ERROR false;</span></span><br><span class="line"><span class="comment">#define MAXSIZE 6</span></span><br><span class="line"></span><br><span class="line">typedef struct Queue&#123;</span><br><span class="line">    int *base;</span><br><span class="line">    int Front;</span><br><span class="line">    int Rear;</span><br><span class="line">&#125;Queue;</span><br><span class="line"></span><br><span class="line">bool Init(Queue &amp;Q)&#123;</span><br><span class="line">    Q.base = (int *)malloc(MAXSIZE * sizeof(int));</span><br><span class="line">    <span class="keyword">if</span>(!Q.base) <span class="built_in">return</span> ERROR;</span><br><span class="line">    Q.Front = Q.Rear = 0;</span><br><span class="line">    <span class="built_in">return</span> OK;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//队列长度</span><br><span class="line">int getLength(Queue &amp;Q)&#123;</span><br><span class="line">    <span class="built_in">return</span> (Q.Rear - Q.Front + MAXSIZE) % MAXSIZE;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">bool Insert(Queue &amp;Q , int e)&#123;</span><br><span class="line">    <span class="keyword">if</span>((Q.Rear + 1) % MAXSIZE == Q.Front) <span class="built_in">return</span> ERROR;  //队列满的标志</span><br><span class="line">    Q.base[Q.Rear] = e;</span><br><span class="line">    Q.Rear = (Q.Rear + 1)%MAXSIZE;</span><br><span class="line">    <span class="built_in">return</span> OK;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">bool Delete(Queue &amp;Q , int &amp;e)&#123;</span><br><span class="line">    <span class="keyword">if</span>(Q.Front == Q.Rear) <span class="built_in">return</span> ERROR;  //队列空的标志</span><br><span class="line">    e = Q.base[Q.Front];</span><br><span class="line">    Q.Front = (Q.Front + 1)%MAXSIZE;</span><br><span class="line">    <span class="built_in">return</span> OK;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void <span class="built_in">print</span>(Queue Q)&#123;</span><br><span class="line">    <span class="keyword">if</span>(Q.Front == Q.Rear) cout&lt;&lt;<span class="string">"队列空"</span>&lt;&lt;endl;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">while</span>((Q.Front + 1)%MAXSIZE != Q.Rear)&#123;</span><br><span class="line">            cout&lt;&lt;Q.base[Q.Front]&lt;&lt;<span class="string">' '</span>;</span><br><span class="line">            Q.Front = Q.Front+1;</span><br><span class="line">        &#125;</span><br><span class="line">        cout&lt;&lt;Q.base[Q.Front];</span><br><span class="line">    &#125;</span><br><span class="line">    cout&lt;&lt;endl;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    Queue Q;</span><br><span class="line">    Init(Q);</span><br><span class="line">    <span class="keyword">for</span>(int i = 0 ; i&lt;5 ; ++i)&#123;</span><br><span class="line">        int n;</span><br><span class="line">        cin&gt;&gt;n;</span><br><span class="line">        bool a;</span><br><span class="line">        a = Insert(Q , n);</span><br><span class="line">        cout&lt;&lt;a&lt;&lt;<span class="string">' '</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    int e;</span><br><span class="line">    cout&lt;&lt;endl;</span><br><span class="line">    cout&lt;&lt;getLength(Q)&lt;&lt;endl;</span><br><span class="line">    <span class="built_in">print</span>(Q);</span><br><span class="line">    //cout&lt;&lt;Q.Front&lt;&lt;<span class="string">' '</span>&lt;&lt;Q.Rear&lt;&lt;endl;</span><br><span class="line">    Delete(Q , e);</span><br><span class="line">    cout&lt;&lt;e&lt;&lt;endl;</span><br><span class="line">    <span class="built_in">print</span>(Q);</span><br><span class="line">    cout&lt;&lt;getLength(Q)&lt;&lt;endl;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -538,7 +443,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Markdown/" rel="tag"># Markdown</a>
+            <a href="/tags/队列/" rel="tag"># 队列</a>
           
         </div>
       
@@ -551,8 +456,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/09/07/hello-world/" rel="next" title="Hello World">
-                <i class="fa fa-chevron-left"></i> Hello World
+              <a href="/2019/09/27/CenterNet的理解/" rel="next" title="对于CenterNet的理解">
+                <i class="fa fa-chevron-left"></i> 对于CenterNet的理解
               </a>
             
           </div>
@@ -560,10 +465,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/09/26/Focal-Loss的理解/" rel="prev" title="Focal Loss的理解">
-                Focal Loss的理解 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -697,7 +598,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#区块元素"><span class="nav-number">1.</span> <span class="nav-text">区块元素</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#标题"><span class="nav-number">1.1.</span> <span class="nav-text">标题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#区块引用"><span class="nav-number">1.2.</span> <span class="nav-text">区块引用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#列表"><span class="nav-number">1.3.</span> <span class="nav-text">列表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码区块"><span class="nav-number">1.4.</span> <span class="nav-text">代码区块</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分割线"><span class="nav-number">1.5.</span> <span class="nav-text">分割线</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#区段元素"><span class="nav-number">2.</span> <span class="nav-text">区段元素</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#链接"><span class="nav-number">2.1.</span> <span class="nav-text">链接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#强调"><span class="nav-number">2.2.</span> <span class="nav-text">强调</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码"><span class="nav-number">2.3.</span> <span class="nav-text">代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#图片"><span class="nav-number">2.4.</span> <span class="nav-text">图片</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自动链接"><span class="nav-number">2.5.</span> <span class="nav-text">自动链接</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#感谢"><span class="nav-number">3.</span> <span class="nav-text">感谢</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#常规链队列的实现"><span class="nav-number">1.</span> <span class="nav-text">常规链队列的实现</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#循环队列的实现"><span class="nav-number">2.</span> <span class="nav-text">循环队列的实现</span></a></li></ol></div>
             
 
           </div>
