@@ -296,193 +296,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/23/pytorch学习历程/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lzc">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="I am Art">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/10/23/pytorch学习历程/" itemprop="url">pytorch学习历程</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-23T20:08:50+08:00">
-                2019-10-23
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/深度学习/" itemprop="url" rel="index">
-                    <span itemprop="name">深度学习</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-          
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  177
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  1
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="pytorch-入门"><a href="#pytorch-入门" class="headerlink" title="pytorch 入门"></a>pytorch 入门</h1><h2 id="torch张量操作"><a href="#torch张量操作" class="headerlink" title="torch张量操作"></a>torch张量操作</h2><ul>
-<li><p>不初始化</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">import torch</span><br><span class="line"></span><br><span class="line"><span class="comment">#不初始化</span></span><br><span class="line">x = torch.empty(2 , 2)</span><br><span class="line"><span class="comment">#print(x)</span></span><br><span class="line"><span class="string">""</span><span class="string">"tensor([[-1.7037e+09,  4.5758e-41],</span></span><br><span class="line"><span class="string">          [-1.7037e+09,  4.5758e-41]])</span></span><br><span class="line"><span class="string">"</span><span class="string">""</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>初始化</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#初始化   [0 , 1)的均匀分布</span></span><br><span class="line">x = torch.rand(2 , 2)</span><br><span class="line"><span class="comment"># torch.randn() 标准正态分布</span></span><br><span class="line"><span class="built_in">print</span>(x)</span><br><span class="line"><span class="string">''</span><span class="string">'tensor([[0.4970, 0.2753],</span></span><br><span class="line"><span class="string">          [0.7832, 0.3740]])</span></span><br><span class="line"><span class="string">'</span><span class="string">''</span></span><br><span class="line"></span><br><span class="line">x = torch.zeros(2 , 2 , dtype= torch.long)</span><br><span class="line"><span class="built_in">print</span>(x)</span><br><span class="line"><span class="string">''</span><span class="string">'tensor([[0, 0],</span></span><br><span class="line"><span class="string">          [0, 0]])</span></span><br><span class="line"><span class="string">'</span><span class="string">''</span></span><br><span class="line"></span><br><span class="line">x = torch.tensor([1 , 2])</span><br><span class="line"><span class="built_in">print</span>(x)</span><br><span class="line"><span class="string">''</span><span class="string">'tensor([1, 2]) '</span><span class="string">''</span></span><br><span class="line"></span><br><span class="line">y = torch.zeros_like(x)</span><br><span class="line"><span class="built_in">print</span>(y)</span><br><span class="line"><span class="comment"># tensor([0, 0])</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">z = torch.ones_like(x)</span><br><span class="line"><span class="built_in">print</span>(z)</span><br><span class="line"><span class="comment"># tensor([1, 1])</span></span><br><span class="line">``` </span><br><span class="line">- 改变维度 用view</span><br><span class="line">``` bash</span><br><span class="line">x = torch.randn(4 , 4)</span><br><span class="line">y = x.view(16)</span><br><span class="line"><span class="comment">#print(y)</span></span><br><span class="line"><span class="built_in">print</span>(y.size())</span><br><span class="line"><span class="built_in">print</span>(y.shape)</span><br><span class="line"><span class="comment">#torch.Size([16])</span></span><br><span class="line"></span><br><span class="line">z = x.view(-1 , 8)</span><br><span class="line"><span class="built_in">print</span>(z.size())</span><br><span class="line"><span class="comment"># torch.Size([2, 8])</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>用item来获取值</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">x = torch.randn(1)</span><br><span class="line"><span class="built_in">print</span>(x)</span><br><span class="line"><span class="built_in">print</span>(x.item())</span><br><span class="line"><span class="string">''</span><span class="string">'</span></span><br><span class="line"><span class="string">tensor([1.4149])</span></span><br><span class="line"><span class="string">1.4148601293563843</span></span><br><span class="line"><span class="string">'</span><span class="string">''</span></span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<p>## </p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/29/二叉树的实现/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2136,7 +1949,7 @@ date: 2019-09-27 11:25:23</li>
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2158,7 +1971,7 @@ date: 2019-09-27 11:25:23</li>
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -2210,7 +2023,7 @@ date: 2019-09-27 11:25:23</li>
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">7.9k</span>
+    <span title="Site words total count">7.8k</span>
   
 </div>
 
