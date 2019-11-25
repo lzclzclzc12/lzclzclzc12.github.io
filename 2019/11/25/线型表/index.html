@@ -89,7 +89,7 @@
 <meta property="og:site_name" content="I am Art">
 <meta property="og:description" content="线型表的顺序表示和实现">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-11-25T11:05:40.378Z">
+<meta property="og:updated_time" content="2019-11-25T14:25:38.476Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="线型表">
 <meta name="twitter:description" content="线型表的顺序表示和实现">
@@ -386,7 +386,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  549
+                  1.4k
                 </span>
               
 
@@ -402,7 +402,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  3
+                  8
                 </span>
               
             </div>
@@ -425,141 +425,13 @@
       
         <h1 id="线型表的顺序表示和实现"><a href="#线型表的顺序表示和实现" class="headerlink" title="线型表的顺序表示和实现"></a>线型表的顺序表示和实现</h1><a id="more"></a>
 
-<pre><code class="bash"><span class="comment">#include&lt;iostream&gt;</span>
-<span class="comment">#include&lt;stdio.h&gt;</span>
-<span class="comment">#define LIST_INIT_SIZE 100</span>
-<span class="comment">#define List_Increament 10 //当容量不够时每次增加的容量大小</span>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#include&lt;iostream&gt;</span></span><br><span class="line"><span class="comment">#include&lt;stdio.h&gt;</span></span><br><span class="line"><span class="comment">#define LIST_INIT_SIZE 100</span></span><br><span class="line"><span class="comment">#define List_Increament 10 //当容量不够时每次增加的容量大小</span></span><br><span class="line"></span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">typedef struct SqList&#123;</span><br><span class="line">    int *data;</span><br><span class="line">    int length;</span><br><span class="line">    int listsize;  //线型表的容量</span><br><span class="line">&#125;S;</span><br><span class="line"></span><br><span class="line">bool Init(SqList &amp;L)&#123;</span><br><span class="line">    L.data = (int *)malloc(LIST_INIT_SIZE * sizeof(int));</span><br><span class="line">    <span class="keyword">if</span>(!L.data) <span class="built_in">return</span> <span class="literal">false</span>;</span><br><span class="line">    L.length = 0;</span><br><span class="line">    L.listsize = LIST_INIT_SIZE;</span><br><span class="line">    <span class="built_in">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 在第i+1的位置上插入e</span><br><span class="line">bool Insert(SqList &amp;L , int i , int e)&#123;</span><br><span class="line">    <span class="keyword">if</span>(i &lt; 0 || i &gt; L.length)&#123;</span><br><span class="line">        <span class="built_in">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(L.length &gt; L.listsize)&#123;</span><br><span class="line">        int *newsize = (int *)realloc(L.data , (L.listsize + List_Increament) * sizeof(int));</span><br><span class="line">        <span class="keyword">if</span>(!newsize) <span class="built_in">return</span> <span class="literal">false</span>;</span><br><span class="line">        L.data = newsize;</span><br><span class="line">        L.listsize += List_Increament;</span><br><span class="line">    &#125;</span><br><span class="line">    int *q = &amp;(L.data[i]);</span><br><span class="line">    <span class="keyword">for</span>(int *p = &amp;(L.data[L.length - 1]) ; p &gt;= q ; --p)&#123;</span><br><span class="line">        *(p+1) = *p;</span><br><span class="line">    &#125;</span><br><span class="line">    *q = e;</span><br><span class="line">    L.length++;</span><br><span class="line">    <span class="built_in">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 在i+1 的位置上删除元素，放入e中</span><br><span class="line">bool Delete(SqList &amp;L , int i , int &amp;e)&#123;</span><br><span class="line">    <span class="keyword">if</span>(i &lt; 0 || i &gt;= L.length)&#123;</span><br><span class="line">        <span class="built_in">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    int *p = &amp;(L.data[i]);</span><br><span class="line">    e = L.data[i];</span><br><span class="line">    <span class="keyword">for</span>(int *q = &amp;(L.data[i]) ; q &lt; &amp;(L.data[L.length-1]) ; ++q)&#123;</span><br><span class="line">        *q = *(q+1);</span><br><span class="line">    &#125;</span><br><span class="line">    --L.length;</span><br><span class="line">    <span class="built_in">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//合并线型表L1 和 L2 ，放入 L3中, 假设L1和L2均为降序排列，得到的L3也要降序排列</span><br><span class="line">bool MergeList(SqList &amp;L1 , SqList &amp;L2 , SqList &amp;L3)&#123;</span><br><span class="line">    int *p1 = L1.data;</span><br><span class="line">    int *p2 = L2.data;</span><br><span class="line">    L3.length = L1.length + L2.length;</span><br><span class="line">    L3.listsize = L1.listsize + L2.listsize;</span><br><span class="line">    L3.data = (int *)malloc(L3.listsize * sizeof(int));</span><br><span class="line">    int *p3 = L3.data;</span><br><span class="line">    <span class="keyword">if</span>(!L3.data) <span class="built_in">return</span> <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">while</span>(p1 &lt;= (L1.data + L1.length - 1) &amp;&amp; p2 &lt;= (L2.data + L2.length - 1))&#123;</span><br><span class="line">        <span class="keyword">if</span>(*p1 &gt; *p2)&#123;</span><br><span class="line">            *p3 = *p1;</span><br><span class="line">            *p3++ , *p1++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            *p3 = *p2;</span><br><span class="line">            *p3++ , *p2++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span>(p1 &lt;= (L1.data + L1.length - 1))&#123;</span><br><span class="line">        *p3 = *p1;</span><br><span class="line">        *p3++ , *p1++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span>(p2 &lt;= (L2.data + L2.length - 1))&#123;</span><br><span class="line">        *p3 = *p2;</span><br><span class="line">        *p3++ , *p2++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    //合并</span><br><span class="line">    SqList L1 , L2 , L3;</span><br><span class="line">    Init(L1);</span><br><span class="line">    Init(L2);</span><br><span class="line">    Init(L3);</span><br><span class="line">    <span class="keyword">for</span>(int i = 0 ; i&lt;5 ; ++i)&#123;</span><br><span class="line">        int a;</span><br><span class="line">        cin&gt;&gt;a;</span><br><span class="line">        Insert(L1 , i , a);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(int i = 0 ; i&lt;5 ; ++i)&#123;</span><br><span class="line">        int a;</span><br><span class="line">        cin&gt;&gt;a;</span><br><span class="line">        Insert(L2 , i , a);</span><br><span class="line">    &#125;</span><br><span class="line">    MergeList(L1 , L2 , L3);</span><br><span class="line">    <span class="keyword">for</span>(int i = 0 ; i&lt;L3.length ; ++i)&#123;</span><br><span class="line">        cout&lt;&lt;L3.data[i]&lt;&lt;<span class="string">' '</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    //插入、删除</span><br><span class="line">    SqList s;</span><br><span class="line">    Init(s);</span><br><span class="line">    <span class="keyword">for</span>(int i = 0 ; i&lt;10 ; ++i)&#123;</span><br><span class="line">        int a;</span><br><span class="line">        cin&gt;&gt;a;</span><br><span class="line">        Insert(s , i , a);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(int i = 0 ; i&lt;10 ; ++i)&#123;</span><br><span class="line">        cout&lt;&lt;s.data[i]&lt;&lt;<span class="string">' '</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    cout&lt;&lt;endl;</span><br><span class="line">    Insert(s , 5 , 1000);</span><br><span class="line">    <span class="keyword">for</span>(int i = 0 ; i&lt;s.length ; ++i)&#123;</span><br><span class="line">        cout&lt;&lt;s.data[i]&lt;&lt;<span class="string">' '</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    int e;</span><br><span class="line">    Delete(s , 5 , e);</span><br><span class="line">    Delete(s , 3 , e);</span><br><span class="line">    cout&lt;&lt;endl;</span><br><span class="line">    cout&lt;&lt;e&lt;&lt;endl;</span><br><span class="line">    <span class="keyword">for</span>(int i = 0 ; i&lt;s.length ; ++i)&#123;</span><br><span class="line">        cout&lt;&lt;s.data[i]&lt;&lt;<span class="string">' '</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-using namespace std;
+<h1 id="线型表的链式表示和实现"><a href="#线型表的链式表示和实现" class="headerlink" title="线型表的链式表示和实现"></a>线型表的链式表示和实现</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#include&lt;iostream&gt;</span></span><br><span class="line"><span class="comment">#include&lt;stdio.h&gt;</span></span><br><span class="line"><span class="comment">#define LIST_INIT_SIZE 100</span></span><br><span class="line"><span class="comment">#define List_Increament 10</span></span><br><span class="line"></span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">typedef struct LNode &#123;</span><br><span class="line">    int data;</span><br><span class="line">    LNode *next;</span><br><span class="line">&#125;LNode , *LinkList;</span><br><span class="line"></span><br><span class="line">//建立一个有n个节点的链表</span><br><span class="line">void CreateList(LinkList &amp;L , int n)&#123;</span><br><span class="line">    L = (LinkList)malloc(sizeof(LNode));</span><br><span class="line">    L-&gt;next = NULL;</span><br><span class="line">    <span class="keyword">for</span>(int i = 0 ; i&lt;n ; ++i)&#123;</span><br><span class="line">        LinkList p = (LinkList)malloc(sizeof(LNode));</span><br><span class="line">        cin&gt;&gt;p-&gt;data;</span><br><span class="line">        p-&gt;next = L-&gt;next;  // 头插法</span><br><span class="line">        L-&gt;next = p;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//在第i个位置之前插入 e</span><br><span class="line">bool Insert(LinkList &amp;L , int i , int e)&#123;</span><br><span class="line">    LinkList p = L;</span><br><span class="line">    <span class="keyword">for</span>(int j = 0 ; j&lt;i-1 ; ++j)&#123;</span><br><span class="line">        <span class="keyword">if</span>(p == NULL) <span class="built_in">return</span> <span class="literal">false</span>;</span><br><span class="line">        p = p-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">    LinkList q = (LinkList)malloc(sizeof(LNode));</span><br><span class="line">    q-&gt;data = e;</span><br><span class="line">    q-&gt;next = p-&gt;next;</span><br><span class="line">    p-&gt;next = q;</span><br><span class="line">    <span class="built_in">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//删除第i个节点</span><br><span class="line">bool Delete(LinkList &amp;L , int i , int &amp;e)&#123;</span><br><span class="line">    LinkList p = L;</span><br><span class="line">    <span class="keyword">for</span>(int j = 0 ; j&lt;i-1 ; ++j)&#123;</span><br><span class="line">        <span class="keyword">if</span>(!p) <span class="built_in">return</span> <span class="literal">false</span>;</span><br><span class="line">        p = p-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">    LinkList q = p-&gt;next;</span><br><span class="line">    e = p-&gt;next-&gt;data;</span><br><span class="line">    p-&gt;next = p-&gt;next-&gt;next;</span><br><span class="line">    free(q);</span><br><span class="line">    <span class="built_in">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void <span class="built_in">print</span>(LinkList L)&#123;</span><br><span class="line">    LinkList p = L-&gt;next;</span><br><span class="line">    <span class="keyword">while</span>(p)&#123;</span><br><span class="line">        cout&lt;&lt;p-&gt;data&lt;&lt;<span class="string">' '</span>;</span><br><span class="line">        p = p-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">    cout&lt;&lt;endl;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// L1和L2中均为降序排列，合并后的L3中的也为降序</span><br><span class="line">void MergeList(LinkList &amp;L1 , LinkList &amp;L2 , LinkList &amp;L3)&#123;</span><br><span class="line">    LinkList p1 = L1-&gt;next , p2 = L2-&gt;next;</span><br><span class="line">    LinkList p3 = L3 = L1; // 将L1的头结点作为L3的头结点</span><br><span class="line">    <span class="keyword">while</span>(p1 &amp;&amp; p2)&#123;</span><br><span class="line">        <span class="keyword">if</span>(p1-&gt;data &gt; p2-&gt;data)&#123;</span><br><span class="line">            p3-&gt;next = p1;</span><br><span class="line">            p3 = p3-&gt;next;</span><br><span class="line">            p1 = p1-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            p3-&gt;next = p2;</span><br><span class="line">            p3 = p3-&gt;next;</span><br><span class="line">            p2 = p2-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    p3-&gt;next = p1 ? p1 : p2;</span><br><span class="line">    free(L2);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    LinkList L1 , L2 , L3;</span><br><span class="line">    int n;</span><br><span class="line">    cin&gt;&gt;n;</span><br><span class="line">    CreateList(L1 , n);</span><br><span class="line">    CreateList(L2 , n);</span><br><span class="line">    <span class="built_in">print</span>(L1);</span><br><span class="line">    <span class="built_in">print</span>(L2);</span><br><span class="line">    MergeList(L1 , L2 , L3);</span><br><span class="line">    <span class="built_in">print</span>(L3);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-typedef struct SqList{
-    int *data;
-    int length;
-    int listsize;  //线型表的容量
-}S;
+<h1 id="单向循环链表"><a href="#单向循环链表" class="headerlink" title="单向循环链表"></a>单向循环链表</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">//没什么不一样的，就变了L-&gt;next = L; 而且其他函数的终止条件不可以是p-&gt;next == NULL，而是是否等于头指针</span><br><span class="line">void CreateList(LinkList &amp;L , int n)&#123;</span><br><span class="line">    L = (LinkList)malloc(sizeof(LNode));</span><br><span class="line">    L-&gt;next = L;</span><br><span class="line">    <span class="keyword">for</span>(int i = 0 ; i&lt;n ; ++i)&#123;</span><br><span class="line">        LinkList p = (LinkList)malloc(sizeof(LNode));</span><br><span class="line">        cin&gt;&gt;p-&gt;data;</span><br><span class="line">        p-&gt;next = L-&gt;next;</span><br><span class="line">        L-&gt;next = p;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-bool Init(SqList &amp;L){
-    L.data = (int *)malloc(LIST_INIT_SIZE * sizeof(int));
-    <span class="keyword">if</span>(!L.data) <span class="built_in">return</span> <span class="literal">false</span>;
-    L.length = 0;
-    L.listsize = LIST_INIT_SIZE;
-    <span class="built_in">return</span> <span class="literal">true</span>;
-}
-
-// 在第i+1的位置上插入e
-bool Insert(SqList &amp;L , int i , int e){
-    <span class="keyword">if</span>(i &lt; 0 || i &gt; L.length){
-        <span class="built_in">return</span> <span class="literal">false</span>;
-    }
-    <span class="keyword">if</span>(L.length &gt; L.listsize){
-        int *newsize = (int *)realloc(L.data , (L.listsize + List_Increament) * sizeof(int));
-        <span class="keyword">if</span>(!newsize) <span class="built_in">return</span> <span class="literal">false</span>;
-        L.data = newsize;
-        L.listsize += List_Increament;
-    }
-    int *q = &amp;(L.data[i]);
-    <span class="keyword">for</span>(int *p = &amp;(L.data[L.length - 1]) ; p &gt;= q ; --p){
-        *(p+1) = *p;
-    }
-    *q = e;
-    L.length++;
-    <span class="built_in">return</span> <span class="literal">true</span>;
-}
-
-// 在i+1 的位置上删除元素，放入e中
-bool Delete(SqList &amp;L , int i , int &amp;e){
-    <span class="keyword">if</span>(i &lt; 0 || i &gt;= L.length){
-        <span class="built_in">return</span> <span class="literal">false</span>;
-    }
-    int *p = &amp;(L.data[i]);
-    e = L.data[i];
-    <span class="keyword">for</span>(int *q = &amp;(L.data[i]) ; q &lt; &amp;(L.data[L.length-1]) ; ++q){
-        *q = *(q+1);
-    }
-    --L.length;
-    <span class="built_in">return</span> <span class="literal">true</span>;
-}
-
-//合并线型表L1 和 L2 ，放入 L3中, 假设L1和L2均为降序排列，得到的L3也要降序排列
-bool MergeList(SqList &amp;L1 , SqList &amp;L2 , SqList &amp;L3){
-    int *p1 = L1.data;
-    int *p2 = L2.data;
-    L3.length = L1.length + L2.length;
-    L3.listsize = L1.listsize + L2.listsize;
-    L3.data = (int *)malloc(L3.listsize * sizeof(int));
-    int *p3 = L3.data;
-    <span class="keyword">if</span>(!L3.data) <span class="built_in">return</span> <span class="literal">false</span>;
-    <span class="keyword">while</span>(p1 &lt;= (L1.data + L1.length - 1) &amp;&amp; p2 &lt;= (L2.data + L2.length - 1)){
-        <span class="keyword">if</span>(*p1 &gt; *p2){
-            *p3 = *p1;
-            *p3++ , *p1++;
-        }
-        <span class="keyword">else</span> {
-            *p3 = *p2;
-            *p3++ , *p2++;
-        }
-    }
-    <span class="keyword">while</span>(p1 &lt;= (L1.data + L1.length - 1)){
-        *p3 = *p1;
-        *p3++ , *p1++;
-    }
-    <span class="keyword">while</span>(p2 &lt;= (L2.data + L2.length - 1)){
-        *p3 = *p2;
-        *p3++ , *p2++;
-    }
-    <span class="built_in">return</span> <span class="literal">true</span>;
-}
-
-int main()
-{
-    //合并
-    SqList L1 , L2 , L3;
-    Init(L1);
-    Init(L2);
-    Init(L3);
-    <span class="keyword">for</span>(int i = 0 ; i&lt;5 ; ++i){
-        int a;
-        cin&gt;&gt;a;
-        Insert(L1 , i , a);
-    }
-    <span class="keyword">for</span>(int i = 0 ; i&lt;5 ; ++i){
-        int a;
-        cin&gt;&gt;a;
-        Insert(L2 , i , a);
-    }
-    MergeList(L1 , L2 , L3);
-    <span class="keyword">for</span>(int i = 0 ; i&lt;L3.length ; ++i){
-        cout&lt;&lt;L3.data[i]&lt;&lt;<span class="string">' '</span>;
-    }
-
-
-    //插入、删除
-    SqList s;
-    Init(s);
-    <span class="keyword">for</span>(int i = 0 ; i&lt;10 ; ++i){
-        int a;
-        cin&gt;&gt;a;
-        Insert(s , i , a);
-    }
-    <span class="keyword">for</span>(int i = 0 ; i&lt;10 ; ++i){
-        cout&lt;&lt;s.data[i]&lt;&lt;<span class="string">' '</span>;
-    }
-    cout&lt;&lt;endl;
-    Insert(s , 5 , 1000);
-    <span class="keyword">for</span>(int i = 0 ; i&lt;s.length ; ++i){
-        cout&lt;&lt;s.data[i]&lt;&lt;<span class="string">' '</span>;
-    }
-    int e;
-    Delete(s , 5 , e);
-    Delete(s , 3 , e);
-    cout&lt;&lt;endl;
-    cout&lt;&lt;e&lt;&lt;endl;
-    <span class="keyword">for</span>(int i = 0 ; i&lt;s.length ; ++i){
-        cout&lt;&lt;s.data[i]&lt;&lt;<span class="string">' '</span>;
-    }
-}
-</code></pre>
-
+<h1 id="循环双向链表"><a href="#循环双向链表" class="headerlink" title="循环双向链表"></a>循环双向链表</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#include&lt;iostream&gt;</span></span><br><span class="line"><span class="comment">#include&lt;stdio.h&gt;</span></span><br><span class="line"><span class="comment">#define LIST_INIT_SIZE 100</span></span><br><span class="line"><span class="comment">#define List_Increament 10</span></span><br><span class="line"></span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">typedef struct DuLNode &#123;</span><br><span class="line">    int data;</span><br><span class="line">    DuLNode *prior;</span><br><span class="line">    DuLNode *next;</span><br><span class="line">&#125;DuLNode , *DuLinkList;</span><br><span class="line"></span><br><span class="line">void CreateList(DuLinkList &amp;L , int n)&#123;</span><br><span class="line">    L = (DuLinkList)malloc(sizeof(DuLNode));</span><br><span class="line">    L-&gt;next = L;</span><br><span class="line">    L-&gt;prior = L;</span><br><span class="line">    <span class="keyword">for</span>(int i = 0 ; i&lt;n ; ++i)&#123;</span><br><span class="line">        DuLinkList p = (DuLinkList)malloc(sizeof(DuLNode));</span><br><span class="line">        cin&gt;&gt;p-&gt;data;</span><br><span class="line">        p-&gt;next = L-&gt;next;</span><br><span class="line">        L-&gt;next-&gt;prior = p;</span><br><span class="line">        p-&gt;prior = L;</span><br><span class="line">        L-&gt;next = p;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 在i位置之前插入e</span><br><span class="line">void Insert(DuLinkList &amp;L , int i , int e)&#123;</span><br><span class="line">    DuLinkList q = L;</span><br><span class="line">    DuLinkList p = (DuLinkList)malloc(sizeof(DuLNode));</span><br><span class="line">    p-&gt;data = e;</span><br><span class="line">    <span class="keyword">for</span>(int j = 0 ; j&lt;i - 1 ; ++j)&#123;</span><br><span class="line">        q = q-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">    p-&gt;next = q-&gt;next;</span><br><span class="line">    q-&gt;next-&gt;prior = p;</span><br><span class="line">    p-&gt;prior = q;</span><br><span class="line">    q-&gt;next = p;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 删除i位置的结点</span><br><span class="line">void Delete(DuLinkList &amp;L , int i , int &amp;e)&#123;</span><br><span class="line">    DuLinkList p = L;</span><br><span class="line">    <span class="keyword">for</span>(int j = 0 ; j&lt;i ; ++j)&#123;</span><br><span class="line">        p = p-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">    e = p-&gt;data;</span><br><span class="line">    p-&gt;next-&gt;prior = p-&gt;prior;</span><br><span class="line">    p-&gt;prior-&gt;next = p-&gt;next;</span><br><span class="line">    free(p);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void <span class="built_in">print</span>(DuLinkList L)&#123;</span><br><span class="line">    DuLinkList p = L-&gt;next;</span><br><span class="line">    <span class="keyword">while</span>(p != L)&#123;</span><br><span class="line">        cout&lt;&lt;p-&gt;data&lt;&lt;<span class="string">' '</span>;</span><br><span class="line">        p = p-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">    cout&lt;&lt;endl;</span><br><span class="line">    p = p-&gt;prior;</span><br><span class="line">    <span class="keyword">while</span>(p != L)&#123;</span><br><span class="line">        cout&lt;&lt;p-&gt;data&lt;&lt;<span class="string">' '</span>;</span><br><span class="line">        p = p-&gt;prior;</span><br><span class="line">    &#125;</span><br><span class="line">    cout&lt;&lt;endl;</span><br><span class="line">&#125;</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    DuLinkList L;</span><br><span class="line">    int n;</span><br><span class="line">    cin&gt;&gt;n;</span><br><span class="line">    CreateList(L , n);</span><br><span class="line">    <span class="built_in">print</span>(L);</span><br><span class="line">    int e;</span><br><span class="line">    cin&gt;&gt;e;</span><br><span class="line">    Insert(L , 3 , e);</span><br><span class="line">    <span class="built_in">print</span>(L);</span><br><span class="line">    Delete(L , 2 , e);</span><br><span class="line">    <span class="built_in">print</span>(L);</span><br><span class="line">    cout&lt;&lt;e;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -731,7 +603,7 @@ int main()
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#线型表的顺序表示和实现"><span class="nav-number">1.</span> <span class="nav-text">线型表的顺序表示和实现</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#线型表的顺序表示和实现"><span class="nav-number">1.</span> <span class="nav-text">线型表的顺序表示和实现</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#线型表的链式表示和实现"><span class="nav-number">2.</span> <span class="nav-text">线型表的链式表示和实现</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#单向循环链表"><span class="nav-number">3.</span> <span class="nav-text">单向循环链表</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#循环双向链表"><span class="nav-number">4.</span> <span class="nav-text">循环双向链表</span></a></li></ol></div>
             
 
           </div>
@@ -766,7 +638,7 @@ int main()
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">7.4k</span>
+    <span title="Site words total count">8.3k</span>
   
 </div>
 
