@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA['K-Nearest_Neighbors_Algorithm']]></title>
+    <title><![CDATA[K-Nearest_Neighbors_Algorithm]]></title>
     <url>%2F2019%2F12%2F18%2FK-Nearest-Neighbors-Algorithm%2F</url>
     <content type="text"><![CDATA[KNNKNN是一种无监督机器学习算法，算法假定相似的事物彼此接近，其中，用‘距离’来表征事物的相似性。 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051import mathimport numpy as npdef KNN(data , quary , k , distance_fn , choice_fn): neighbor_distance_and_index = [] for index, example in enumerate(data): distance = distance_fn(example[:-1] , quary) #将要预测的 quary 与 data 里的每一个值进行 #距离计算 neighbor_distance_and_index.append((distance , index)) sorted_neighbor_diatance_and_index = sorted(neighbor_distance_and_index) #将距离排序 k_nearest_distance_and_index = sorted_neighbor_diatance_and_index[:k] #取出前k个最相似的值 k_nearset_labels = [data[i][1] for distance , i in k_nearest_distance_and_index] return k_nearest_distance_and_index , choice_fn(k_nearset_labels)def mean(labels): #将最终结果取平均值 return sum(labels) / len(labels)def euclidean_distance(example , quary): #用欧式距离 sum_euclidean_distance = 0 for i in range(len(example)): sum_euclidean_distance += math.pow(example[i]- quary[i] , 2) return math.sqrt(sum_euclidean_distance)def main(): reg_data = [ [65.75, 112.99], [71.52, 136.49], [69.40, 153.03], [68.22, 142.34], [67.79, 144.30], [68.70, 123.30], [69.80, 141.49], [70.01, 136.46], [67.90, 112.37], [66.49, 127.45], ] reg_quary = [60] reg_k_nearest_neighbors, reg_prediction = KNN(reg_data , reg_quary , k = 2 , distance_fn = euclidean_distance , choice_fn = mean) print(reg_prediction)if __name__ == '__main__': main() 如果k=1，那么模型预测误差就很大，而增加k的值，由于进行多次投票，最终预测变得稳定]]></content>
       <categories>
