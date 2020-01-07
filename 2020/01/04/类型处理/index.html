@@ -81,18 +81,18 @@
 
 
 
-<meta name="description" content="类型别名两种方法： 12345//第一种、typedef double money;    //money 是double 的同义词typedef money rmb , *dollar // rmb是 double的同义词，dollar是double * 的同义词using money = double;  //money 是double 的同义词  注意事项如果类型别名指代的是复合类型，那么把">
+<meta name="description" content="类型别名两种方法：">
 <meta name="keywords" content="c++primer">
 <meta property="og:type" content="article">
 <meta property="og:title" content="类型处理">
 <meta property="og:url" content="http://yoursite.com/2020/01/04/类型处理/index.html">
 <meta property="og:site_name" content="I am Art">
-<meta property="og:description" content="类型别名两种方法： 12345//第一种、typedef double money;    //money 是double 的同义词typedef money rmb , *dollar // rmb是 double的同义词，dollar是double * 的同义词using money = double;  //money 是double 的同义词  注意事项如果类型别名指代的是复合类型，那么把">
+<meta property="og:description" content="类型别名两种方法：">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-01-07T14:28:14.600Z">
+<meta property="og:updated_time" content="2020-01-07T14:33:06.127Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="类型处理">
-<meta name="twitter:description" content="类型别名两种方法： 12345//第一种、typedef double money;    //money 是double 的同义词typedef money rmb , *dollar // rmb是 double的同义词，dollar是double * 的同义词using money = double;  //money 是double 的同义词  注意事项如果类型别名指代的是复合类型，那么把">
+<meta name="twitter:description" content="类型别名两种方法：">
 
 
 
@@ -424,6 +424,7 @@
 
       
         <h1 id="类型别名"><a href="#类型别名" class="headerlink" title="类型别名"></a>类型别名</h1><p>两种方法：</p>
+<a id="more"></a>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//第一种、</span><br><span class="line">typedef double money;    //money 是double 的同义词</span><br><span class="line">typedef money rmb , *dollar // rmb是 double的同义词，dollar是double * 的同义词</span><br><span class="line"></span><br><span class="line">using money = double;  //money 是double 的同义词</span><br></pre></td></tr></table></figure>
 
 <h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><p>如果类型别名指代的是复合类型，那么把它用到声明语句中会有<strong>变化</strong></p>
