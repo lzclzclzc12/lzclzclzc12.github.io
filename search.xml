@@ -36,7 +36,7 @@
   <entry>
     <title><![CDATA[const限定符]]></title>
     <url>%2F2020%2F01%2F04%2Fconst%E9%99%90%E5%AE%9A%E7%AC%A6%2F</url>
-    <content type="text"><![CDATA[指针和const允许让一个指向常量的指针指向一个非常量 12345678910111213141516171819202122232425int i = 0;const int *p = &amp;i; //定义一个指向常量的指针cout&lt;&lt;*p&lt;&lt;endl; // 0i = 100;cout&lt;&lt;*p; // 100``` ## const 指针一个指向常量的指针是指针可以变，但是指针指向对象的值不能通过指针改变；const 指针是指，指针本身是一个常量，即不能改变指针所指向的地址，但是指针指向对象的值可以改变。``` bashint i = 0;int *const p = &amp;i;*p = 100;cout&lt;&lt;i; // 100``` ## 顶层const用**顶层const**来表示指针本身是常量，用**底层const**来表示指针所指向的对象是常量。``` bashint i = 0;int *const p1 = &amp;i; //顶层constconst int ci = 42; const int *p2 = &amp;ci; //底层constconst int *const p3 = p2; //右const是顶层const，左const是底层constconst int &amp;r = ci; //用于声明引用的const 都是底层const constexpr和常量表达式常量表达式是指值不会改变并且在编译过程中就能得到计算结果的表达式。 12const int c = get_size(); // 不是常量表达式int i = 10; // 不是常量表达式 一般，如果一个变量是一个常量表达式，那么把它声明成constexpr类型 constexpr指针的初始值必须是nullptr或者是0，或是储存于某个固定地址中的对象。 函数体内定义的变量一般来说不是储存在固定地址，因此不能用来初始化constexpr指针；定义在所有函数体外的对象的储存地址固定不变，可以初始化constexpr指针。 指针与constexpr区别： const int *p = nullptr; //指向 整形常量 的指针 constexpr int *q = nullptr; //指向整形的 常量指针 constexpr const int *p1 = &amp;j //p1是 常量指针 ，指向 整形常量 j]]></content>
+    <content type="text"><![CDATA[指针和const允许让一个指向常量的指针指向一个非常量 12345int i = 0;const int *p = &amp;i; //定义一个指向常量的指针cout&lt;&lt;*p&lt;&lt;endl; // 0i = 100;cout&lt;&lt;*p; // 100 const 指针一个指向常量的指针是指针可以变，但是指针指向对象的值不能通过指针改变；const 指针是指，指针本身是一个常量，即不能改变指针所指向的地址，但是指针指向对象的值可以改变。 1234int i = 0;int *const p = &amp;i;*p = 100;cout&lt;&lt;i; // 100 顶层const用顶层const来表示指针本身是常量，用底层const来表示指针所指向的对象是常量。 123456int i = 0;int *const p1 = &amp;i; //顶层constconst int ci = 42; const int *p2 = &amp;ci; //底层constconst int *const p3 = p2; //右const是顶层const，左const是底层constconst int &amp;r = ci; //用于声明引用的const 都是底层const constexpr和常量表达式常量表达式是指值不会改变并且在编译过程中就能得到计算结果的表达式。 12const int c = get_size(); // 不是常量表达式int i = 10; // 不是常量表达式 一般，如果一个变量是一个常量表达式，那么把它声明成constexpr类型 constexpr指针的初始值必须是nullptr或者是0，或是储存于某个固定地址中的对象。 函数体内定义的变量一般来说不是储存在固定地址，因此不能用来初始化constexpr指针；定义在所有函数体外的对象的储存地址固定不变，可以初始化constexpr指针。 指针与constexpr区别： const int *p = nullptr; //指向 整形常量 的指针 constexpr int *q = nullptr; //指向整形的 常量指针 constexpr const int *p1 = &amp;j //p1是 常量指针 ，指向 整形常量 j]]></content>
       <categories>
         <category>c++</category>
       </categories>
@@ -128,8 +128,8 @@
         <category>深度学习</category>
       </categories>
       <tags>
-        <tag>Focal-Loss-OD</tag>
         <tag>待补充</tag>
+        <tag>Focal-Loss-OD</tag>
       </tags>
   </entry>
   <entry>
