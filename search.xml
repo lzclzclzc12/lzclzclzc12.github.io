@@ -1,9 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[指针与多维数组]]></title>
+    <url>%2F2020%2F01%2F18%2F%E6%8C%87%E9%92%88%E4%B8%8E%E5%A4%9A%E7%BB%B4%E6%95%B0%E7%BB%84%2F</url>
+    <content type="text"><![CDATA[使用范围for循环处理多维数组123456int arr[2][4] = &#123;1 , 2 , 3 , 4 , 5 , 6&#125;;for(auto &amp;i : arr)&#123; for(auto j : i)&#123; cout&lt;&lt;j; &#125;&#125; 注意上面代码i使用了引用类型，如果不加&amp;，那么编译器会把 i 变为指针类型int *，这样内层循环就不合法了。 1234567int arr[2][4] = &#123;1 , 2 , 3 , 4 , 5 , 6&#125;;for(auto p = begin(arr) ; p != end(arr) ; ++p)&#123; for(auto q = begin(*p) ; q != end(*p) ; ++q)&#123; cout&lt;&lt;*q; &#125;&#125;//相当于声明了 int (*p)[4] = arr;]]></content>
+      <categories>
+        <category>c++</category>
+      </categories>
+      <tags>
+        <tag>c++primer</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[数组]]></title>
     <url>%2F2020%2F01%2F18%2F%E6%95%B0%E7%BB%84%2F</url>
-    <content type="text"><![CDATA[显式初始化数组元素当显式地初始化数组元素时，如果提供的维度比初始值数量大，那么剩下的元素会被初始化为默认值。 1234567891011121314int a[10] = &#123;1 , 2 , 3&#125;; //默认值为0char a2[10] = "lzc"; //默认值为'\0'string a3[10] = &#123;"lzc" , "hello" , "world"&#125;; // 默认值为""for(auto i : a2)&#123; cout&lt;&lt;(i == '\0');&#125;cout&lt;&lt;endl;for(auto i : a)&#123; cout&lt;&lt;i;&#125;cout&lt;&lt;endl;for(auto i : a3)&#123; cout&lt;&lt;(i == "");&#125; 当显式地用字面值初始化字符数组时，要注意： 123456char a[] = "lzc"; //结尾有'\0'char a1[] = &#123;'l' , 'z' , 'c'&#125;; //结尾没有'\0'char a2[] = &#123;'l' , 'z' , 'c' , '\0'&#125;;char a3[3] = "lzc"; // 错误的，最小是4才能容得下cout&lt;&lt;(a[3] == '\0')&lt;&lt;endl;cout&lt;&lt;(a1[3] == '\0')&lt;&lt;endl; //结果虽然是0，但是a1[3]时不存在的 复杂数组的声明12345int *p[10]; //p是容量为10的数组，里面的元素为整形指针(可以从右向左理解)int &amp;p2[10]; //错误，没有引用的数组int (*p3)[10]; //可以从内向外理解，首先，p3是一个指针，它指向大小为10的数组，数组中的元素为intint (&amp;p4)[10]; //同理，p4是一个引用，引用的对象是大小为10的数组，数组中的元素为intint *(&amp;p5)[10]; //p5是一个引用，引用的对象是大小为10的数组，数组中的元素是整形指针 访问数组元素使用下标访问当使用下标时，通常将其定义 为size_t类型，size_t是一个无符号类型。 使用begin和end1234int a[] = &#123;1 , 2 , 3 , 4 , 5&#125;;for(auto i = begin(a) ; i != end(a) ; ++i)&#123; cout&lt;&lt;*i;&#125;]]></content>
+    <content type="text"><![CDATA[显式初始化数组元素当显式地初始化数组元素时，如果提供的维度比初始值数量大，那么剩下的元素会被初始化为默认值。 1234567891011121314int a[10] = &#123;1 , 2 , 3&#125;; //默认值为0char a2[10] = "lzc"; //默认值为'\0'string a3[10] = &#123;"lzc" , "hello" , "world"&#125;; // 默认值为""for(auto i : a2)&#123; cout&lt;&lt;(i == '\0');&#125;cout&lt;&lt;endl;for(auto i : a)&#123; cout&lt;&lt;i;&#125;cout&lt;&lt;endl;for(auto i : a3)&#123; cout&lt;&lt;(i == "");&#125; 当显式地用字面值初始化字符数组时，要注意： 123456char a[] = "lzc"; //结尾有'\0'char a1[] = &#123;'l' , 'z' , 'c'&#125;; //结尾没有'\0'char a2[] = &#123;'l' , 'z' , 'c' , '\0'&#125;;char a3[3] = "lzc"; // 错误的，最小是4才能容得下cout&lt;&lt;(a[3] == '\0')&lt;&lt;endl;cout&lt;&lt;(a1[3] == '\0')&lt;&lt;endl; //结果虽然是0，但是a1[3]时不存在的 复杂数组的声明12345int *p[10]; //p是容量为10的数组，里面的元素为整形指针(可以从右向左理解)int &amp;p2[10]; //错误，没有引用的数组int (*p3)[10]; //可以从内向外理解，首先，p3是一个指针，它指向大小为10的数组，数组中的元素为intint (&amp;p4)[10]; //同理，p4是一个引用，引用的对象是大小为10的数组，数组中的元素为intint *(&amp;p5)[10]; //p5是一个引用，引用的对象是大小为10的数组，数组中的元素是整形指针 访问数组元素使用下标访问当使用下标时，通常将其定义 为size_t类型，size_t是一个无符号类型。 使用begin和end1234int a[] = &#123;1 , 2 , 3 , 4 , 5&#125;;for(auto i = begin(a) ; i != end(a) ; ++i)&#123; cout&lt;&lt;*i;&#125; 用string初始化char数组12string s = "13213123";const char *str = s.c_str(); // 此函数返回的是const char * 类型 用数组初始化vector12int arr[] = &#123;1 , 2 , 3 , 4 , 5&#125;;vector&lt;int&gt; v(begin(arr) , end(arr));]]></content>
       <categories>
         <category>c++</category>
       </categories>
@@ -128,8 +139,8 @@
         <category>深度学习</category>
       </categories>
       <tags>
-        <tag>待补充</tag>
         <tag>Focal-Loss-OD</tag>
+        <tag>待补充</tag>
       </tags>
   </entry>
   <entry>
