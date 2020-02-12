@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[最短路径]]></title>
+    <url>%2F2020%2F02%2F07%2F%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84%2F</url>
+    <content type="text"><![CDATA[Dijkstra算法局限性：图中不能有负权边 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374#include&lt;bits/stdc++.h&gt;using namespace std;const int max_point = 1000;const int maxint = 999999999;int dist[max_point];int c[max_point][max_point];void Dijkstra(int n , int v , int *dist , int c[max_point][max_point])&#123; int book[max_point]; for(int i = 0 ; i&lt;n ; ++i)&#123; book[i] = 0; dist[i] = c[v][i]; &#125; book[v] = 1; dist[v] = 0; for(int i = 0 ; i&lt;n-1 ; ++i)&#123; int tmp = maxint; int u = v; for(int j = 0 ; j&lt;n ; ++j)&#123; if(!book[j] &amp;&amp; dist[j] &lt; tmp)&#123; tmp = dist[j]; u = j; &#125; &#125; book[u] = 1; for(int j = 0 ; j&lt;n ; ++j)&#123; if(!book[j] &amp;&amp; c[u][j] &lt; maxint &amp;&amp;(dist[u] + c[u][j] &lt; dist[j]))&#123; dist[j] = dist[u] + c[u][j]; &#125; &#125; &#125; for(int i = 0 ; i&lt;n ; ++i)&#123; cout&lt;&lt;dist[i]&lt;&lt;' '; &#125;&#125;int main()&#123; freopen("input.txt","r",stdin); //freopen("output.txt","w",stdout); int n , m; cin&gt;&gt;n&gt;&gt;m; for(int i = 0 ; i&lt;n ; ++i)&#123; for(int j = 0 ; j&lt;n ; ++j)&#123; if(i == j)&#123; c[i][j] = 0; &#125; else c[i][j] = maxint; &#125; &#125; for(int i = 0 ; i&lt;m ; ++i)&#123; int u1 , u2 , length; cin&gt;&gt;u1&gt;&gt;u2&gt;&gt;length; if(length &lt; c[u1][u2])&#123; c[u1][u2] = length; c[u2][u1] = length; &#125; &#125; for(int i = 0 ; i&lt;n ; ++i)&#123; dist[i] = maxint; &#125; Dijkstra(n , 0 , dist , c);&#125; Dijkstra + dfs 遍历所有最短路径Dijkstra算法有个好处，就是它遍历点只会遍历一次，因此该点到源点的最短路径要修改与它相邻的点时不会有重复路径。 递归算法中回溯法很重要。 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687#include&lt;bits/stdc++.h&gt;using namespace std;const int max_int = 1e8 , max_point = 1000; //距离最大值 最多点数int mp[max_point][max_point]; //地图vector&lt;int&gt; path[max_point]; //最短路径中，第i个点的前驱int dist[max_point]; //最短距离vector&lt;int&gt; p ; //储存最短 轨迹int sum_path[max_point]; //第i个点的最短路径个数void Dijkstra(int n , int v , int *dist , int mp[max_point][max_point])&#123; int book[n]; for(int i = 0 ; i&lt;n ; ++i)&#123; book[i] = 0; dist[i] = mp[v][i]; &#125; for(int i = 0 ; i&lt;n ; ++i)&#123; int u , tmp = max_int; for(int j = 0 ; j&lt;n ; ++j)&#123; if(!book[j] &amp;&amp; tmp &gt; dist[j])&#123; tmp = dist[j]; u = j; &#125; &#125; book[u] = 1; for(int j = 0 ; j&lt;n ; ++j)&#123; if(!book[j] &amp;&amp; dist[j] &gt; dist[u] + mp[u][j])&#123; dist[j] = dist[u] + mp[u][j]; path[j].clear(); path[j].push_back(u); sum_path[j] = sum_path[u]; &#125; else if(!book[j] &amp;&amp; dist[j] == dist[u] + mp[u][j])&#123; path[j].push_back(u); sum_path[j] += sum_path[u]; &#125; &#125; &#125;&#125;void find_path(int u , int v)&#123; //u , v 是要求的最短路径的端点 if(v == u)&#123; p.push_back(u); for(int i = p.size()-1 ; i&gt;=0 ; --i)&#123; cout&lt;&lt;p[i]&lt;&lt;' '; &#125; cout&lt;&lt;endl; p.pop_back(); return; &#125; p.push_back(v); for(int i = 0 ; i&lt;path[v].size() ; ++i)&#123; //由于是遍历前驱，所以路是倒着的 find_path(u , path[v][i]); &#125; p.pop_back(); //回溯！！&#125;int main()&#123; freopen("input.txt","r",stdin); //freopen("output.txt","w",stdout); int n , m; //n个点，m条边 cin&gt;&gt;n&gt;&gt;m; //默认点从0到n-1 for(int i = 0 ; i&lt;n ; ++i)&#123; for(int j = 0 ; j&lt;n ; ++j)&#123; if(i == j) mp[i][j] = 0; else mp[i][j] = max_int; &#125; &#125; for(int i = 0 ; i&lt;m ; ++i)&#123; int c1 , c2 , length; cin&gt;&gt;c1&gt;&gt;c2&gt;&gt;length; mp[c1][c2] = length; mp[c2][c1] = length; &#125; sum_path[0]++; //必须把要求的源点的sum_path++; Dijkstra(n , 0 , dist , mp); find_path(0 , 4); for(int i = 0 ; i&lt;n ; ++i)&#123; cout&lt;&lt;sum_path[i]&lt;&lt;' '; &#125;&#125;]]></content>
+      <categories>
+        <category>数据结构</category>
+      </categories>
+      <tags>
+        <tag>图</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[指针与多维数组]]></title>
     <url>%2F2020%2F01%2F18%2F%E6%8C%87%E9%92%88%E4%B8%8E%E5%A4%9A%E7%BB%B4%E6%95%B0%E7%BB%84%2F</url>
     <content type="text"><![CDATA[使用范围for循环处理多维数组123456int arr[2][4] = &#123;1 , 2 , 3 , 4 , 5 , 6&#125;;for(auto &amp;i : arr)&#123; for(auto j : i)&#123; cout&lt;&lt;j; &#125;&#125; 注意上面代码i使用了引用类型，如果不加&amp;，那么编译器会把 i 变为指针类型int *，这样内层循环就不合法了。 1234567int arr[2][4] = &#123;1 , 2 , 3 , 4 , 5 , 6&#125;;for(auto p = begin(arr) ; p != end(arr) ; ++p)&#123; for(auto q = begin(*p) ; q != end(*p) ; ++q)&#123; cout&lt;&lt;*q; &#125;&#125;//相当于声明了 int (*p)[4] = arr;]]></content>
@@ -139,8 +150,8 @@
         <category>深度学习</category>
       </categories>
       <tags>
-        <tag>待补充</tag>
         <tag>Focal-Loss-OD</tag>
+        <tag>待补充</tag>
       </tags>
   </entry>
   <entry>
