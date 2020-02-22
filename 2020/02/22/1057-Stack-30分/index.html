@@ -70,7 +70,7 @@
 
 
 
-  <meta name="keywords" content="队列,">
+  <meta name="keywords" content="Hexo, NexT">
 
 
 
@@ -81,18 +81,17 @@
 
 
 
-<meta name="description" content="常规链队列的实现">
-<meta name="keywords" content="队列">
+<meta name="description" content="题目要求我们输出栈中从小到大中间的数，考虑到有重复元素和排序，所以选择multiset，但是我们不能直接使用下标访问set元素，比如*(s.begin() + 2) 或 s[2]，都是不行的。直接遍历的话会超时，所以我们可以用以下思路：  我们可以动态化地更新mid的值，比如3的时候mid = 3，2 3 的时候mid = 2，1 2 3的时候mid值是2，1 1 2 3 的时候mid = 1。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="队列的实现">
-<meta property="og:url" content="http://yoursite.com/2019/09/29/队列的实现/index.html">
+<meta property="og:title" content="1057 Stack (30分)">
+<meta property="og:url" content="http://yoursite.com/2020/02/22/1057-Stack-30分/index.html">
 <meta property="og:site_name" content="I am Art">
-<meta property="og:description" content="常规链队列的实现">
+<meta property="og:description" content="题目要求我们输出栈中从小到大中间的数，考虑到有重复元素和排序，所以选择multiset，但是我们不能直接使用下标访问set元素，比如*(s.begin() + 2) 或 s[2]，都是不行的。直接遍历的话会超时，所以我们可以用以下思路：  我们可以动态化地更新mid的值，比如3的时候mid = 3，2 3 的时候mid = 2，1 2 3的时候mid值是2，1 1 2 3 的时候mid = 1。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-09-29T10:13:27.009Z">
+<meta property="og:updated_time" content="2020-02-22T13:23:11.525Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="队列的实现">
-<meta name="twitter:description" content="常规链队列的实现">
+<meta name="twitter:title" content="1057 Stack (30分)">
+<meta name="twitter:description" content="题目要求我们输出栈中从小到大中间的数，考虑到有重复元素和排序，所以选择multiset，但是我们不能直接使用下标访问set元素，比如*(s.begin() + 2) 或 s[2]，都是不行的。直接遍历的话会超时，所以我们可以用以下思路：  我们可以动态化地更新mid的值，比如3的时候mid = 3，2 3 的时候mid = 2，1 2 3的时候mid值是2，1 1 2 3 的时候mid = 1。">
 
 
 
@@ -122,13 +121,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/09/29/队列的实现/">
+  <link rel="canonical" href="http://yoursite.com/2020/02/22/1057-Stack-30分/">
 
 
 
 
 
-  <title>队列的实现 | I am Art</title>
+  <title>1057 Stack (30分) | I am Art</title>
   
 
 
@@ -298,7 +297,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/29/队列的实现/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/22/1057-Stack-30分/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="lzc">
@@ -315,7 +314,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">队列的实现</h1>
+          <h1 class="post-title" itemprop="name headline">1057 Stack (30分)</h1>
         
 
         <div class="post-meta">
@@ -327,8 +326,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-29T17:26:20+08:00">
-                2019-09-29
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-02-22T20:54:50+08:00">
+                2020-02-22
               </time>
             
 
@@ -350,8 +349,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/数据结构/" itemprop="url" rel="index">
-                    <span itemprop="name">数据结构</span>
+                  <a href="/categories/PTA甲级题目/" itemprop="url" rel="index">
+                    <span itemprop="name">PTA甲级题目</span>
                   </a>
                 </span>
 
@@ -386,7 +385,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  659
+                  575
                 </span>
               
 
@@ -402,7 +401,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  3
+                  2
                 </span>
               
             </div>
@@ -423,11 +422,17 @@
       
 
       
-        <h1 id="常规链队列的实现"><a href="#常规链队列的实现" class="headerlink" title="常规链队列的实现"></a>常规链队列的实现</h1><a id="more"></a>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#include &lt;iostream&gt;</span></span><br><span class="line"></span><br><span class="line">using namespace std;</span><br><span class="line"><span class="comment">#define OK true;</span></span><br><span class="line"><span class="comment">#define ERROR false;</span></span><br><span class="line"></span><br><span class="line">typedef struct QNode&#123;</span><br><span class="line">    int data;</span><br><span class="line">    QNode *Next;</span><br><span class="line">&#125;QNode , *QueuePtr;</span><br><span class="line"></span><br><span class="line">typedef struct&#123;</span><br><span class="line">    QueuePtr Front;</span><br><span class="line">    QueuePtr Rear;</span><br><span class="line">&#125;LinkQueue;</span><br><span class="line"></span><br><span class="line">bool Init(LinkQueue &amp;Q)&#123;</span><br><span class="line">    Q.Front = Q.Rear = (QueuePtr)malloc(sizeof(QNode));</span><br><span class="line">    <span class="keyword">if</span>(!Q.Front)&#123;</span><br><span class="line">        <span class="built_in">return</span> ERROR;</span><br><span class="line">    &#125;</span><br><span class="line">    Q.Front-&gt;Next = NULL;</span><br><span class="line">    <span class="built_in">return</span> OK;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//插入</span><br><span class="line">bool Insert(LinkQueue &amp;Q , int e)&#123;</span><br><span class="line">    QueuePtr p = (QueuePtr)malloc(sizeof(QNode));</span><br><span class="line">    <span class="keyword">if</span>(!p)&#123;</span><br><span class="line">        <span class="built_in">return</span> ERROR;</span><br><span class="line">    &#125;</span><br><span class="line">    p-&gt;data = e;</span><br><span class="line">    p-&gt;Next = NULL;</span><br><span class="line">    Q.Rear-&gt;Next = p;</span><br><span class="line">    Q.Rear = p;</span><br><span class="line">    <span class="built_in">return</span> OK;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//删除</span><br><span class="line">bool Delete(LinkQueue &amp;Q , int &amp;e)&#123;</span><br><span class="line">    <span class="keyword">if</span>(Q.Front == Q.Rear) <span class="built_in">return</span> ERROR;</span><br><span class="line">    QueuePtr p = Q.Front-&gt;Next;</span><br><span class="line">    e = p-&gt;data;</span><br><span class="line">    Q.Front-&gt;Next = p-&gt;Next;</span><br><span class="line">    <span class="keyword">if</span>(Q.Rear == p) Q.Rear = Q.Front;  //当队列中只有一个元素时</span><br><span class="line">    free(p);</span><br><span class="line">    <span class="built_in">return</span> OK;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//遍历</span><br><span class="line">void <span class="built_in">print</span>(LinkQueue Q)&#123;</span><br><span class="line">    <span class="keyword">if</span>(Q.Front == Q.Rear)&#123;</span><br><span class="line">        cout&lt;&lt;<span class="string">"没有元素"</span>&lt;&lt;endl;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        Q.Front = Q.Front-&gt;Next;</span><br><span class="line">        <span class="keyword">while</span>(Q.Front)&#123;</span><br><span class="line">            cout&lt;&lt;Q.Front-&gt;data&lt;&lt;<span class="string">' '</span>;</span><br><span class="line">            Q.Front = Q.Front-&gt;Next;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    cout&lt;&lt;endl;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//销毁队列</span><br><span class="line">bool DestroyQueue(LinkQueue &amp;Q)&#123;</span><br><span class="line">    <span class="keyword">while</span>(Q.Front)&#123;</span><br><span class="line">        Q.Rear = Q.Front-&gt;Next;</span><br><span class="line">        free(Q.Front);</span><br><span class="line">        Q.Front = Q.Rear;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">return</span> OK;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    LinkQueue Q;</span><br><span class="line">    Init(Q);</span><br><span class="line">    <span class="keyword">for</span>(int i = 0 ; i&lt;5 ; ++i)&#123;</span><br><span class="line">        int n;</span><br><span class="line">        cin&gt;&gt;n;</span><br><span class="line">        Insert(Q , n);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">print</span>(Q);</span><br><span class="line">    int e;</span><br><span class="line">    Delete(Q , e);</span><br><span class="line">    cout&lt;&lt;endl;</span><br><span class="line">    cout&lt;&lt;e&lt;&lt;endl;</span><br><span class="line">    <span class="built_in">print</span>(Q);</span><br><span class="line">    DestroyQueue(Q);</span><br><span class="line">    <span class="built_in">print</span>(Q);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <a id="more"></a>
+<p>题目要求我们输出栈中从小到大中间的数，考虑到有重复元素和排序，所以选择multiset，但是我们不能直接使用下标访问set元素，比如*(s.begin() + 2) 或 s[2]，都是不行的。直接遍历的话会超时，所以我们可以用以下思路：</p>
+<ul>
+<li>我们可以动态化地更新mid的值，比如3的时候mid = 3，2 3 的时候mid = 2，1 2 3的时候mid值是2，1 1 2 3 的时候mid = 1。</li>
+<li>我们可以用两个multiset来存放值，s1用来存放 &lt;= mid的值，s2用来存放 &gt; mid的值。1 2 3 的时候s1里放1 2，s2里放3，mid的值是s1的最后一个元素2，1 1 2 3 的时候s1里放1 1，s2里放2 3，mid的值是1。</li>
+<li>由于插入和删除的时候mid的值会有所变化，我们可以通过更新s1和s2里存放的值来更新mid，我们要使得s1.size() == s2.size() （这是偶数情况），或s1.size() == s2.size() + 1（这是奇数情况）。</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#include&lt;bits/stdc++.h&gt;</span></span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">stack&lt;int&gt; s;</span><br><span class="line">multiset&lt;int&gt; s1 , s2;</span><br><span class="line">int mid = 0;</span><br><span class="line"></span><br><span class="line">void <span class="function"><span class="title">opt</span></span>()&#123;</span><br><span class="line">    <span class="keyword">if</span>(s1.size() &lt; s2.size())&#123;</span><br><span class="line">        multiset&lt;int&gt;::iterator iter = s2.begin();</span><br><span class="line">        s1.insert(*iter);</span><br><span class="line">        s2.erase(iter);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(s1.size() &gt; s2.size() + 1)&#123;</span><br><span class="line">        multiset&lt;int&gt;::iterator iter = s1.end();</span><br><span class="line">        iter--;</span><br><span class="line">        s2.insert(*iter);</span><br><span class="line">        s1.erase(iter);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(!s1.empty())&#123;</span><br><span class="line">        multiset&lt;int&gt;::iterator iter = s1.end();</span><br><span class="line">        iter--;</span><br><span class="line">        mid = *iter;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    //freopen(<span class="string">"input.txt"</span>,<span class="string">"r"</span>,stdin);</span><br><span class="line">    //freopen(<span class="string">"output.txt"</span>,<span class="string">"w"</span>,stdout);</span><br><span class="line">    int n;</span><br><span class="line">    cin&gt;&gt;n;</span><br><span class="line">    <span class="keyword">for</span>(int i = 0 ; i&lt;n ; ++i)&#123;</span><br><span class="line">        string c;</span><br><span class="line">        cin&gt;&gt;c;</span><br><span class="line">        <span class="keyword">if</span>(c[1] == <span class="string">'o'</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span>(s.empty())&#123;</span><br><span class="line">                cout&lt;&lt;<span class="string">"Invalid"</span>&lt;&lt;endl;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">if</span>(s.top() &lt;= mid)&#123;</span><br><span class="line">                    s1.erase(s1.find(s.top()));</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span> s2.erase(s2.find(s.top()));</span><br><span class="line">                opt();</span><br><span class="line">                cout&lt;&lt;s.top()&lt;&lt;endl;</span><br><span class="line">                s.pop();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(c[1] == <span class="string">'u'</span>)&#123;</span><br><span class="line">            int a;</span><br><span class="line">            scanf(<span class="string">"%d"</span> , &amp;a);</span><br><span class="line">            s.push(a);</span><br><span class="line">            <span class="keyword">if</span>(s1.empty() || a &lt;= mid)&#123;</span><br><span class="line">                s1.insert(a);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> s2.insert(a);</span><br><span class="line">            opt();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">if</span>(s.empty())&#123;</span><br><span class="line">                cout&lt;&lt;<span class="string">"Invalid"</span>&lt;&lt;endl;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                cout&lt;&lt;mid&lt;&lt;endl;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        //cout&lt;&lt;s1.size()&lt;&lt;<span class="string">' '</span>&lt;&lt;s2.size()&lt;&lt;<span class="string">' '</span>&lt;&lt;mid&lt;&lt;endl;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h1 id="循环队列的实现"><a href="#循环队列的实现" class="headerlink" title="循环队列的实现"></a>循环队列的实现</h1><p>循环队列主要是针对<strong>队列的顺序存储结构</strong>，主要目的是避免顺序存储中的内存空间的浪费。 下面的这种方法<strong>少用一个储存空间</strong>。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#include &lt;iostream&gt;</span></span><br><span class="line"></span><br><span class="line">using namespace std;</span><br><span class="line"><span class="comment">#define OK true;</span></span><br><span class="line"><span class="comment">#define ERROR false;</span></span><br><span class="line"><span class="comment">#define MAXSIZE 6</span></span><br><span class="line"></span><br><span class="line">typedef struct Queue&#123;</span><br><span class="line">    int *base;</span><br><span class="line">    int Front;</span><br><span class="line">    int Rear;</span><br><span class="line">&#125;Queue;</span><br><span class="line"></span><br><span class="line">bool Init(Queue &amp;Q)&#123;</span><br><span class="line">    Q.base = (int *)malloc(MAXSIZE * sizeof(int));</span><br><span class="line">    <span class="keyword">if</span>(!Q.base) <span class="built_in">return</span> ERROR;</span><br><span class="line">    Q.Front = Q.Rear = 0;</span><br><span class="line">    <span class="built_in">return</span> OK;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//队列长度</span><br><span class="line">int getLength(Queue &amp;Q)&#123;</span><br><span class="line">    <span class="built_in">return</span> (Q.Rear - Q.Front + MAXSIZE) % MAXSIZE;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">bool Insert(Queue &amp;Q , int e)&#123;</span><br><span class="line">    <span class="keyword">if</span>((Q.Rear + 1) % MAXSIZE == Q.Front) <span class="built_in">return</span> ERROR;  //队列满的标志</span><br><span class="line">    Q.base[Q.Rear] = e;</span><br><span class="line">    Q.Rear = (Q.Rear + 1)%MAXSIZE;</span><br><span class="line">    <span class="built_in">return</span> OK;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">bool Delete(Queue &amp;Q , int &amp;e)&#123;</span><br><span class="line">    <span class="keyword">if</span>(Q.Front == Q.Rear) <span class="built_in">return</span> ERROR;  //队列空的标志</span><br><span class="line">    e = Q.base[Q.Front];</span><br><span class="line">    Q.Front = (Q.Front + 1)%MAXSIZE;</span><br><span class="line">    <span class="built_in">return</span> OK;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void <span class="built_in">print</span>(Queue Q)&#123;</span><br><span class="line">    <span class="keyword">if</span>(Q.Front == Q.Rear) cout&lt;&lt;<span class="string">"队列空"</span>&lt;&lt;endl;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">while</span>((Q.Front + 1)%MAXSIZE != Q.Rear)&#123;</span><br><span class="line">            cout&lt;&lt;Q.base[Q.Front]&lt;&lt;<span class="string">' '</span>;</span><br><span class="line">            Q.Front = Q.Front+1;</span><br><span class="line">        &#125;</span><br><span class="line">        cout&lt;&lt;Q.base[Q.Front];</span><br><span class="line">    &#125;</span><br><span class="line">    cout&lt;&lt;endl;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    Queue Q;</span><br><span class="line">    Init(Q);</span><br><span class="line">    <span class="keyword">for</span>(int i = 0 ; i&lt;5 ; ++i)&#123;</span><br><span class="line">        int n;</span><br><span class="line">        cin&gt;&gt;n;</span><br><span class="line">        bool a;</span><br><span class="line">        a = Insert(Q , n);</span><br><span class="line">        cout&lt;&lt;a&lt;&lt;<span class="string">' '</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    int e;</span><br><span class="line">    cout&lt;&lt;endl;</span><br><span class="line">    cout&lt;&lt;getLength(Q)&lt;&lt;endl;</span><br><span class="line">    <span class="built_in">print</span>(Q);</span><br><span class="line">    //cout&lt;&lt;Q.Front&lt;&lt;<span class="string">' '</span>&lt;&lt;Q.Rear&lt;&lt;endl;</span><br><span class="line">    Delete(Q , e);</span><br><span class="line">    cout&lt;&lt;e&lt;&lt;endl;</span><br><span class="line">    <span class="built_in">print</span>(Q);</span><br><span class="line">    cout&lt;&lt;getLength(Q)&lt;&lt;endl;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>反思：由于是一个一个元素插入或删除，所以mid的值只会移动一步，所以找到这个位置是关键，如果只用一个multiset的话，这个位置是找不到的。</p>
+
       
     </div>
     
@@ -442,12 +447,6 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/队列/" rel="tag"># 队列</a>
-          
-        </div>
-      
 
       
       
@@ -457,8 +456,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/09/27/CenterNet的理解/" rel="next" title="对于CenterNet的理解">
-                <i class="fa fa-chevron-left"></i> 对于CenterNet的理解
+              <a href="/2020/02/20/1049 Counting Ones (30 分)/" rel="next" title="1049 Counting Ones (30 分)">
+                <i class="fa fa-chevron-left"></i> 1049 Counting Ones (30 分)
               </a>
             
           </div>
@@ -466,10 +465,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/09/29/二叉树的实现/" rel="prev" title="二叉树的实现">
-                二叉树的实现 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -521,17 +516,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -593,22 +579,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#常规链队列的实现"><span class="nav-number">1.</span> <span class="nav-text">常规链队列的实现</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#循环队列的实现"><span class="nav-number">2.</span> <span class="nav-text">循环队列的实现</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       

@@ -1,8 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[1057 Stack (30分)]]></title>
+    <url>%2F2020%2F02%2F22%2F1057-Stack-30%E5%88%86%2F</url>
+    <content type="text"><![CDATA[题目要求我们输出栈中从小到大中间的数，考虑到有重复元素和排序，所以选择multiset，但是我们不能直接使用下标访问set元素，比如*(s.begin() + 2) 或 s[2]，都是不行的。直接遍历的话会超时，所以我们可以用以下思路： 我们可以动态化地更新mid的值，比如3的时候mid = 3，2 3 的时候mid = 2，1 2 3的时候mid值是2，1 1 2 3 的时候mid = 1。 我们可以用两个multiset来存放值，s1用来存放 &lt;= mid的值，s2用来存放 &gt; mid的值。1 2 3 的时候s1里放1 2，s2里放3，mid的值是s1的最后一个元素2，1 1 2 3 的时候s1里放1 1，s2里放2 3，mid的值是1。 由于插入和删除的时候mid的值会有所变化，我们可以通过更新s1和s2里存放的值来更新mid，我们要使得s1.size() == s2.size() （这是偶数情况），或s1.size() == s2.size() + 1（这是奇数情况）。 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172#include&lt;bits/stdc++.h&gt;using namespace std;stack&lt;int&gt; s;multiset&lt;int&gt; s1 , s2;int mid = 0;void opt()&#123; if(s1.size() &lt; s2.size())&#123; multiset&lt;int&gt;::iterator iter = s2.begin(); s1.insert(*iter); s2.erase(iter); &#125; else if(s1.size() &gt; s2.size() + 1)&#123; multiset&lt;int&gt;::iterator iter = s1.end(); iter--; s2.insert(*iter); s1.erase(iter); &#125; if(!s1.empty())&#123; multiset&lt;int&gt;::iterator iter = s1.end(); iter--; mid = *iter; &#125;&#125;int main()&#123; //freopen("input.txt","r",stdin); //freopen("output.txt","w",stdout); int n; cin&gt;&gt;n; for(int i = 0 ; i&lt;n ; ++i)&#123; string c; cin&gt;&gt;c; if(c[1] == 'o')&#123; if(s.empty())&#123; cout&lt;&lt;"Invalid"&lt;&lt;endl; &#125; else &#123; if(s.top() &lt;= mid)&#123; s1.erase(s1.find(s.top())); &#125; else s2.erase(s2.find(s.top())); opt(); cout&lt;&lt;s.top()&lt;&lt;endl; s.pop(); &#125; &#125; else if(c[1] == 'u')&#123; int a; scanf("%d" , &amp;a); s.push(a); if(s1.empty() || a &lt;= mid)&#123; s1.insert(a); &#125; else s2.insert(a); opt(); &#125; else &#123; if(s.empty())&#123; cout&lt;&lt;"Invalid"&lt;&lt;endl; &#125; else &#123; cout&lt;&lt;mid&lt;&lt;endl; &#125; &#125; //cout&lt;&lt;s1.size()&lt;&lt;' '&lt;&lt;s2.size()&lt;&lt;' '&lt;&lt;mid&lt;&lt;endl; &#125;&#125; 反思：由于是一个一个元素插入或删除，所以mid的值只会移动一步，所以找到这个位置是关键，如果只用一个multiset的话，这个位置是找不到的。]]></content>
+      <categories>
+        <category>PTA甲级题目</category>
+      </categories>
+  </entry>
+  <entry>
     <title><![CDATA[1049 Counting Ones (30 分)]]></title>
-    <url>%2F2020%2F02%2F20%2FPTA%E7%94%B2%E7%BA%A7%E9%A2%98%E7%9B%AE%2F</url>
+    <url>%2F2020%2F02%2F20%2F1049%20Counting%20Ones%20(30%20%E5%88%86)%2F</url>
     <content type="text"><![CDATA[题目大意：给出整数N，要求求出从1到N的十进制数中位数是1的个数之和。 思路：题目可以转化为求当每一位是1的时候，总共有多少种情况。 例如30710，我们从右向左遍历。 首先是0，那么它的右边的数为3071，如果我们假设它不是0而是1，那么前面的数可以取0-3070，3071不可以，因为30711 &gt; 30710 ， 所以总共有3071种情况。 接下来是1，那么当左边的数取0-306的时候，右边的数可以随便取（0-9），左边的数取307的时候，右边只能取原来的数，所以共有307*10+1种。 然后是7，假设此位是1而不是7，那么左边的数可以取0-30，右边的数随便取（0-99），所以共有（30+1）*100种。 然后是0，假设是1，那么左边可以取0-2，右边随便取（0-999），所以有3*1000种。 最后是3，假设是1，那么右边随便取，共有（0+1）* 10000种。 规律： 当前位数字 == 0时，那么此位为1时有 左边数 * 当前位数； 当前位数字 == 1时，那么此位为1时有 左边数 * 当前位数 + 右边数 + 1； 当前位数字 &gt; 1时，那么此位为1时有 （左边数+1） * 当前位数； 反思：求所有位数为1的个数，那么我们可以一位一位求，因为我们求这一位是1的情况的时候，虽然和求另外一位是1的情况的时候是有会重复数字，但是这不影响求总的1的个数。 12345678910111213141516171819202122232425#include&lt;iostream&gt;using namespace std;int main()&#123; int n, a=1, ans = 0; int left, loc, right; scanf("%d", &amp;n); while(n/a!=0) &#123; left = n/(a*10); loc = n/a%10; right = n%a; if(loc == 0) ans += left*a; else if(loc==1) ans += left *a + right + 1; else ans += (left + 1)*a; a *= 10; &#125; printf("%d", ans); return 0;&#125;]]></content>
       <categories>
         <category>PTA甲级题目</category>
