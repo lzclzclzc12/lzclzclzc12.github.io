@@ -294,6 +294,185 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/29/1068 Find More Coins (30分)/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lzc">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="I am Art">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/02/29/1068 Find More Coins (30分)/" itemprop="url">1068 Find More Coins (30分)</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-02-29T12:28:46+08:00">
+                2020-02-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/dp/" itemprop="url" rel="index">
+                    <span itemprop="name">dp</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+          
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  850
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  4
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h1><p>有几个数字，问是否有其中几个数加起来等于给定的数，如果有多个结果，输出最小的一组。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/02/29/1068 Find More Coins (30分)/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/29/0-1背包/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -956,29 +1135,14 @@
 
       
         
-          
-            <a id="more"></a>
-<p>题目大意：给出整数N，要求求出从1到N的十进制数中位数是1的个数之和。</p>
-<p>思路：题目可以转化为求当每一位是1的时候，总共有多少种情况。</p>
-<p>例如30710，我们从右向左遍历。</p>
-<ul>
-<li>首先是0，那么它的右边的数为3071，如果我们假设它不是0而是1，那么前面的数可以取0-3070，3071不可以，因为30711 &gt; 30710 ， 所以总共有3071种情况。</li>
-<li>接下来是1，那么当左边的数取0-306的时候，右边的数可以随便取（0-9），左边的数取307的时候，右边只能取原来的数，所以共有307*10+1种。</li>
-<li>然后是7，假设此位是1而不是7，那么左边的数可以取0-30，右边的数随便取（0-99），所以共有（30+1）*100种。</li>
-<li>然后是0，假设是1，那么左边可以取0-2，右边随便取（0-999），所以有3*1000种。</li>
-<li>最后是3，假设是1，那么右边随便取，共有（0+1）* 10000种。</li>
-</ul>
-<p>规律：</p>
-<ul>
-<li>当前位数字 == 0时，那么此位为1时有 左边数 * 当前位数；</li>
-<li>当前位数字 == 1时，那么此位为1时有 左边数 * 当前位数 + 右边数 + 1；</li>
-<li>当前位数字 &gt; 1时，那么此位为1时有 （左边数+1） * 当前位数；</li>
-</ul>
-<p>反思：求所有位数为1的个数，那么我们可以一位一位求，因为我们求这一位是1的情况的时候，虽然和求另外一位是1的情况的时候是有会重复数字，但是这不影响求总的1的个数。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#include&lt;iostream&gt;</span></span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    int n, a=1, ans = 0;</span><br><span class="line">    int left, loc, right;</span><br><span class="line"></span><br><span class="line">    scanf(<span class="string">"%d"</span>, &amp;n);</span><br><span class="line">    <span class="keyword">while</span>(n/a!=0)</span><br><span class="line">    &#123;</span><br><span class="line">        left = n/(a*10);</span><br><span class="line">        loc = n/a%10;</span><br><span class="line">        right = n%a;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(loc == 0) ans += left*a;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(loc==1) ans += left *a + right + 1;</span><br><span class="line">        <span class="keyword">else</span> ans += (left + 1)*a;</span><br><span class="line">        a *= 10;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d"</span>, ans);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">return</span> 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-          
+          <p>题目大意：给出整数N，要求求出从1到N的十进制数中位数是1的个数之和。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/02/20/1049 Counting Ones (30 分)/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1863,185 +2027,6 @@
 
 
     
-      
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/18/数组/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lzc">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="I am Art">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/01/18/数组/" itemprop="url">数组</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-01-18T19:52:46+08:00">
-                2020-01-18
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/c/" itemprop="url" rel="index">
-                    <span itemprop="name">c++</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-          
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  481
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  2
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="显式初始化数组元素"><a href="#显式初始化数组元素" class="headerlink" title="显式初始化数组元素"></a>显式初始化数组元素</h1><p>当显式地初始化数组元素时，如果提供的维度比初始值数量大，那么剩下的元素会被初始化为默认值。</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/01/18/数组/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2094,7 +2079,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">23</span>
+                  <span class="site-state-item-count">24</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2116,7 +2101,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -2168,7 +2153,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">15.9k</span>
+    <span title="Site words total count">16.7k</span>
   
 </div>
 
