@@ -70,7 +70,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="dp,">
 
 
 
@@ -81,17 +81,18 @@
 
 
 
-<meta name="description" content="题目要求我们输出栈中从小到大中间的数，考虑到有重复元素和排序，所以选择multiset，但是我们不能直接使用下标访问set元素，比如*(s.begin() + 2) 或 s[2]，都是不行的。直接遍历的话会超时，所以我们可以用以下思路：">
+<meta name="description" content="问题描述">
+<meta name="keywords" content="dp">
 <meta property="og:type" content="article">
-<meta property="og:title" content="1057 Stack (30分)">
-<meta property="og:url" content="http://yoursite.com/2020/02/22/1057-Stack-30分/index.html">
+<meta property="og:title" content="0-1背包">
+<meta property="og:url" content="http://yoursite.com/2020/02/29/0-1背包/index.html">
 <meta property="og:site_name" content="I am Art">
-<meta property="og:description" content="题目要求我们输出栈中从小到大中间的数，考虑到有重复元素和排序，所以选择multiset，但是我们不能直接使用下标访问set元素，比如*(s.begin() + 2) 或 s[2]，都是不行的。直接遍历的话会超时，所以我们可以用以下思路：">
+<meta property="og:description" content="问题描述">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-02-29T04:24:38.356Z">
+<meta property="og:updated_time" content="2020-02-29T04:24:46.668Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="1057 Stack (30分)">
-<meta name="twitter:description" content="题目要求我们输出栈中从小到大中间的数，考虑到有重复元素和排序，所以选择multiset，但是我们不能直接使用下标访问set元素，比如*(s.begin() + 2) 或 s[2]，都是不行的。直接遍历的话会超时，所以我们可以用以下思路：">
+<meta name="twitter:title" content="0-1背包">
+<meta name="twitter:description" content="问题描述">
 
 
 
@@ -121,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2020/02/22/1057-Stack-30分/">
+  <link rel="canonical" href="http://yoursite.com/2020/02/29/0-1背包/">
 
 
 
 
 
-  <title>1057 Stack (30分) | I am Art</title>
+  <title>0-1背包 | I am Art</title>
   
 
 
@@ -297,7 +298,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/22/1057-Stack-30分/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/29/0-1背包/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="lzc">
@@ -314,7 +315,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">1057 Stack (30分)</h1>
+          <h1 class="post-title" itemprop="name headline">0-1背包</h1>
         
 
         <div class="post-meta">
@@ -326,8 +327,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-02-22T20:54:50+08:00">
-                2020-02-22
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-02-29T11:21:23+08:00">
+                2020-02-29
               </time>
             
 
@@ -349,8 +350,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/PTA甲级题目/" itemprop="url" rel="index">
-                    <span itemprop="name">PTA甲级题目</span>
+                  <a href="/categories/dp/" itemprop="url" rel="index">
+                    <span itemprop="name">dp</span>
                   </a>
                 </span>
 
@@ -385,7 +386,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  575
+                  887
                 </span>
               
 
@@ -401,7 +402,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  2
+                  3
                 </span>
               
             </div>
@@ -422,16 +423,31 @@
       
 
       
-        <p>题目要求我们输出栈中从小到大中间的数，考虑到有重复元素和排序，所以选择multiset，但是我们不能直接使用下标访问set元素，比如*(s.begin() + 2) 或 s[2]，都是不行的。直接遍历的话会超时，所以我们可以用以下思路：</p>
-<a id="more"></a>
+        <h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><a id="more"></a>
+<p>有几个物品，各自有各自的重量（weight）和价值（value），现在有一个最大承重为v的背包，问此背包<strong>最多</strong>可以装的价值是多少？</p>
 <ul>
-<li>我们可以动态化地更新mid的值，比如3的时候mid = 3，2 3 的时候mid = 2，1 2 3的时候mid值是2，1 1 2 3 的时候mid = 1。</li>
-<li>我们可以用两个multiset来存放值，s1用来存放 &lt;= mid的值，s2用来存放 &gt; mid的值。1 2 3 的时候s1里放1 2，s2里放3，mid的值是s1的最后一个元素2，1 1 2 3 的时候s1里放1 1，s2里放2 3，mid的值是1。</li>
-<li>由于插入和删除的时候mid的值会有所变化，我们可以通过更新s1和s2里存放的值来更新mid，我们要使得s1.size() == s2.size() （这是偶数情况），或s1.size() == s2.size() + 1（这是奇数情况）。</li>
+<li><p>一件物品只能放一次，可以不放</p>
+</li>
+<li><p>与放入次序无关，即数据可以是无序的</p>
+</li>
+<li><p>背包有最大承重量</p>
+</li>
+<li><p>求最大价值</p>
+<h1 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h1><p>我们可以一件一件地放物品，那么我们只需要考虑这件物品<strong>到底该不该放入背包里</strong>，假设用<strong>dp[i , j]来表示放前i件物品（不一定这i件物品都放进去）到最大承重为j的背包时的最大价值</strong>，那么dp[i , v]就表示此背包在放前i件物品时的最大价值，我们用weight[i]表示第i件物品的重量，value[i]表示第i件物品的价值。那么我们可以状态转化方程：<strong>dp[i , j] = max{dp[i-1 , j] , dp[i-1 , j - weight[i]] + value[i]}</strong>，其中，<strong>j&gt;=weight[i]</strong>。</p>
+</li>
+<li><p>dp[i , j]表示承重量为j的背包里放前i件物品的最大价值（第i件物品不一定放进去）</p>
+</li>
+<li><p>dp[i - 1 , j]表示承重量为j的背包里放前i-1件物品的最大价值。</p>
+</li>
+<li><p>dp[i-1 , j - weight[i]]表示承重量为j-weight[i]的背包里放前i-1件物品的最大价值。</p>
+</li>
 </ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#include&lt;bits/stdc++.h&gt;</span></span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">stack&lt;int&gt; s;</span><br><span class="line">multiset&lt;int&gt; s1 , s2;</span><br><span class="line">int mid = 0;</span><br><span class="line"></span><br><span class="line">void <span class="function"><span class="title">opt</span></span>()&#123;</span><br><span class="line">    <span class="keyword">if</span>(s1.size() &lt; s2.size())&#123;</span><br><span class="line">        multiset&lt;int&gt;::iterator iter = s2.begin();</span><br><span class="line">        s1.insert(*iter);</span><br><span class="line">        s2.erase(iter);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(s1.size() &gt; s2.size() + 1)&#123;</span><br><span class="line">        multiset&lt;int&gt;::iterator iter = s1.end();</span><br><span class="line">        iter--;</span><br><span class="line">        s2.insert(*iter);</span><br><span class="line">        s1.erase(iter);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(!s1.empty())&#123;</span><br><span class="line">        multiset&lt;int&gt;::iterator iter = s1.end();</span><br><span class="line">        iter--;</span><br><span class="line">        mid = *iter;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    //freopen(<span class="string">"input.txt"</span>,<span class="string">"r"</span>,stdin);</span><br><span class="line">    //freopen(<span class="string">"output.txt"</span>,<span class="string">"w"</span>,stdout);</span><br><span class="line">    int n;</span><br><span class="line">    cin&gt;&gt;n;</span><br><span class="line">    <span class="keyword">for</span>(int i = 0 ; i&lt;n ; ++i)&#123;</span><br><span class="line">        string c;</span><br><span class="line">        cin&gt;&gt;c;</span><br><span class="line">        <span class="keyword">if</span>(c[1] == <span class="string">'o'</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span>(s.empty())&#123;</span><br><span class="line">                cout&lt;&lt;<span class="string">"Invalid"</span>&lt;&lt;endl;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">if</span>(s.top() &lt;= mid)&#123;</span><br><span class="line">                    s1.erase(s1.find(s.top()));</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span> s2.erase(s2.find(s.top()));</span><br><span class="line">                opt();</span><br><span class="line">                cout&lt;&lt;s.top()&lt;&lt;endl;</span><br><span class="line">                s.pop();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(c[1] == <span class="string">'u'</span>)&#123;</span><br><span class="line">            int a;</span><br><span class="line">            scanf(<span class="string">"%d"</span> , &amp;a);</span><br><span class="line">            s.push(a);</span><br><span class="line">            <span class="keyword">if</span>(s1.empty() || a &lt;= mid)&#123;</span><br><span class="line">                s1.insert(a);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> s2.insert(a);</span><br><span class="line">            opt();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">if</span>(s.empty())&#123;</span><br><span class="line">                cout&lt;&lt;<span class="string">"Invalid"</span>&lt;&lt;endl;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                cout&lt;&lt;mid&lt;&lt;endl;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        //cout&lt;&lt;s1.size()&lt;&lt;<span class="string">' '</span>&lt;&lt;s2.size()&lt;&lt;<span class="string">' '</span>&lt;&lt;mid&lt;&lt;endl;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我们如果考虑是否要放第i件物品，由于<strong>随着背包容量的增加，背包的价值是递增的</strong>，那么我们如果要把第i件物品放入背包，就要看j-weight[i]的背包里的价值加上value[i]是否比dp[i-1 , j]（不放i物品）的价值大。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#include &lt;iostream&gt;</span></span><br><span class="line"><span class="comment">#include &lt;algorithm&gt;</span></span><br><span class="line"><span class="comment">#include &lt;vector&gt;</span></span><br><span class="line"><span class="comment">#include &lt;string.h&gt;</span></span><br><span class="line"><span class="comment">#include &lt;iomanip&gt;</span></span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">int dp[100];</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    //freopen(<span class="string">"input.txt"</span>,<span class="string">"r"</span>,stdin);</span><br><span class="line">    //freopen(<span class="string">"output.txt"</span>,<span class="string">"w"</span>,stdout);</span><br><span class="line">    int n , v;                             //总物品数和最大重量</span><br><span class="line">    int value[100] , weight[100];</span><br><span class="line">    cin&gt;&gt;n&gt;&gt;v;</span><br><span class="line">    <span class="keyword">for</span>(int i = 0 ; i&lt;n ; ++i)&#123;</span><br><span class="line">        cin&gt;&gt;weight[i]&gt;&gt;value[i];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(int i = 0 ; i&lt;n ; ++i)&#123;            //一件一件放物品</span><br><span class="line">        <span class="keyword">for</span>(int j = v ; j&gt;=weight[i] ; --j)&#123;    //0-1背包一定要逆序更新</span><br><span class="line">            dp[j] = max(dp[j] , dp[j - weight[i]] + value[i]);  //注意两个dp[j]所表示的状态不同，左边表示状态i，右边表示状态i-1</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(int i = 0 ; i&lt;=v ; ++i)&#123;</span><br><span class="line">        cout&lt;&lt;dp[i]&lt;&lt;<span class="string">' '</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>反思：由于是一个一个元素插入或删除，所以mid的值只会移动一步，所以找到这个位置是关键，如果只用一个multiset的话，这个位置是找不到的。</p>
+<h2 id="为什么要逆序更新？？"><a href="#为什么要逆序更新？？" class="headerlink" title="为什么要逆序更新？？"></a>为什么要逆序更新？？</h2><p>这就涉及到状态的问题了，我们在考虑是否要放入第i件物品时，必须保证所有的背包的价值是未考虑i时的价值（即i-1的状态），而背包的价值的更新只和比它容量小的背包的价值有关，如果我们先更新小的背包，那么等到要更新大的背包时，小的背包的状态已经是状态i了，这与我们的初衷不符，所以要先把容量大的背包更新成状态i，等到更新小的背包时，大的背包的状态与它是没有关系的，所以要逆序更新。</p>
+<h1 id="hdu-2955-Robberies"><a href="#hdu-2955-Robberies" class="headerlink" title="hdu 2955 Robberies"></a>hdu 2955 Robberies</h1><p><a href="http://acm.hdu.edu.cn/showproblem.php?pid=2955" target="_blank" rel="noopener">http://acm.hdu.edu.cn/showproblem.php?pid=2955</a></p>
+<p>这个题目给出抢劫每一个银行时的被捕概率和钱数，不能把概率当做weight，钱当做value来求最大钱数，因为概率是double类型，无法枚举。我们可以把钱当做weight，<strong>逃跑概率当做value</strong>，转化成求最大逃跑概率。</p>
 
       
     </div>
@@ -447,6 +463,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/dp/" rel="tag"># dp</a>
+          
+        </div>
+      
 
       
       
@@ -456,8 +478,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/02/20/1049 Counting Ones (30 分)/" rel="next" title="1049 Counting Ones (30 分)">
-                <i class="fa fa-chevron-left"></i> 1049 Counting Ones (30 分)
+              <a href="/2020/02/24/平衡二叉树/" rel="next" title="平衡二叉树">
+                <i class="fa fa-chevron-left"></i> 平衡二叉树
               </a>
             
           </div>
@@ -465,10 +487,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2020/02/24/平衡二叉树/" rel="prev" title="平衡二叉树">
-                平衡二叉树 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -520,8 +538,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -583,6 +610,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#问题描述"><span class="nav-number">1.</span> <span class="nav-text">问题描述</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#解决方法"><span class="nav-number">2.</span> <span class="nav-text">解决方法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么要逆序更新？？"><span class="nav-number">2.1.</span> <span class="nav-text">为什么要逆序更新？？</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#hdu-2955-Robberies"><span class="nav-number">3.</span> <span class="nav-text">hdu 2955 Robberies</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
