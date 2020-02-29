@@ -81,18 +81,18 @@
 
 
 
-<meta name="description" content="问题描述有多种物品，和一个最大承重量为w的背包，每种物品有weight和value，问将这些物品放入背包中（每种物品可以放多个），背包的最大价值是多少。  与0-1背包不同的是，0-1背包每件物品只能放一次，而完全背包每种物品可以无限多地放。  解决方法状态转移方程：dp[i , j] = max{dp[i-1 , j] , dp[i , j - weight[i]] + value[i]} 优化">
+<meta name="description" content="问题描述有多种物品，和一个最大承重量为w的背包，每种物品有weight和value，问将这些物品放入背包中（每种物品可以放多个），背包的最大价值是多少。">
 <meta name="keywords" content="0-1背包">
 <meta property="og:type" content="article">
 <meta property="og:title" content="完全背包">
 <meta property="og:url" content="http://yoursite.com/2020/02/29/完全背包/index.html">
 <meta property="og:site_name" content="I am Art">
-<meta property="og:description" content="问题描述有多种物品，和一个最大承重量为w的背包，每种物品有weight和value，问将这些物品放入背包中（每种物品可以放多个），背包的最大价值是多少。  与0-1背包不同的是，0-1背包每件物品只能放一次，而完全背包每种物品可以无限多地放。  解决方法状态转移方程：dp[i , j] = max{dp[i-1 , j] , dp[i , j - weight[i]] + value[i]} 优化">
+<meta property="og:description" content="问题描述有多种物品，和一个最大承重量为w的背包，每种物品有weight和value，问将这些物品放入背包中（每种物品可以放多个），背包的最大价值是多少。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-02-29T12:29:08.420Z">
+<meta property="og:updated_time" content="2020-02-29T12:33:26.733Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="完全背包">
-<meta name="twitter:description" content="问题描述有多种物品，和一个最大承重量为w的背包，每种物品有weight和value，问将这些物品放入背包中（每种物品可以放多个），背包的最大价值是多少。  与0-1背包不同的是，0-1背包每件物品只能放一次，而完全背包每种物品可以无限多地放。  解决方法状态转移方程：dp[i , j] = max{dp[i-1 , j] , dp[i , j - weight[i]] + value[i]} 优化">
+<meta name="twitter:description" content="问题描述有多种物品，和一个最大承重量为w的背包，每种物品有weight和value，问将这些物品放入背包中（每种物品可以放多个），背包的最大价值是多少。">
 
 
 
@@ -424,6 +424,7 @@
 
       
         <h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><p>有<strong>多种</strong>物品，和一个最大承重量为w的背包，每种物品有weight和value，问将这些物品放入背包中（<strong>每种物品可以放多个</strong>），背包的<strong>最大价值是多少</strong>。</p>
+<a id="more"></a>
 <blockquote>
 <p>与0-1背包不同的是，0-1背包每件物品只能放一次，而完全背包每种物品可以无限多地放。</p>
 </blockquote>
