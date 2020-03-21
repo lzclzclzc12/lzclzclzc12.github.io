@@ -70,7 +70,7 @@
 
 
 
-  <meta name="keywords" content="dp,">
+  <meta name="keywords" content="Hexo, NexT">
 
 
 
@@ -81,18 +81,17 @@
 
 
 
-<meta name="description" content="PTA甲级 1045 Favorite Color Stripe (30分)">
-<meta name="keywords" content="dp">
+<meta name="description" content="求最大公约数可以用辗转相除法来求，基本思想：两个数的最大公约数等于两个数中较小的数与两数余数的最大公约数。 1234567891011121314151617181920212223242526//n不能 = 0int gcd(int m,int n)&amp;#123;        int t = 1;        while(t != 0)        &amp;#123;">
 <meta property="og:type" content="article">
-<meta property="og:title" content="1045 Favorite Color Stripe (30分)">
-<meta property="og:url" content="http://yoursite.com/2020/02/19/dp/index.html">
+<meta property="og:title" content="求最大公约数和最小公倍数">
+<meta property="og:url" content="http://yoursite.com/2020/03/21/求最大公约数和最小公倍数/index.html">
 <meta property="og:site_name" content="I am Art">
-<meta property="og:description" content="PTA甲级 1045 Favorite Color Stripe (30分)">
+<meta property="og:description" content="求最大公约数可以用辗转相除法来求，基本思想：两个数的最大公约数等于两个数中较小的数与两数余数的最大公约数。 1234567891011121314151617181920212223242526//n不能 = 0int gcd(int m,int n)&amp;#123;        int t = 1;        while(t != 0)        &amp;#123;">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-02-29T04:24:34.927Z">
+<meta property="og:updated_time" content="2020-03-21T02:43:59.129Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="1045 Favorite Color Stripe (30分)">
-<meta name="twitter:description" content="PTA甲级 1045 Favorite Color Stripe (30分)">
+<meta name="twitter:title" content="求最大公约数和最小公倍数">
+<meta name="twitter:description" content="求最大公约数可以用辗转相除法来求，基本思想：两个数的最大公约数等于两个数中较小的数与两数余数的最大公约数。 1234567891011121314151617181920212223242526//n不能 = 0int gcd(int m,int n)&amp;#123;        int t = 1;        while(t != 0)        &amp;#123;">
 
 
 
@@ -122,13 +121,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2020/02/19/dp/">
+  <link rel="canonical" href="http://yoursite.com/2020/03/21/求最大公约数和最小公倍数/">
 
 
 
 
 
-  <title>1045 Favorite Color Stripe (30分) | I am Art</title>
+  <title>求最大公约数和最小公倍数 | I am Art</title>
   
 
 
@@ -298,7 +297,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/19/dp/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/21/求最大公约数和最小公倍数/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="lzc">
@@ -315,7 +314,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">1045 Favorite Color Stripe (30分)</h1>
+          <h1 class="post-title" itemprop="name headline">求最大公约数和最小公倍数</h1>
         
 
         <div class="post-meta">
@@ -327,8 +326,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-02-19T18:27:21+08:00">
-                2020-02-19
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-21T10:19:19+08:00">
+                2020-03-21
               </time>
             
 
@@ -350,8 +349,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/dp/" itemprop="url" rel="index">
-                    <span itemprop="name">dp</span>
+                  <a href="/categories/数学/" itemprop="url" rel="index">
+                    <span itemprop="name">数学</span>
                   </a>
                 </span>
 
@@ -386,7 +385,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  427
+                  298
                 </span>
               
 
@@ -423,16 +422,19 @@
       
 
       
-        <h1 id="PTA甲级-1045-Favorite-Color-Stripe-30分"><a href="#PTA甲级-1045-Favorite-Color-Stripe-30分" class="headerlink" title="PTA甲级 1045 Favorite Color Stripe (30分)"></a>PTA甲级 1045 Favorite Color Stripe (30分)</h1><a id="more"></a>
-<ul>
-<li>找到最大长度的颜色序列</li>
-<li>顺序要正确，可以缺少颜色</li>
-</ul>
-<p>由于要求最大长度，所以肯定要把每一个元素都遍历。</p>
-<p>可以发现，只要一个颜色序列包括这个颜色（假设为i），那么我们可以<strong>求出这个序列最开始的颜色到这个颜色i的最大长度</strong>，用dp表示如果这个颜色i被选中，那么这个序列最开始的颜色到颜色i的最大长度，一开始初始化为1。接下来从1到i遍历（即遍历颜色i之前的颜色），只要i之前的颜色j的等级不大于i（即j &lt;= i），那么就更新dp[i] = max(dp[i] , dp[j]+1)，也就是说，我们要想让颜色序列包括颜色i，那么颜色i之前的颜色j的等级就必须&lt;=，这样从1到i遍历后，我们就可以找到如果序列包括颜色i时的最大长度。</p>
-<p>关键：dp[i] = max(dp[i] , dp[j]+1)</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#include&lt;bits/stdc++.h&gt;</span></span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">vector&lt;int&gt; order , v;</span><br><span class="line">int book[201];</span><br><span class="line">vector&lt;int&gt; position[300];</span><br><span class="line">int dp[10010];</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    freopen(<span class="string">"input.txt"</span>,<span class="string">"r"</span>,stdin);</span><br><span class="line">    //freopen(<span class="string">"output.txt"</span>,<span class="string">"w"</span>,stdout);</span><br><span class="line">    int n;</span><br><span class="line">    cin&gt;&gt;n;</span><br><span class="line">    int m;</span><br><span class="line">    cin&gt;&gt;m;</span><br><span class="line">    <span class="keyword">for</span>(int i = 1 ; i&lt;=m ; ++i)&#123;</span><br><span class="line">        int a;</span><br><span class="line">        cin&gt;&gt;a;</span><br><span class="line">        book[a] = i;</span><br><span class="line">    &#125;</span><br><span class="line">    int L;</span><br><span class="line">    cin&gt;&gt;L;</span><br><span class="line">    <span class="keyword">for</span>(int i = 0 ; i&lt;L ; ++i)&#123;</span><br><span class="line">        int a;</span><br><span class="line">        cin&gt;&gt;a;</span><br><span class="line">        <span class="keyword">if</span>(book[a])&#123;</span><br><span class="line">            v.push_back(book[a]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    int mmax = -1;</span><br><span class="line">    <span class="keyword">for</span>(int i = 0 ; i&lt;v.size() ; ++i)&#123;</span><br><span class="line">        dp[i] = 1;</span><br><span class="line">        <span class="keyword">for</span>(int j = 0 ; j&lt;i ; ++j)&#123;</span><br><span class="line">            <span class="keyword">if</span>(v[i] &gt;= v[j])&#123;</span><br><span class="line">                dp[i] = max(dp[i] , dp[j]+1);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        mmax = max(mmax , dp[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    cout&lt;&lt;mmax;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <h1 id="求最大公约数"><a href="#求最大公约数" class="headerlink" title="求最大公约数"></a>求最大公约数</h1><p>可以用辗转相除法来求，基本思想：两个数的最大公约数等于两个数中<strong>较小的数与两数余数</strong>的最大公约数。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">//n不能 = 0</span><br><span class="line">int gcd(int m,int n)</span><br><span class="line">&#123;</span><br><span class="line">        int t = 1;</span><br><span class="line">        <span class="keyword">while</span>(t != 0)</span><br><span class="line">        &#123;</span><br><span class="line">                t=m%n;</span><br><span class="line">                m=n;</span><br><span class="line">                n=t;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">return</span> m;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// a和b不能 = 0</span><br><span class="line">int gcd(ll a , ll b)&#123;</span><br><span class="line">    <span class="keyword">if</span>(a &lt; b)&#123;</span><br><span class="line">        ll t = a;</span><br><span class="line">        a = b;</span><br><span class="line">        b = t;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(a % b)&#123;</span><br><span class="line">        gcd(b , a%b);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="built_in">return</span> b;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+<h2 id="正确性证明"><a href="#正确性证明" class="headerlink" title="正确性证明"></a>正确性证明</h2><p>我们设g为a和b的最大公约数，则a = m<em>g , b = n</em>g，其中，m和n互质。</p>
+<h3 id="证明算法的最终结果为a和b的一个公因子"><a href="#证明算法的最终结果为a和b的一个公因子" class="headerlink" title="证明算法的最终结果为a和b的一个公因子"></a>证明算法的最终结果为a和b的一个公因子</h3><p>a/b = f1 …….. c1</p>
+<p>b/c1 = f2 ……….. c2</p>
+<p>.</p>
+<p>.</p>
+<p>.</p>
+<p>cn-1/cn = fn …….. 0</p>
+<p>由上式可得：cn为最终结果，且 cn-1 = fn * cn, cn-2 = fn-1 * cn-1 + cn, 同理可得，a和b均可以被cn整除，所以cn为a和b的一个公因子，所以 cn &lt;= g</p>
+<h3 id="证明cn为最大的公因子"><a href="#证明cn为最大的公因子" class="headerlink" title="证明cn为最大的公因子"></a>证明cn为最大的公因子</h3><p>由于a = m*g = f1 * b + c1 = f1 * n * g + c1, 所以 (m - f1 * n) * g = c1, 又因为(m - f1 * n) &gt;=1 ，所以 g &lt;= c1，同理，g &lt;= cn，而cn &lt;= g，所以cn = g。</p>
+<h1 id="求最小公倍数"><a href="#求最小公倍数" class="headerlink" title="求最小公倍数"></a>求最小公倍数</h1><p>a和b的最小共倍数 = a * b / gcd(a , b)</p>
 
       
     </div>
@@ -448,12 +450,6 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/dp/" rel="tag"># dp</a>
-          
-        </div>
-      
 
       
       
@@ -463,8 +459,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/02/17/函数/" rel="next" title="函数">
-                <i class="fa fa-chevron-left"></i> 函数
+              <a href="/2020/02/29/完全背包/" rel="next" title="完全背包">
+                <i class="fa fa-chevron-left"></i> 完全背包
               </a>
             
           </div>
@@ -472,10 +468,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2020/02/20/1049 Counting Ones (30 分)/" rel="prev" title="1049 Counting Ones (30 分)">
-                1049 Counting Ones (30 分) <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -609,7 +601,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#PTA甲级-1045-Favorite-Color-Stripe-30分"><span class="nav-number">1.</span> <span class="nav-text">PTA甲级 1045 Favorite Color Stripe (30分)</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#求最大公约数"><span class="nav-number">1.</span> <span class="nav-text">求最大公约数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#正确性证明"><span class="nav-number">1.1.</span> <span class="nav-text">正确性证明</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#证明算法的最终结果为a和b的一个公因子"><span class="nav-number">1.1.1.</span> <span class="nav-text">证明算法的最终结果为a和b的一个公因子</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#证明cn为最大的公因子"><span class="nav-number">1.1.2.</span> <span class="nav-text">证明cn为最大的公因子</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#求最小公倍数"><span class="nav-number">2.</span> <span class="nav-text">求最小公倍数</span></a></li></ol></div>
             
 
           </div>
