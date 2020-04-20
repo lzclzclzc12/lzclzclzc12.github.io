@@ -381,7 +381,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  288
+                  2.4k
                 </span>
               
 
@@ -397,7 +397,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1
+                  11
                 </span>
               
             </div>
@@ -419,18 +419,14 @@
 
       
         
-          
-            <h1 id="11-盛最多水的容器-双指针的应用"><a href="#11-盛最多水的容器-双指针的应用" class="headerlink" title="11. 盛最多水的容器-双指针的应用"></a>11. 盛最多水的容器-双指针的应用</h1><p>这道题用两个for然后剪枝可以通过，但是思路不行。</p>
-<p><a href="https://leetcode-cn.com/problems/container-with-most-water/" target="_blank" rel="noopener">https://leetcode-cn.com/problems/container-with-most-water/</a></p>
-<p>可以使用双指针来解答</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int maxArea(vector&lt;int&gt;&amp; height) &#123;</span><br><span class="line">        int Max_capacity = -1;</span><br><span class="line">        int left = 0 , right = height.size()-1;</span><br><span class="line">        <span class="keyword">while</span>(left != right)&#123;</span><br><span class="line">            int capacity = min(height[left] , height[right]) * (right - left);</span><br><span class="line">            <span class="keyword">if</span>(Max_capacity &lt; capacity) Max_capacity = capacity;</span><br><span class="line">            height[left] &lt; height[right] ? (++left) : (--right);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">return</span> Max_capacity;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<h2 id="正确性证明："><a href="#正确性证明：" class="headerlink" title="正确性证明："></a>正确性证明：</h2><ul>
-<li>capacity = min(h[left] , h[right]) * (right - left)，我们假设h[left] &lt; h[right]，如果我们向左移动right，那么capacity只会减小，这样没法找到最大值，而向右移动left，capacity可能增大也可能减小。</li>
-<li>一开始left和right分别指向容器的最左端和最右端，如果用暴力来求的话，[left , right]范围内一定可以找到Max_capacity，还是假设h[left] &lt; h[right]，left++相当于减少了(left , right-1)、(left , right-2)……这些值都&lt;(left , right)，<strong>所以我们每一步所丢失的解都不会影响当前解空间内的最大值（要么是min(h[left] , h[right]) * (right - left)，要么在[left-1 , right]的解空间内）</strong>。</li>
-</ul>
-
-          
+          <h1 id="11-盛最多水的容器-双指针的应用"><a href="#11-盛最多水的容器-双指针的应用" class="headerlink" title="11. 盛最多水的容器-双指针的应用"></a>11. 盛最多水的容器-双指针的应用</h1><p>这道题用两个for然后剪枝可以通过，但是思路不行。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/04/18/leetcode不会的题/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -2201,7 +2197,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">19.2k</span>
+    <span title="Site words total count">21.4k</span>
   
 </div>
 
