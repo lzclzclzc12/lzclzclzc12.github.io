@@ -6,10 +6,10 @@
 
 
 <html class="theme-next pisces use-motion" lang="zh-Hans">
-<head><meta name="generator" content="Hexo 3.9.0">
-  <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
 <link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
 <meta name="theme-color" content="#222">
@@ -22,8 +22,8 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform">
-<meta http-equiv="Cache-Control" content="no-siteapp">
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
 
 
 
@@ -42,7 +42,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
 
 
@@ -50,9 +50,9 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
 
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
@@ -70,7 +70,7 @@
 
 
 
-  <meta name="keywords" content="Focal-Loss-OD,待补充,">
+  <meta name="keywords" content="Focal-Loss-OD,待补充," />
 
 
 
@@ -82,22 +82,22 @@
 
 
 <meta name="description" content="声明：这篇论文还未读，所以里面所有内容都是来自于各种网络大佬的理解，等自己读了论文后有待补充。 为什么要提出Focal-loss现在目标检测大概分为两种: one-stage和two-stage，one-stage虽然速度快，但是精度不如two-stage的，相反，two-stage虽然精度高，但是速度慢，后来Lin等人对于此问题的研究发现，one-stage的精度不高与训练时后景数据相比于前景数">
-<meta name="keywords" content="Focal-Loss-OD,待补充">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Focal Loss的理解">
-<meta property="og:url" content="http://yoursite.com/2019/09/26/Focal-Loss的理解/index.html">
+<meta property="og:url" content="http://yoursite.com/2019/09/26/Focal-Loss%E7%9A%84%E7%90%86%E8%A7%A3/index.html">
 <meta property="og:site_name" content="I am Art">
 <meta property="og:description" content="声明：这篇论文还未读，所以里面所有内容都是来自于各种网络大佬的理解，等自己读了论文后有待补充。 为什么要提出Focal-loss现在目标检测大概分为两种: one-stage和two-stage，one-stage虽然速度快，但是精度不如two-stage的，相反，two-stage虽然精度高，但是速度慢，后来Lin等人对于此问题的研究发现，one-stage的精度不高与训练时后景数据相比于前景数">
-<meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://yoursite.com/2019/09/26/Focal-Loss的理解/1.jpg">
-<meta property="og:image" content="http://yoursite.com/2019/09/26/Focal-Loss的理解/2.png">
-<meta property="og:image" content="http://yoursite.com/2019/09/26/Focal-Loss的理解/3.png">
-<meta property="og:image" content="http://yoursite.com/2019/09/26/Focal-Loss的理解/4.png">
-<meta property="og:updated_time" content="2019-09-27T02:04:23.328Z">
+<meta property="og:image" content="http://yoursite.com/2019/09/26/Focal-Loss%E7%9A%84%E7%90%86%E8%A7%A3/1.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/09/26/Focal-Loss%E7%9A%84%E7%90%86%E8%A7%A3/2.png">
+<meta property="og:image" content="http://yoursite.com/2019/09/26/Focal-Loss%E7%9A%84%E7%90%86%E8%A7%A3/3.png">
+<meta property="og:image" content="http://yoursite.com/2019/09/26/Focal-Loss%E7%9A%84%E7%90%86%E8%A7%A3/4.png">
+<meta property="article:published_time" content="2019-09-26T13:28:13.000Z">
+<meta property="article:modified_time" content="2019-09-27T02:04:23.328Z">
+<meta property="article:author" content="lzc">
+<meta property="article:tag" content="Focal-Loss-OD">
+<meta property="article:tag" content="待补充">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Focal Loss的理解">
-<meta name="twitter:description" content="声明：这篇论文还未读，所以里面所有内容都是来自于各种网络大佬的理解，等自己读了论文后有待补充。 为什么要提出Focal-loss现在目标检测大概分为两种: one-stage和two-stage，one-stage虽然速度快，但是精度不如two-stage的，相反，two-stage虽然精度高，但是速度慢，后来Lin等人对于此问题的研究发现，one-stage的精度不高与训练时后景数据相比于前景数">
-<meta name="twitter:image" content="http://yoursite.com/2019/09/26/Focal-Loss的理解/1.jpg">
+<meta name="twitter:image" content="http://yoursite.com/2019/09/26/Focal-Loss%E7%9A%84%E7%90%86%E8%A7%A3/1.jpg">
 
 
 
@@ -127,7 +127,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/09/26/Focal-Loss的理解/">
+  <link rel="canonical" href="http://yoursite.com/2019/09/26/Focal-Loss的理解/"/>
 
 
 
@@ -143,7 +143,7 @@
 
 
 
-</head>
+<meta name="generator" content="Hexo 4.2.0"></head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
@@ -154,7 +154,7 @@
 
   <div class="container sidebar-position-right page-post-detail">
     <div class="headband"></div>
-    <a href="https://github.com/lzclzclzc12"><img align="left" width="149" height="149" src="https://github.blog/wp-content/uploads/2008/12/forkme_left_darkblue_121621.png?resize=149%2C149" class="attachment-full size-full" alt="Fork me on GitHub" data-recalc-dims="1"></a>
+    <a href="https://github.com/lzclzclzc12" target="_blank" rel="noopener"><img align = "left" width="149" height="149" src="https://github.blog/wp-content/uploads/2008/12/forkme_left_darkblue_121621.png?resize=149%2C149" class="attachment-full size-full" alt="Fork me on GitHub" data-recalc-dims="1"></a>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
@@ -162,7 +162,7 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/" class="brand" rel="start">
+      <a href="/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">I am Art</span>
         <span class="logo-line-after"><i></i></span>
@@ -190,9 +190,9 @@
       
         
         <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
+          <a href="/%20" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
             首页
           </a>
@@ -200,9 +200,9 @@
       
         
         <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
+          <a href="/about/%20" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
             
             关于
           </a>
@@ -210,9 +210,9 @@
       
         
         <li class="menu-item menu-item-tags">
-          <a href="/tags/" rel="section">
+          <a href="/tags/%20" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
             标签
           </a>
@@ -220,9 +220,9 @@
       
         
         <li class="menu-item menu-item-categories">
-          <a href="/categories/" rel="section">
+          <a href="/categories/%20" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
             
             分类
           </a>
@@ -230,9 +230,9 @@
       
         
         <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
+          <a href="/archives/%20" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
             归档
           </a>
@@ -245,7 +245,7 @@
             <a href="javascript:;" class="popup-trigger">
           
             
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
             
             搜索
           </a>
@@ -266,7 +266,9 @@
       <i class="fa fa-times-circle"></i>
     </span>
     <div class="local-search-input-wrapper">
-      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
     </div>
   </div>
   <div id="local-search-result"></div>
@@ -303,11 +305,11 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/26/Focal-Loss的理解/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/26/Focal-Loss%E7%9A%84%E7%90%86%E8%A7%A3/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="lzc">
-      <meta itemprop="description" content>
+      <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
@@ -343,7 +345,7 @@
           </span>
 
           
-            <span class="post-category">
+            <span class="post-category" >
             
               <span class="post-meta-divider">|</span>
             
@@ -355,7 +357,7 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/深度学习/" itemprop="url" rel="index">
+                  <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index">
                     <span itemprop="name">深度学习</span>
                   </a>
                 </span>
@@ -436,11 +438,11 @@
 </li>
 <li><p><strong>梯度优化过程中被easy example过度影响</strong>: 根据交叉熵损失函数，虽然easy example的Loss不高，但是数量多，所以在梯度优化时Loss函数会过度关注这些easy example，从而使得那些难以分类的类别得不到很好的训练。</p>
 <h1 id="对于Focal-loss-的理解"><a href="#对于Focal-loss-的理解" class="headerlink" title="对于Focal-loss 的理解"></a>对于Focal-loss 的理解</h1></li>
-<li><p><strong>首先回顾一下交叉熵损失函数</strong>：<br><img src="/2019/09/26/Focal-Loss的理解/1.jpg" alt="交叉熵损失函数"><br>其中<img src="/2019/09/26/Focal-Loss的理解/2.png" alt="2">是经过激活函数的输出，在0-1之间，所以普通的交叉熵就是正样本的输出概率越大，那么Loss就越小，对于负样本，输出概率越小，Loss就越小。</p>
+<li><p><strong>首先回顾一下交叉熵损失函数</strong>：<br><img src="/2019/09/26/Focal-Loss%E7%9A%84%E7%90%86%E8%A7%A3/1.jpg" alt="交叉熵损失函数"><br>其中<img src="/2019/09/26/Focal-Loss%E7%9A%84%E7%90%86%E8%A7%A3/2.png" alt="2">是经过激活函数的输出，在0-1之间，所以普通的交叉熵就是正样本的输出概率越大，那么Loss就越小，对于负样本，输出概率越小，Loss就越小。</p>
 </li>
-<li><p><strong>再看加了gama后的Loss函数</strong>：<br><img src="/2019/09/26/Focal-Loss的理解/3.png" alt="3"><br>在加入了gama后，就对难易样本的loss有了区分，对于正样本而言，如果输出为0.9，那么表明这个样本是容易训练的，所以Loss就变得比原来小，如果输出是0.5，表明难以训练，所以Loss就大，所以就使得Loss函数更加关注难训练的样本，所以减少了easy example的影响，<strong>论文实验发现gama=2是最优的</strong>。</p>
+<li><p><strong>再看加了gama后的Loss函数</strong>：<br><img src="/2019/09/26/Focal-Loss%E7%9A%84%E7%90%86%E8%A7%A3/3.png" alt="3"><br>在加入了gama后，就对难易样本的loss有了区分，对于正样本而言，如果输出为0.9，那么表明这个样本是容易训练的，所以Loss就变得比原来小，如果输出是0.5，表明难以训练，所以Loss就大，所以就使得Loss函数更加关注难训练的样本，所以减少了easy example的影响，<strong>论文实验发现gama=2是最优的</strong>。</p>
 </li>
-<li><p><strong>Focal-loss的最终版本</strong>：<br><img src="/2019/09/26/Focal-Loss的理解/4.png" alt="4"><br>α的加入实际上是使交叉熵加权，<strong>α一般设置为类别比例的倒数或者直接设为超参数(人为设定)</strong>，这样使得正样本(数量少)得到Loss的重视，从而减少负样本的影响。</p>
+<li><p><strong>Focal-loss的最终版本</strong>：<br><img src="/2019/09/26/Focal-Loss%E7%9A%84%E7%90%86%E8%A7%A3/4.png" alt="4"><br>α的加入实际上是使交叉熵加权，<strong>α一般设置为类别比例的倒数或者直接设为超参数(人为设定)</strong>，这样使得正样本(数量少)得到Loss的重视，从而减少负样本的影响。</p>
 </li>
 <li><p><strong>为什么Focal loss没有用在two-stage上</strong></p>
 </li>
@@ -474,7 +476,7 @@
           
             <a href="/tags/Focal-Loss-OD/" rel="tag"># Focal-Loss-OD</a>
           
-            <a href="/tags/待补充/" rel="tag"># 待补充</a>
+            <a href="/tags/%E5%BE%85%E8%A1%A5%E5%85%85/" rel="tag"># 待补充</a>
           
         </div>
       
@@ -497,7 +499,7 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/09/27/CenterNet的理解/" rel="prev" title="对于CenterNet的理解">
+              <a href="/2019/09/27/CenterNet%E7%9A%84%E7%90%86%E8%A7%A3/" rel="prev" title="对于CenterNet的理解">
                 对于CenterNet的理解 <i class="fa fa-chevron-right"></i>
               </a>
             
@@ -565,7 +567,9 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="lzc">
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.gif"
+                alt="lzc" />
             
               <p class="site-author-name" itemprop="name">lzc</p>
               <p class="site-description motion-element" itemprop="description"></p>
@@ -576,7 +580,7 @@
             
               <div class="site-state-item site-state-posts">
               
-                <a href="/archives/">
+                <a href="/archives/%20%7C%7C%20archive">
               
                   <span class="site-state-item-count">28</span>
                   <span class="site-state-item-name">日志</span>
@@ -689,11 +693,11 @@
 
 <div>
 <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-<span id="busuanzi_container_site_pv" style="display:none">
+<span id="busuanzi_container_site_pv" style='display:none'>
     本站总访问量 <span id="busuanzi_value_site_pv"></span> 次
     <span class="post-meta-divider">|</span>
 </span>
-<span id="busuanzi_container_site_uv" style="display:none">
+<span id="busuanzi_container_site_uv" style='display:none'>
     有<span id="busuanzi_value_site_uv"></span>人看过我的博客啦
 </span>
 </div>
