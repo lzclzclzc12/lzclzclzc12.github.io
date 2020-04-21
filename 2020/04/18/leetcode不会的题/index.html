@@ -90,7 +90,7 @@
 <meta property="og:image" content="http://yoursite.com/2020/04/18/leetcode%E4%B8%8D%E4%BC%9A%E7%9A%84%E9%A2%98/466.png">
 <meta property="og:image" content="http://yoursite.com/2020/04/18/leetcode%E4%B8%8D%E4%BC%9A%E7%9A%84%E9%A2%98/4.png">
 <meta property="article:published_time" content="2020-04-18T02:07:42.000Z">
-<meta property="article:modified_time" content="2020-04-21T08:05:49.761Z">
+<meta property="article:modified_time" content="2020-04-21T08:15:35.673Z">
 <meta property="article:author" content="lzc">
 <meta property="article:tag" content="学单词">
 <meta name="twitter:card" content="summary">
@@ -445,7 +445,8 @@
 <h1 id="466-统计重复个数-循环节（好难）"><a href="#466-统计重复个数-循环节（好难）" class="headerlink" title="466. 统计重复个数-循环节（好难）"></a>466. 统计重复个数-循环节（好难）</h1><p><a href="https://leetcode-cn.com/problems/count-the-repetitions/" target="_blank" rel="noopener">https://leetcode-cn.com/problems/count-the-repetitions/</a></p>
 <p>我们可以把这道题转成：n1个s1中可以找出多少个s2(个数向下取整)，然后除以n2就是答案了，所以关键是求有多少个s2，但是n1可以很大，所以遍历n1个s1肯定不行。</p>
 <p>再想，我们可以求出x个s1中有y个s2，其中x和y都是整数，但是这样不能保证y是整数，由于s1和s2是循环出现的，所以1个s2占多少s2都是固定的，所以很多情况下找不出这样的y。</p>
-<p>有没有一种方法可以实现x个s1中有y个s2，其中x和y都是整数呢？我们可以这样想，如果此题有解，那么s1中必定包含s2中所有种类的元素，只不过顺序是不同的，比如说s1 = ‘abaacdbac’，s2 = ‘adcbda’，第一次只能有’abc’，第二次为’bda’。那么是否存在一个x，使得x个s1中找到s2的一段<strong>循环节</strong>，即从x开始遍历s2而不是从s2[0]开始遍历。我们考虑每次遍历s1时第一个s2元素，比如下图中的b,d,b,d，我们假设为x，那么x只能取s2中的任意一个元素，如果有两次x重复了，那么接下来的工作就和上一次一样了，因为相当于循环节和s1同步了，这样就找到了循环节了。<br><img src="/2020/04/18/leetcode%E4%B8%8D%E4%BC%9A%E7%9A%84%E9%A2%98/466.png" alt="4"></p>
+<p>有没有一种方法可以实现x个s1中有y个s2，其中x和y都是整数呢？我们可以这样想，如果此题有解，那么s1中必定包含s2中所有种类的元素，只不过顺序是不同的，比如说s1 = ‘abaacdbac’，s2 = ‘adcbda’，第一次只能有’abc’，第二次为’bda’。那么是否存在一个x，使得x个s1中找到s2的一段<strong>循环节</strong>，即从x开始遍历s2而不是从s2[0]开始遍历。我们考虑每次遍历s1时第一个s2元素，比如下图中的b,d,b,d，我们假设为x，那么x只能取s2中的任意一个元素，如果有两次x重复了，那么接下来的工作就和上一次一样了，因为相当于循环节和s1同步了，这样就找到了循环节了。</p>
+<p><img src="/2020/04/18/leetcode%E4%B8%8D%E4%BC%9A%E7%9A%84%E9%A2%98/466.png" alt="4"></p>
 <h2 id="正确性证明"><a href="#正确性证明" class="headerlink" title="正确性证明"></a>正确性证明</h2><ul>
 <li>x一定会有重复，根据<strong>鸽巢原理</strong>，x的取值是有限的。</li>
 <li>循环节里一定包含的是整数个s2，因为我们可以认为是从s2中x元素开始对应，经过几个s1的遍历后，又以x元素结束，此时一定是整数个s2</li>
