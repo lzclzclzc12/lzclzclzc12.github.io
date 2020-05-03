@@ -337,6 +337,28 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/c/" itemprop="url" rel="index">
+                    <span itemprop="name">c++</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -360,7 +382,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  0
+                  590
                 </span>
               
 
@@ -376,7 +398,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1
+                  2
                 </span>
               
             </div>
@@ -398,9 +420,14 @@
 
       
         
-          
-            
-          
+          <h1 id="参数传递"><a href="#参数传递" class="headerlink" title="参数传递"></a>参数传递</h1><h2 id="值传递、引用参数和const形参"><a href="#值传递、引用参数和const形参" class="headerlink" title="值传递、引用参数和const形参"></a>值传递、引用参数和const形参</h2>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/02/17/%E5%87%BD%E6%95%B0/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -912,7 +939,7 @@
 <p>例如：a[3][4]，a指向一个维度为4的一维数组，<em>a指向这个一维数组的第一个元素，*</em>a表示这个一维数组的第一个元素。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">int a[3][4] , sum = 1;</span><br><span class="line"><span class="keyword">for</span>(int i = 0 ; i&lt;3 ; ++i)&#123;</span><br><span class="line">    <span class="keyword">for</span>(int j = 0 ; j&lt;4 ; ++j)&#123;</span><br><span class="line">        a[i][j] = sum++;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span>(int i = 0 ; i&lt;3 ; ++i)&#123;     //遍历</span><br><span class="line">    <span class="keyword">for</span>(int j = 0 ; j&lt;4 ; ++j)&#123;</span><br><span class="line">        cout &lt;&lt; *(*(a+i) + j) &lt;&lt; <span class="string">' '</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    cout&lt;&lt;endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="函数的多维数组参数"><a href="#函数的多维数组参数" class="headerlink" title="函数的多维数组参数"></a>函数的多维数组参数</h2><p>两种方式：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">void <span class="built_in">print</span>(int *(a)[10])</span><br><span class="line">void <span class="built_in">print</span>(int a[][10])   //实际形参是指向含有10个元素的数组的指针</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">void <span class="built_in">print</span>(int (*a)[10])</span><br><span class="line">void <span class="built_in">print</span>(int a[][10])   //实际形参是指向含有10个元素的数组的指针</span><br></pre></td></tr></table></figure>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2020/01/18/%E6%8C%87%E9%92%88%E4%B8%8E%E5%A4%9A%E7%BB%B4%E6%95%B0%E7%BB%84/#more" rel="contents">
@@ -2071,7 +2098,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -2134,7 +2161,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">22.1k</span>
+    <span title="Site words total count">22.7k</span>
   
 </div>
 
