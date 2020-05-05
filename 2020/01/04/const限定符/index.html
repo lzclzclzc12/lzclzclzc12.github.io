@@ -387,7 +387,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  463
+                  462
                 </span>
               
 
@@ -424,25 +424,13 @@
       
 
       
-        <h1 id="指针和const"><a href="#指针和const" class="headerlink" title="指针和const"></a>指针和const</h1><p>允许让一个指向常量的指针指向一个非常量</p>
-<a id="more"></a>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">int i = 0;</span><br><span class="line">const int *p = &amp;i;   //定义一个指向常量的指针</span><br><span class="line">cout&lt;&lt;*p&lt;&lt;endl;   // 0</span><br><span class="line">i = 100;</span><br><span class="line">cout&lt;&lt;*p;    // 100</span><br></pre></td></tr></table></figure>
-<h2 id="const-指针"><a href="#const-指针" class="headerlink" title="const 指针"></a>const 指针</h2><p>一个指向常量的指针是指针可以变，但是指针指向对象的值不能通过指针改变；const 指针是指，指针本身是一个常量，即不能改变指针所指向的地址，但是指针指向对象的值可以改变。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">int i = 0;</span><br><span class="line">int *const p = &amp;i;</span><br><span class="line">*p = 100;</span><br><span class="line">cout&lt;&lt;i;  // 100</span><br></pre></td></tr></table></figure>
-
-<h2 id="顶层const"><a href="#顶层const" class="headerlink" title="顶层const"></a>顶层const</h2><p>用<strong>顶层const</strong>来表示指针本身是常量，用<strong>底层const</strong>来表示指针所指向的对象是常量。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">int i = 0;</span><br><span class="line">int *const p1 = &amp;i;      //顶层const</span><br><span class="line">const int ci = 42;       </span><br><span class="line">const int *p2 = &amp;ci;     //底层const</span><br><span class="line">const int *const p3 = p2;       //右const是顶层const，左const是底层const</span><br><span class="line">const int &amp;r = ci;          //用于声明引用的const 都是底层const</span><br></pre></td></tr></table></figure>
-
-<h2 id="constexpr和常量表达式"><a href="#constexpr和常量表达式" class="headerlink" title="constexpr和常量表达式"></a>constexpr和常量表达式</h2><p><strong>常量表达式</strong>是指值不会改变并且在编译过程中就能得到计算结果的表达式。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">const int c = get_size(); // 不是常量表达式</span><br><span class="line">int i = 10; // 不是常量表达式</span><br></pre></td></tr></table></figure>
-<p><strong>一般，如果一个变量是一个常量表达式，那么把它声明成constexpr类型</strong></p>
+        <h1 id="指针和const"><a href="#指针和const" class="headerlink" title="指针和const"></a>指针和const</h1><p>允许让一个指向常量的指针指向一个非常量<br><a id="more"></a><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">int i = 0;</span><br><span class="line">const int *p = &amp;i;   //定义一个指向常量的指针</span><br><span class="line">cout&lt;&lt;*p&lt;&lt;endl;   // 0</span><br><span class="line">i = 100;</span><br><span class="line">cout&lt;&lt;*p;    // 100</span><br></pre></td></tr></table></figure></p>
+<h2 id="const-指针"><a href="#const-指针" class="headerlink" title="const 指针"></a>const 指针</h2><p>一个指向常量的指针是指针可以变，但是指针指向对象的值不能通过指针改变；const 指针是指，指针本身是一个常量，即不能改变指针所指向的地址，但是指针指向对象的值可以改变。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">int i = 0;</span><br><span class="line">int *const p = &amp;i;</span><br><span class="line">*p = 100;</span><br><span class="line">cout&lt;&lt;i;  // 100</span><br></pre></td></tr></table></figure></p>
+<h2 id="顶层const"><a href="#顶层const" class="headerlink" title="顶层const"></a>顶层const</h2><p>用<strong>顶层const</strong>来表示指针本身是常量，用<strong>底层const</strong>来表示指针所指向的对象是常量。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">int i = 0;</span><br><span class="line">int *const p1 = &amp;i;      //顶层const</span><br><span class="line">const int ci = 42;       </span><br><span class="line">const int *p2 = &amp;ci;     //底层const</span><br><span class="line">const int *const p3 = p2;       //右const是顶层const，左const是底层const</span><br><span class="line">const int &amp;r = ci;          //用于声明引用的const 都是底层const</span><br></pre></td></tr></table></figure></p>
+<h2 id="constexpr和常量表达式"><a href="#constexpr和常量表达式" class="headerlink" title="constexpr和常量表达式"></a>constexpr和常量表达式</h2><p><strong>常量表达式</strong>是指值不会改变并且在编译过程中就能得到计算结果的表达式。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">const int c = get_size(); // 不是常量表达式</span><br><span class="line">int i = 10; // 不是常量表达式</span><br></pre></td></tr></table></figure><br><strong>一般，如果一个变量是一个常量表达式，那么把它声明成constexpr类型</strong></p>
 <p>constexpr指针的初始值必须是nullptr或者是0，或是储存于某个固定地址中的对象。</p>
 <p><strong>函数体内</strong>定义的变量一般来说<strong>不是储存在固定地址</strong>，因此<strong>不能用来初始化constexpr指针</strong>；定义在<strong>所有函数体外</strong>的对象的储存地址固定不变，可以初始化constexpr指针。</p>
-<h3 id="指针与constexpr"><a href="#指针与constexpr" class="headerlink" title="指针与constexpr"></a>指针与constexpr</h3><p>区别：</p>
-<pre><code class="bash">const int *p = nullptr;         //指向 整形常量 的指针
-constexpr int *q = nullptr;     //指向整形的 常量指针
-constexpr const int *p1 = &amp;j    //p1是 常量指针 ，指向 整形常量 j
-</code></pre>
+<h3 id="指针与constexpr"><a href="#指针与constexpr" class="headerlink" title="指针与constexpr"></a>指针与constexpr</h3><p>区别：<br>``` bash<br>const int <em>p = nullptr;         //指向 整形常量 的指针<br>constexpr int </em>q = nullptr;     //指向整形的 常量指针<br>constexpr const int *p1 = &amp;j    //p1是 常量指针 ，指向 整形常量 j</p>
 
       
     </div>

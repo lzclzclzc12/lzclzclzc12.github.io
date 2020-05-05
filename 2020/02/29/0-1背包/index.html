@@ -427,21 +427,16 @@
         <h1 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h1><a id="more"></a>
 <p>有几个物品，各自有各自的重量（weight）和价值（value），现在有一个最大承重为v的背包，问此背包<strong>最多</strong>可以装的价值是多少？</p>
 <ul>
-<li><p>一件物品只能放一次，可以不放</p>
-</li>
-<li><p>与放入次序无关，即数据可以是无序的</p>
-</li>
-<li><p>背包有最大承重量</p>
-</li>
+<li>一件物品只能放一次，可以不放</li>
+<li>与放入次序无关，即数据可以是无序的</li>
+<li>背包有最大承重量</li>
 <li><p>求最大价值</p>
 <h1 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h1><p>我们可以一件一件地放物品，那么我们只需要考虑这件物品<strong>到底该不该放入背包里</strong>，假设用<strong>dp[i , j]来表示放前i件物品（不一定这i件物品都放进去）到最大承重为j的背包时的最大价值</strong>，那么dp[i , v]就表示此背包在放前i件物品时的最大价值，我们用weight[i]表示第i件物品的重量，value[i]表示第i件物品的价值。那么我们可以状态转化方程：<strong>dp[i , j] = max{dp[i-1 , j] , dp[i-1 , j - weight[i]] + value[i]}</strong>，其中，<strong>j&gt;=weight[i]</strong>。</p>
 </li>
 <li><p>dp[i , j]表示承重量为j的背包里放前i件物品的最大价值（第i件物品不一定放进去）</p>
 </li>
-<li><p>dp[i - 1 , j]表示承重量为j的背包里放前i-1件物品的最大价值。</p>
-</li>
-<li><p>dp[i-1 , j - weight[i]]表示承重量为j-weight[i]的背包里放前i-1件物品的最大价值。</p>
-</li>
+<li>dp[i - 1 , j]表示承重量为j的背包里放前i-1件物品的最大价值。</li>
+<li>dp[i-1 , j - weight[i]]表示承重量为j-weight[i]的背包里放前i-1件物品的最大价值。</li>
 </ul>
 <p>我们如果考虑是否要放第i件物品，由于<strong>随着背包容量的增加，背包的价值是递增的</strong>，那么我们如果要把第i件物品放入背包，就要看j-weight[i]的背包里的价值加上value[i]是否比dp[i-1 , j]（不放i物品）的价值大。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#include &lt;iostream&gt;</span></span><br><span class="line"><span class="comment">#include &lt;algorithm&gt;</span></span><br><span class="line"><span class="comment">#include &lt;vector&gt;</span></span><br><span class="line"><span class="comment">#include &lt;string.h&gt;</span></span><br><span class="line"><span class="comment">#include &lt;iomanip&gt;</span></span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">int dp[100];</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    //freopen(<span class="string">"input.txt"</span>,<span class="string">"r"</span>,stdin);</span><br><span class="line">    //freopen(<span class="string">"output.txt"</span>,<span class="string">"w"</span>,stdout);</span><br><span class="line">    int n , v;                             //总物品数和最大重量</span><br><span class="line">    int value[100] , weight[100];</span><br><span class="line">    cin&gt;&gt;n&gt;&gt;v;</span><br><span class="line">    <span class="keyword">for</span>(int i = 0 ; i&lt;n ; ++i)&#123;</span><br><span class="line">        cin&gt;&gt;weight[i]&gt;&gt;value[i];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(int i = 0 ; i&lt;n ; ++i)&#123;            //一件一件放物品</span><br><span class="line">        <span class="keyword">for</span>(int j = v ; j&gt;=weight[i] ; --j)&#123;    //0-1背包一定要逆序更新</span><br><span class="line">            dp[j] = max(dp[j] , dp[j - weight[i]] + value[i]);  //注意两个dp[j]所表示的状态不同，左边表示状态i，右边表示状态i-1</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(int i = 0 ; i&lt;=v ; ++i)&#123;</span><br><span class="line">        cout&lt;&lt;dp[i]&lt;&lt;<span class="string">' '</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>

@@ -387,7 +387,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  261
+                  277
                 </span>
               
 
@@ -424,15 +424,14 @@
       
 
       
-        <h1 id="string-size-type-类型"><a href="#string-size-type-类型" class="headerlink" title="string::size_type 类型"></a>string::size_type 类型</h1><p>string::size_type是<strong>无符号</strong>整形，所以有时候与int混用会出现问题。</p>
-<a id="more"></a>
-<p>例如s.size() &lt; n，如果n是一个int类型，那么一旦n小于0，那么这个几乎都等于true，因为<strong>表达式中既有带符号类型又有无符号类型，带符号类型会自动转化为无符号类型</strong>，所以n如果是负数，那么就相当于<strong>n的绝对值对无符号类型表示数值总数取模后的余数</strong>。</p>
+        <h1 id="string-size-type-类型"><a href="#string-size-type-类型" class="headerlink" title="string::size_type 类型"></a>string::size_type 类型</h1><p>string::size_type是<strong>无符号</strong>整形，所以有时候与int混用会出现问题。<br><a id="more"></a><br>例如s.size() &lt; n，如果n是一个int类型，那么一旦n小于0，那么这个几乎都等于true，因为<strong>表达式中既有带符号类型又有无符号类型，带符号类型会自动转化为无符号类型</strong>，所以n如果是负数，那么就相当于<strong>n的绝对值对无符号类型表示数值总数取模后的余数</strong>。</p>
 <p>所以一个表达式用有了size()函数(vector等很多size()函数也是无符号类型)就不要用int了！！！ 当要用string的下标时，可以采用：for(decltype(s.size()) i = 0 ; i != s.size() ; ++i)来访问string的元素。</p>
 <h1 id="字面值和string对象相加"><a href="#字面值和string对象相加" class="headerlink" title="字面值和string对象相加"></a>字面值和string对象相加</h1><p>使用 + 运算符时，要确保 + 两侧的运算对象至少有一个是stirng</p>
-<pre><code class="bash">string s = <span class="string">"hello "</span> + <span class="string">", "</span>;  // 错误
-string s = <span class="string">"hello "</span> + <span class="string">", "</span> + s; //错误
-string s = <span class="string">"hello "</span> + (<span class="string">", "</span> + s);  // 正确
-string s = s + <span class="string">"hello "</span> + <span class="string">", "</span>;  //正确</code></pre>
+<pre><code class="lang-bash">string s = &quot;hello &quot; + &quot;, &quot;;  // 错误
+string s = &quot;hello &quot; + &quot;, &quot; + s; //错误
+string s = &quot;hello &quot; + (&quot;, &quot; + s);  // 正确
+string s = s + &quot;hello &quot; + &quot;, &quot;;  //正确
+</code></pre>
 <p>c++ 中字符串字面值并不是string 的对象</p>
 
       
