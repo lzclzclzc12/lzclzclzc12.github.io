@@ -295,6 +295,230 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/05/%E6%95%B0%E7%BB%84/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lzc">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="I am Art">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/05/05/%E6%95%B0%E7%BB%84/" itemprop="url">数组</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-05-05T08:51:57+08:00">
+                2020-05-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AE%97%E6%B3%95/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+          
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.9k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  8
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="1010-总持续时间可被-60-整除的歌曲"><a href="#1010-总持续时间可被-60-整除的歌曲" class="headerlink" title="1010. 总持续时间可被 60 整除的歌曲"></a>1010. 总持续时间可被 60 整除的歌曲</h1><p><a href="https://leetcode-cn.com/problems/pairs-of-songs-with-total-durations-divisible-by-60/" target="_blank" rel="noopener">https://leetcode-cn.com/problems/pairs-of-songs-with-total-durations-divisible-by-60/</a></p>
+<p>题目让求所有满足i&lt;j 的$(time[i] + time[j])\div 60 == 0$的组数。</p>
+<p>我们设<br>$$<br>\begin{cases}<br>x+y=60n  \[1ex]<br>x_1 = x/60\[1ex]<br>x_1 = x/60\[1ex]<br>x_2 = x\div60\[1ex]<br>y_1 = y/60\[1ex]<br>y_2 = y\div60\[1ex]<br>\end{cases}<br>$$</p>
+<p>那么式（1）就可以写成：<br>$$ 60x_1+x_2+60y_1+y_2 = 60n  \tag {2}$$<br>所以所有满足式$（2）$的$x$和$y$都是满足题意的。同时，我们还发现$x_2+y_2 == 60$，所以，我们可以把数组中每个数都对60取余，存在哈希表里，哈希表的值代表数组中余数是此值的个数。</p>
+<p>同时，我们还得避免重复计算，这要对$x_2$和$y_2$的大小关系进行讨论：<br>$$<br>\begin{cases}<br>if\ (x_2 == y_2),&amp; sum += \frac{num(num-1)}{2}\[3ex]<br>if\ (x_2 &lt; y_2),&amp; sum += num_x*num_y\[3ex]<br>if\ (x_2 == 0 \ ||\ y_2 == 0),&amp; sum += \frac{num(num-1)}{2}\<br>\end{cases}<br>$$<br>时间复杂度为$O(n)$。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int numPairsDivisibleBy60(vector&lt;int&gt;&amp; time) &#123;</span><br><span class="line">        int sum = 0;</span><br><span class="line">        unordered_map&lt;int , int&gt; book; \\哈希表</span><br><span class="line">        <span class="keyword">for</span>(int i = 0 ; i&lt;time.size() ; ++i)&#123;</span><br><span class="line">            book[time[i]%60]++;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span>(auto it = book.begin() ; it != book.end() ; ++it)&#123;</span><br><span class="line">            <span class="keyword">if</span>(it-&gt;first &lt;= 30)&#123;</span><br><span class="line">                <span class="keyword">if</span>(it-&gt;first == 30 || it-&gt;first == 0)&#123;</span><br><span class="line">                    sum += it-&gt;second * (it-&gt;second - 1)/2;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span>(book.count(60 - it-&gt;first))&#123;</span><br><span class="line">                    sum += it-&gt;second * (book[60 - it-&gt;first]);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">return</span> sum;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h1 id="1011-在-D-天内送达包裹的能力"><a href="#1011-在-D-天内送达包裹的能力" class="headerlink" title="1011. 在 D 天内送达包裹的能力"></a>1011. 在 D 天内送达包裹的能力</h1><p><a href="https://leetcode-cn.com/problems/capacity-to-ship-packages-within-d-days/" target="_blank" rel="noopener">https://leetcode-cn.com/problems/capacity-to-ship-packages-within-d-days/</a></p>
+<p>题目要求在$D$天内将传送带上的所有包裹送达的船的最低运载能力，我们设$q$为运载能力，所以$Max\leq q \leq sum$，其中$Max$为最大的货物重量，$sum$为总的货物重量，我们的目的就是在这个范围里找到一个$q$，所以可以想到用二分查找法，对于每一次的$mid$,我们可以求出一个$day$, 其中$day$为当$(q == mid)$时，将传送带上的所有包裹送达的船的天数。<br>$$<br>\begin{cases}<br>如果\ day \leq D,&amp; 说明是符合题意的，但是q可能还是偏大\<br>如果\ day \gt D,&amp; 说明q偏小了<br>\end{cases}<br>$$</p>
+<ul>
+<li>为什么不选取$day == D$时的q呢，原因是当数组的长度小于$D$时，我们找不到这样的$q$。</li>
+<li>为什么$day == D$时，$q$还是可能偏小呢，原因是缩小$q$时可能还能满足$day == D$。</li>
+<li>如何确保找到了最小的$q$呢，$day \gt D$不用多说，这种情况是不满足题意的。当$day \leq D$时，我们舍去了比$q$大的值。所以我们舍去的一定不影响求最小值。<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int shipWithinDays(vector&lt;int&gt;&amp; weights, int D) &#123;</span><br><span class="line">        int sum = 0;</span><br><span class="line">        int Max = -1;</span><br><span class="line">        <span class="keyword">for</span>(int i = 0 ; i&lt;weights.size() ; ++i)&#123;</span><br><span class="line">            sum += weights[i];</span><br><span class="line">            <span class="keyword">if</span>(Max &lt; weights[i])&#123;</span><br><span class="line">                Max = weights[i];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        int left = Max , right = sum;</span><br><span class="line">        int Min = INT_MAX;</span><br><span class="line">        <span class="keyword">while</span>(left &lt;= right)&#123;</span><br><span class="line">            int mid = (right + left)/2;</span><br><span class="line">            int temp = 0;</span><br><span class="line">            int day = 0;</span><br><span class="line">            <span class="keyword">for</span>(int i = 0 ; i&lt;weights.size() ; ++i)&#123;</span><br><span class="line">                temp += weights[i];</span><br><span class="line">                <span class="keyword">if</span>(temp &gt; mid)&#123;</span><br><span class="line">                    temp = weights[i];</span><br><span class="line">                    day++;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            day++; \\一定要注意</span><br><span class="line">            <span class="keyword">if</span>(day &gt; D)&#123;</span><br><span class="line">                left = mid + 1;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(day &lt;= D)&#123;</span><br><span class="line">                right = mid - 1;</span><br><span class="line">                <span class="keyword">if</span>(Min &gt; mid) Min = mid;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">return</span> Min;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h1 id="4-寻找两个有序数组的中位数"><a href="#4-寻找两个有序数组的中位数" class="headerlink" title="4. 寻找两个有序数组的中位数"></a>4. 寻找两个有序数组的中位数</h1>总结见<a href="https://lzclzclzc12.github.io/2020/04/18/leetcode%E4%B8%8D%E4%BC%9A%E7%9A%84%E9%A2%98/" target="_blank" rel="noopener">https://lzclzclzc12.github.io/2020/04/18/leetcode%E4%B8%8D%E4%BC%9A%E7%9A%84%E9%A2%98/</a><h1 id="1014-最佳观光组合"><a href="#1014-最佳观光组合" class="headerlink" title="1014. 最佳观光组合"></a>1014. 最佳观光组合</h1><a href="https://leetcode-cn.com/problems/best-sightseeing-pair/" target="_blank" rel="noopener">https://leetcode-cn.com/problems/best-sightseeing-pair/</a></li>
+</ul>
+<p>题目要求$\max_{}(A[i] + A[j] + i - j)$，乍一看是找$i$和$j$的关系，但是由于数组是无序的，而且如果要保证最大值，那么$A[i] + A[j]$越大越好，但是$i-j$却是越小越好，所以很难找到两者之间的关系。我们可以把式子变形：<br>$$\max_{}(A[i] + i + A[j] - j)$$<br>这样我们就能不考虑两者之间的距离了，而是只考虑值的大小，相当于两者独立了。只要保证$i \lt j$，我们就可以$i$为慢指针，$j$为快指针，将数组遍历完后，求得最大值。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int maxScoreSightseeingPair(vector&lt;int&gt;&amp; A) &#123;</span><br><span class="line">        int left = A[0] , sum = 0;</span><br><span class="line">        <span class="keyword">for</span>(int i = 1 ; i&lt;A.size() ; ++i)&#123;</span><br><span class="line">            sum = max(sum , left + A[i] - i);</span><br><span class="line">            left = max(left , A[i] + i);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">return</span> sum;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>代码如何保证$i \lt j$呢，我们先执行$sum$操作，此时$left$的状态还是$i$的状态，这样就能保证$i \lt j$了。</li>
+<li>如何保证求的是最大值呢，在遍历每个$A[j]$时，我们$left$都取最大值，这是毫无疑问的，我们$sum$更新原则就是$sum_j = \max_{}(\max_{i \lt j}(A[i]+i) + A[j] - j)$，这样$\max(sum_j)$就是解。</li>
+</ul>
+<h1 id="1277-统计全为-1-的正方形子矩阵"><a href="#1277-统计全为-1-的正方形子矩阵" class="headerlink" title="1277. 统计全为 1 的正方形子矩阵"></a>1277. 统计全为 1 的正方形子矩阵</h1><p><a href="https://leetcode-cn.com/problems/count-square-submatrices-with-all-ones/" target="_blank" rel="noopener">https://leetcode-cn.com/problems/count-square-submatrices-with-all-ones/</a></p>
+<p>这道题用dp思想。</p>
+<p>下面是官方题解图：</p>
+<p><img src="/2020/05/05/%E6%95%B0%E7%BB%84/1277.png" alt="1277"></p>
+<p>我们用 $dp[i][j]$ 表示以$(i,j)$点为右下角的正方形的最大个数，由图可知，若已知 $dp[i][j]$ ，那么:<br>$$\min_{}(dp[i-1][j], dp[i][j-1], dp[i-1][j-1]) \geq dp[i][j]-1 \tag {1}$$<br>其实上式要表达的就是三个点的最大正方形个数都比$dp[i][j]-1$大。</p>
+<p>我们在来看下面这张图：</p>
+<p><img src="/2020/05/05/%E6%95%B0%E7%BB%84/1277_2.png" alt="1277_2"></p>
+<p>我们可以发现，$dp[i][j] \leq \min_{}(dp[i-1][j], dp[i][j-1], dp[i-1][j-1]) + 1$，所以可以推出：<br>$$dp[i][j] == \min_{}(dp[i-1][j], dp[i][j-1], dp[i-1][j-1]) + 1$$<br>所以递推公式就有了。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int countSquares(vector&lt;vector&lt;int&gt;&gt;&amp; matrix) &#123;</span><br><span class="line">        int sum = 0;</span><br><span class="line">        int n = matrix.size() , m = matrix[0].size();</span><br><span class="line">        vector&lt;vector&lt;int&gt;&gt; dp(n , vector&lt;int&gt;(m , 0));</span><br><span class="line">        <span class="keyword">for</span>(int i = 0 ; i&lt;n ; ++i)&#123;</span><br><span class="line">            <span class="keyword">for</span>(int j = 0 ; j&lt;m ; ++j)&#123;</span><br><span class="line">                <span class="keyword">if</span>(!i || !j)&#123;  \\注意边界值</span><br><span class="line">                    dp[i][j] = matrix[i][j];</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span>(matrix[i][j])&#123;</span><br><span class="line">                    dp[i][j] = min(min(dp[i-1][j] , dp[i][j-1]) , dp[i-1][j-1])+1;</span><br><span class="line">                &#125;</span><br><span class="line">                sum += dp[i][j];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">return</span> sum;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>为什么要选右下角呢，原因是我们遍历数组是从左上角开始的，由递推公式可知，要知道$dp[i][j]$，我们必须要先求出$dp[i-1][j] , dp[i][j-1]) , dp[i-1][j-1]$，这样的次序和遍历的次序一致，所以才能保证正确性。</li>
+</ul>
+<h1 id="面试题-01-07-旋转矩阵"><a href="#面试题-01-07-旋转矩阵" class="headerlink" title="面试题 01.07. 旋转矩阵"></a>面试题 01.07. 旋转矩阵</h1><p><a href="https://leetcode-cn.com/problems/rotate-matrix-lcci/" target="_blank" rel="noopener">https://leetcode-cn.com/problems/rotate-matrix-lcci/</a></p>
+<p><img src="/2020/05/05/%E6%95%B0%E7%BB%84/%E9%9D%A2%E8%AF%95%E9%A2%98_01.07.png" alt="1277_2"></p>
+<p>我们可以看出，一个数顺时针旋转90°:<br>$$Matrix_{after}[j][n-i-1] = Matrix_{before}[i][j]$$<br>我们知道一个数旋转360°一定可以回到原地，所以我们可以继续推：<br>$$<br>\begin{cases}<br>Matrix_{after}[j][n-i-1] = Matrix_{before}[i][j]\[2ex]<br>Matrix_{after}[n-i-1][n-j-1] = Matrix_{before}[j][n-i-1]\[2ex]<br>Matrix_{after}[n-j-1][i] = Matrix_{before}[n-i-1][n-j-1]\[2ex]<br>Matrix_{after}[i][j] = Matrix_{before}[n-j-1][i]<br>\end{cases}<br>$$<br>为了防止覆盖，我们可以把被覆盖的值保存起来。上面讨论的是一个数的旋转，一个数旋转代表4个数旋转完成，要想把方阵旋转完成，我们可以把方阵分割成四部分，其中某一部分的旋转代表4个部分一起旋转。</p>
+<ul>
+<li>对于边长是偶数的方阵来说，每一部分是边长为$n/2$的方阵</li>
+<li>对于边长是奇数的方阵来说，每一部分可以是$\frac{n}{2} * \frac{n+1}{2}$ 的矩阵<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    void rotate(vector&lt;vector&lt;int&gt;&gt;&amp; matrix) &#123;</span><br><span class="line">        int n = matrix.size();</span><br><span class="line">        <span class="keyword">for</span>(int i = 0 ; i&lt;n/2 ; ++i)&#123;</span><br><span class="line">            <span class="keyword">for</span>(int j = 0 ; j&lt;(n+1)/2 ; ++j)&#123;</span><br><span class="line">                int temp = matrix[i][j];</span><br><span class="line">                matrix[i][j] = matrix[n-j-1][i];</span><br><span class="line">                matrix[n-j-1][i] = matrix[n-i-1][n-j-1];</span><br><span class="line">                matrix[n-i-1][n-j-1] = matrix[j][n-i-1];</span><br><span class="line">                matrix[j][n-i-1] = temp;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/18/leetcode%E4%B8%8D%E4%BC%9A%E7%9A%84%E9%A2%98/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -351,6 +575,17 @@
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
                   <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index">
                     <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AE%97%E6%B3%95/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
                   </a>
                 </span>
 
@@ -1904,185 +2139,6 @@
 
 
     
-      
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/19/dp/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lzc">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="I am Art">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/02/19/dp/" itemprop="url">1045 Favorite Color Stripe (30分)</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-02-19T18:27:21+08:00">
-                2020-02-19
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/dp/" itemprop="url" rel="index">
-                    <span itemprop="name">dp</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-          
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  427
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  1
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="PTA甲级-1045-Favorite-Color-Stripe-30分"><a href="#PTA甲级-1045-Favorite-Color-Stripe-30分" class="headerlink" title="PTA甲级 1045 Favorite Color Stripe (30分)"></a>PTA甲级 1045 Favorite Color Stripe (30分)</h1>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/02/19/dp/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2138,7 +2194,7 @@
                 <a href="/archives/">
                 
               
-                  <span class="site-state-item-count">28</span>
+                  <span class="site-state-item-count">29</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2149,7 +2205,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -2212,7 +2268,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">22.7k</span>
+    <span title="Site words total count">24.6k</span>
   
 </div>
 
