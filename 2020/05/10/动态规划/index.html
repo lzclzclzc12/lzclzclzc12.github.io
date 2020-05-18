@@ -88,7 +88,7 @@
 <meta property="og:site_name" content="I am Art">
 <meta property="og:description" content="10. 正则表达式匹配https:&#x2F;&#x2F;leetcode-cn.com&#x2F;problems&#x2F;regular-expression-matching&#x2F;">
 <meta property="article:published_time" content="2020-05-10T03:27:25.000Z">
-<meta property="article:modified_time" content="2020-05-18T09:43:03.357Z">
+<meta property="article:modified_time" content="2020-05-18T09:52:50.439Z">
 <meta property="article:author" content="lzc">
 <meta property="article:tag" content="leetcode">
 <meta name="twitter:card" content="summary">
@@ -488,7 +488,7 @@
 <li>如果$l_lsum$覆盖了所有的左区间，即$l_lsum == l_isum$那么就要考虑右区间了，考虑到连续性，我们只能考虑$r_lsum$，所以$lsum == max(l_lsum , l_lsum + r_lsum)$</li>
 </ul>
 <p>最后$isum == l_isum + r_isum$</p>
-<p>```bash<br>class Solution {<br>public:<br>    struct Status {<br>        int lsum , rsum , msum , isum;<br>    };<br>    Status pushUp(Status l , Status r){  //维护各个变量<br>        int lsum = max(l.lsum , (l.isum + r.lsum));<br>        int rsum = max(r.rsum , (r.isum + l.rsum));<br>        int msum = max(l.rsum + r.lsum , max(l.msum , r.msum));<br>        int isum = l.isum + r.isum;<br>        return (Status){lsum , rsum , msum , isum};<br>    }<br>    Status get(vector<int> &amp;a , int l , int r){<br>        if(l == r) return (Status){a[l] , a[l] , a[l] , a[l]};  //终止条件：只有一个元素时<br>        int m = (l + r) / 2;<br>        Status lsub = get(a , l , m);   //左区间<br>        Status rsub = get(a , m+1 , r); //右区间<br>        return pushUp(lsub , rsub);    //区间合并<br>    }<br>    int maxSubArray(vector<int>&amp; nums) {<br>        return get(nums , 0 , nums.size() - 1).msum;<br>    }<br>};</int></int></p>
+<p>``` bash<br>class Solution {<br>public:<br>    struct Status {<br>        int lsum , rsum , msum , isum;<br>    };<br>    Status pushUp(Status l , Status r){  //维护各个变量<br>        int lsum = max(l.lsum , (l.isum + r.lsum));<br>        int rsum = max(r.rsum , (r.isum + l.rsum));<br>        int msum = max(l.rsum + r.lsum , max(l.msum , r.msum));<br>        int isum = l.isum + r.isum;<br>        return (Status){lsum , rsum , msum , isum};<br>    }<br>    Status get(vector<int> &amp;a , int l , int r){<br>        if(l == r) return (Status){a[l] , a[l] , a[l] , a[l]};  //终止条件：只有一个元素时<br>        int m = (l + r) / 2;<br>        Status lsub = get(a , l , m);   //左区间<br>        Status rsub = get(a , m+1 , r); //右区间<br>        return pushUp(lsub , rsub);    //区间合并<br>    }<br>    int maxSubArray(vector<int>&amp; nums) {<br>        return get(nums , 0 , nums.size() - 1).msum;<br>    }<br>};</int></int></p>
 
       
     </div>
