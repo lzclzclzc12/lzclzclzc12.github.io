@@ -294,6 +294,160 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/05/%E5%89%8D%E7%BC%80%E6%A0%91/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lzc">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="I am Art">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/06/05/%E5%89%8D%E7%BC%80%E6%A0%91/" itemprop="url">前缀树</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-06-05T14:23:53+08:00">
+                2020-06-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+          
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  242
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  1
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="前缀树介绍"><a href="#前缀树介绍" class="headerlink" title="前缀树介绍"></a>前缀树介绍</h1><p>解析 <a href="https://blog.csdn.net/weixin_39778570/article/details/81990417?utm_medium=distribute.pc_relevant.none-task-blog-baidujs-2" target="_blank" rel="noopener">https://blog.csdn.net/weixin_39778570/article/details/81990417?utm_medium=distribute.pc_relevant.none-task-blog-baidujs-2</a></p>
+<h1 id="简单功能实现"><a href="#简单功能实现" class="headerlink" title="简单功能实现"></a>简单功能实现</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#include&lt;bits/stdc++.h&gt;</span></span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">typedef struct node&#123;</span><br><span class="line">    bool terminal = 0;</span><br><span class="line">    map&lt;char , node*&gt; child;</span><br><span class="line">&#125;node , *tree;</span><br><span class="line"></span><br><span class="line">void Insert(tree &amp;t , string s)&#123;  //建树</span><br><span class="line">    int len = s.size();</span><br><span class="line">    <span class="keyword">for</span>(int i = 0 ; i&lt;len ; ++i)&#123;</span><br><span class="line">        <span class="keyword">if</span>(!((t-&gt;child).count(s[i])))&#123;</span><br><span class="line">            //cout&lt;&lt;s[i]&lt;&lt;endl;</span><br><span class="line">            tree t1 = new node;</span><br><span class="line">            (t-&gt;child)[s[i]] = t1;</span><br><span class="line">        &#125;</span><br><span class="line">        t = (t-&gt;child)[s[i]];</span><br><span class="line">    &#125;</span><br><span class="line">    t-&gt;terminal = 1;  //表示字符串在这一节点的结束</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">bool Search(tree t , string s)&#123;</span><br><span class="line">    int len = s.size();</span><br><span class="line">    <span class="keyword">for</span>(int i = 0 ; i&lt;len ; ++i)&#123;</span><br><span class="line">        <span class="keyword">if</span>(!(t-&gt;child).count(s[i]))&#123;</span><br><span class="line">            <span class="built_in">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        t = t-&gt;child[s[i]];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">return</span> t-&gt;terminal;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    tree t = new node;</span><br><span class="line">    int n;</span><br><span class="line">    cin&gt;&gt;n;</span><br><span class="line">    tree t1 = t;</span><br><span class="line">    <span class="keyword">for</span>(int i = 0 ; i&lt;n ; ++i)&#123;</span><br><span class="line">        string s;</span><br><span class="line">        cin&gt;&gt;s;</span><br><span class="line">        t = t1;</span><br><span class="line">        Insert(t , s);</span><br><span class="line">    &#125;</span><br><span class="line">    t = t1;</span><br><span class="line">    cin&gt;&gt;n;</span><br><span class="line">    <span class="keyword">for</span>(int i = 0 ; i&lt;n ; ++i)&#123;</span><br><span class="line">        string s;</span><br><span class="line">        cin&gt;&gt;s;</span><br><span class="line">        cout&lt;&lt;Search(t , s)&lt;&lt;endl;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/05/KMP%E7%AE%97%E6%B3%95/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -381,7 +535,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  894
+                  895
                 </span>
               
 
@@ -419,24 +573,14 @@
 
       
         
-          
-            <h1 id="KMP算法可以用来干什么"><a href="#KMP算法可以用来干什么" class="headerlink" title="KMP算法可以用来干什么"></a>KMP算法可以用来干什么</h1><p>KMP算法是一种字符串模式匹配算法，可以用来求模式串在主串中的位置，时间复杂度是$O(m+n)$。</p>
-<h1 id="算法代码1-找第一个位置"><a href="#算法代码1-找第一个位置" class="headerlink" title="算法代码1(找第一个位置)"></a>算法代码1(找第一个位置)</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">vector&lt;int&gt; getNext(const string &amp;s)&#123;  //求查找表，可用于查找前后缀交集的最大</span><br><span class="line">    vector&lt;int&gt; next(s.size() + 1 , 0);</span><br><span class="line">    next[0] = -1;</span><br><span class="line">    int j = 0 , k = -1;</span><br><span class="line">    <span class="keyword">while</span>(j != s.size())&#123;</span><br><span class="line">        <span class="keyword">if</span>(k == -1 || s[k] == s[j])&#123;</span><br><span class="line">            next[++j] = ++k;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> k = next[k];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">return</span> next;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int KMP(const string &amp;s , const string &amp;t)&#123;</span><br><span class="line">    vector&lt;int&gt; next = getNext(t);</span><br><span class="line">    int len_s = s.size();</span><br><span class="line">    int len_t = t.size();</span><br><span class="line">    int i = 0 , j = 0;</span><br><span class="line">    <span class="keyword">while</span>(i &lt; len_s &amp;&amp; j &lt; len_t)&#123;</span><br><span class="line">        <span class="keyword">if</span>(j == -1 || s[i] == t[j])&#123;</span><br><span class="line">            ++i , ++j;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> j = next[j];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(j == len_t) <span class="built_in">return</span> (i - j);</span><br><span class="line">    <span class="keyword">else</span> <span class="built_in">return</span> -1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="算法原理"><a href="#算法原理" class="headerlink" title="算法原理"></a>算法原理</h1><p>我们设$i$为主串$s$的下标，$j$为模式串$t$的下标，朴素的查找方法是每次我们匹配长度为$t.size()$的串，如果不成功的话，$++i$，而且$j = 0$，即我们每次失败的时候模式串都是从头开始匹配，这样很明显造成了重复无意义的匹配，我们的思想就是<strong>尽可能第减少匹配的次数</strong>。</p>
-<h2 id="算法是如何减少匹配次数的"><a href="#算法是如何减少匹配次数的" class="headerlink" title="算法是如何减少匹配次数的"></a>算法是如何减少匹配次数的</h2><p>我们可以发现，我们考虑$s[i] != t[j]$，前提是$s[i-j…i-1] == t[0…j-1]$，那么我们<strong>可以寻找$t[0…j-1]$中前缀和后缀的最大交集</strong>，我们设长度为$k$，即：</p>
-<script type="math/tex; mode=display">t[0...k-1] == t[j-k...j-1]</script><p>如果匹配失败，我们就可以把$j$移动到$k$处，而不是$0$处，因为移动到其他位置是没有意义的，这样就节省了时间了。</p>
-<h2 id="如何计算-k-的位置"><a href="#如何计算-k-的位置" class="headerlink" title="如何计算$k$的位置"></a>如何计算$k$的位置</h2><p>我们设$next[j]$表示如果$j$处匹配失败，那么$j$应该移动到的位置，即寻找的是$t[0…j-1]$中前缀和后缀的最大交集。</p>
-<ul>
-<li>如果$t[j] == t[k]$，那么很明显$next[j+1] = next[j] + 1$</li>
-<li>如果$t[j] != t[k]$，那么很明显最大的交集的长度一定小于$next[j] + 1$，那么，我们怎么寻找呢，我们看图：<br><img src="/2020/06/05/KMP%E7%AE%97%E6%B3%95/1.png" alt="1"></li>
-</ul>
-<p>图中蓝色部分就是长度为$next[j]$的子串，我们下一步就是判断蓝色的串 + 黄色的块是不是符合$next[j+1]$，于是我们比较$t[k]$和$t[j]$，如果相等，那么$next[j+1] = next[k] + 1$，如果不等，那么我们继续比较蓝色串中的蓝色串。</p>
-<h3 id="为什么一定要找蓝色的串呢？"><a href="#为什么一定要找蓝色的串呢？" class="headerlink" title="为什么一定要找蓝色的串呢？"></a>为什么一定要找蓝色的串呢？</h3><p>还是那句话：找图中$next[k]$之前的位置是没有意义的，因为其他位置前后缀不一样。</p>
-<h2 id="为什么-next-0-1"><a href="#为什么-next-0-1" class="headerlink" title="为什么$next[0] = -1$"></a>为什么$next[0] = -1$</h2><p>如果模式串和主串的第一位就不一样，但是$next[0] == 0$的话，那么$k$会一直是$0$，程序陷入死循环，而$next[0] = -1$相当于特判一下，将$i$和$j$都向前移动一位。</p>
-<h1 id="算法代码2-查找所有位置"><a href="#算法代码2-查找所有位置" class="headerlink" title="算法代码2(查找所有位置)"></a>算法代码2(查找所有位置)</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">vector&lt;int&gt; getNext(const string &amp;s)&#123;</span><br><span class="line">    vector&lt;int&gt; next(s.size() + 1 , 0);</span><br><span class="line">    next[0] = -1;</span><br><span class="line">    int j = 0 , k = -1;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span>(j != s.size())&#123;</span><br><span class="line">        <span class="keyword">if</span>(k == -1 || s[k] == s[j])&#123;</span><br><span class="line">            next[++j] = ++k;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> k = next[k];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">return</span> next;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">vector&lt;int&gt; KMP(const string &amp;s , const string &amp;t)&#123;</span><br><span class="line">    vector&lt;int&gt; next = getNext(t);</span><br><span class="line">    vector&lt;int&gt; res;</span><br><span class="line">    int len_s = s.size();</span><br><span class="line">    int len_t = t.size();</span><br><span class="line">    int i = 0 , j = 0;</span><br><span class="line">    <span class="keyword">while</span>(i &lt; len_s)&#123;</span><br><span class="line">        <span class="keyword">if</span>(j == -1 || s[i] == t[j])&#123;</span><br><span class="line">            ++i , ++j;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> j = next[j];</span><br><span class="line">        <span class="keyword">if</span>(j &gt;= len_t)&#123;   //不一样的地方</span><br><span class="line">            res.push_back(i - j);</span><br><span class="line">            j = next[j];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="图解"><a href="#图解" class="headerlink" title="图解"></a>图解</h1><p>参考<a href="https://blog.csdn.net/yyzsir/article/details/89462339" target="_blank" rel="noopener">https://blog.csdn.net/yyzsir/article/details/89462339</a></p>
-
-          
+          <h1 id="KMP算法可以用来干什么"><a href="#KMP算法可以用来干什么" class="headerlink" title="KMP算法可以用来干什么"></a>KMP算法可以用来干什么</h1>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/06/05/KMP%E7%AE%97%E6%B3%95/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1935,185 +2079,6 @@
 
 
     
-      
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/29/1068%20Find%20More%20Coins%20(30%E5%88%86)/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lzc">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="I am Art">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/02/29/1068%20Find%20More%20Coins%20(30%E5%88%86)/" itemprop="url">1068 Find More Coins (30分)</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-02-29T12:28:46+08:00">
-                2020-02-29
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/dp/" itemprop="url" rel="index">
-                    <span itemprop="name">dp</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-          
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  850
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  4
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="题目大意"><a href="#题目大意" class="headerlink" title="题目大意"></a>题目大意</h1><p>有几个数字，问是否有其中几个数加起来等于给定的数，如果有多个结果，输出最小的一组。<br></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/02/29/1068%20Find%20More%20Coins%20(30%E5%88%86)/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2169,7 +2134,7 @@
                 <a href="/archives/">
                 
               
-                  <span class="site-state-item-count">33</span>
+                  <span class="site-state-item-count">34</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2243,7 +2208,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">34.6k</span>
+    <span title="Site words total count">34.8k</span>
   
 </div>
 
