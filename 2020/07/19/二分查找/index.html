@@ -1,0 +1,1226 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="二分查找," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="基本代码写法11234567891011121314int B_search(const vector&lt;int&gt; &amp;v , int target)&amp;#123;    int l &#x3D; 0 , r &#x3D; v.size();    while(l &lt; r)&amp;#123;        int mid &#x3D; (l + r) &#x2F; 2;        if(v[mid] &gt; targ">
+<meta property="og:type" content="article">
+<meta property="og:title" content="二分查找">
+<meta property="og:url" content="http://yoursite.com/2020/07/19/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/index.html">
+<meta property="og:site_name" content="I am Art">
+<meta property="og:description" content="基本代码写法11234567891011121314int B_search(const vector&lt;int&gt; &amp;v , int target)&amp;#123;    int l &#x3D; 0 , r &#x3D; v.size();    while(l &lt; r)&amp;#123;        int mid &#x3D; (l + r) &#x2F; 2;        if(v[mid] &gt; targ">
+<meta property="article:published_time" content="2020-07-19T02:09:10.000Z">
+<meta property="article:modified_time" content="2020-07-19T09:28:32.083Z">
+<meta property="article:author" content="lzc">
+<meta property="article:tag" content="二分查找">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/07/19/二分查找/"/>
+
+
+
+
+
+  <title>二分查找 | I am Art</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+    <a href="https://github.com/lzclzclzc12" target="_blank" rel="noopener"><img align = "left" width="149" height="149" src="https://github.blog/wp-content/uploads/2008/12/forkme_left_darkblue_121621.png?resize=149%2C149" class="attachment-full size-full" alt="Fork me on GitHub" data-recalc-dims="1"></a>
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">I am Art</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/19/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lzc">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="I am Art">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">二分查找</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-19T10:09:10+08:00">
+                2020-07-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" itemprop="url" rel="index">
+                    <span itemprop="name">数据结构</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span id="busuanzi_value_page_pv"></span>次阅读
+          
+          
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  9
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="基本代码"><a href="#基本代码" class="headerlink" title="基本代码"></a>基本代码</h1><h2 id="写法1"><a href="#写法1" class="headerlink" title="写法1"></a>写法1</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">int B_search(const vector&lt;int&gt; &amp;v , int target)&#123;</span><br><span class="line">    int l = 0 , r = v.size();</span><br><span class="line">    <span class="keyword">while</span>(l &lt; r)&#123;</span><br><span class="line">        int mid = (l + r) / 2;</span><br><span class="line">        <span class="keyword">if</span>(v[mid] &gt; target)&#123;</span><br><span class="line">            r = mid;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(v[mid] &lt; target)&#123;</span><br><span class="line">            l = mid + 1;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="built_in">return</span> mid;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">return</span> -1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="写法2"><a href="#写法2" class="headerlink" title="写法2"></a>写法2</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">int B_search(const vector&lt;int&gt; &amp;v , int target)&#123;</span><br><span class="line">    int l = 0 , r = v.size() - 1;</span><br><span class="line">    <span class="keyword">while</span>(l &lt;= r)&#123;</span><br><span class="line">        int mid = (l + r) / 2;</span><br><span class="line">        <span class="keyword">if</span>(v[mid] &gt; target)&#123;</span><br><span class="line">            r = mid - 1;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(v[mid] &lt; target)&#123;</span><br><span class="line">            l = mid + 1;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="built_in">return</span> mid;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">return</span> -1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="查找-lt-target-的最大位置"><a href="#查找-lt-target-的最大位置" class="headerlink" title="查找 &lt;= target 的最大位置"></a>查找 &lt;= target 的最大位置</h1><ul>
+<li>当target在序列中时，返回序列中最后出现target的位置</li>
+<li>当target不在序列中，但是在序列的范围内时，返回比target的最大位置</li>
+<li>当target比序列中任何元素都小时，返回-1</li>
+<li>当target比序列中任何元素都大师，返回最后一个元素的位置</li>
+</ul>
+<h2 id="写法1-1"><a href="#写法1-1" class="headerlink" title="写法1"></a>写法1</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">int right_bound(const vector&lt;int&gt; &amp;v , int target)&#123;</span><br><span class="line">    int l = 0 , r = v.size();</span><br><span class="line">    <span class="keyword">while</span>(l &lt; r)&#123;</span><br><span class="line">        int mid = (l + r) / 2;</span><br><span class="line">        <span class="keyword">if</span>(v[mid] &gt; target)&#123;</span><br><span class="line">            r = mid;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> l = mid + 1;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">return</span> l - 1;   // l 实际上指向的是大于target的最小位置</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="写法2-1"><a href="#写法2-1" class="headerlink" title="写法2"></a>写法2</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">int right_bound(const vector&lt;int&gt; &amp;v , int target)&#123;</span><br><span class="line">    int l = 0 , r = v.size() - 1;</span><br><span class="line">    <span class="keyword">while</span>(l &lt;= r)&#123;</span><br><span class="line">        int mid = (l + r) / 2;</span><br><span class="line">        <span class="keyword">if</span>(v[mid] &gt; target)&#123;</span><br><span class="line">            r = mid - 1;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> l = mid + 1;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">return</span> l - 1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="查找-lt-target-的个数"><a href="#查找-lt-target-的个数" class="headerlink" title="查找 &lt; target 的个数"></a>查找 &lt; target 的个数</h1><p>其实也可以用来求&lt; target的最小位置</p>
+<h2 id="写法1-2"><a href="#写法1-2" class="headerlink" title="写法1"></a>写法1</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">int left_bound(const vector&lt;int&gt; &amp;v , int target)&#123;</span><br><span class="line">    int l = 0 , r = v.size();</span><br><span class="line">    <span class="keyword">while</span>(l &lt; r)&#123;</span><br><span class="line">        int mid = (l + r) / 2;</span><br><span class="line">        <span class="keyword">if</span>(v[mid] &lt; target)&#123;</span><br><span class="line">            l = mid + 1;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> r = mid;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">return</span> r;  // 如果要返回&lt; target的最小位置，则是 <span class="built_in">return</span> r-1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="写法2-2"><a href="#写法2-2" class="headerlink" title="写法2"></a>写法2</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">int left_bound(const vector&lt;int&gt; &amp;v , int target)&#123;</span><br><span class="line">    int l = 0 , r = v.size() - 1;</span><br><span class="line">    <span class="keyword">while</span>(l &lt;= r)&#123;</span><br><span class="line">        int mid = (l + r) / 2;</span><br><span class="line">        <span class="keyword">if</span>(v[mid] &lt; target)&#123;</span><br><span class="line">            l = mid + 1;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> r = mid - 1;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">return</span> l;  // 如果要返回&lt; target的最小位置，则是 <span class="built_in">return</span> r;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="查找-lt-target-的最大位置，-target的最小位置"><a href="#查找-lt-target-的最大位置，-target的最小位置" class="headerlink" title="查找 &lt; target 的最大位置，==target的最小位置"></a>查找 &lt; target 的最大位置，==target的最小位置</h1><ul>
+<li>当target在序列中时，返回序列中第一次出现target的位置</li>
+<li>当target不在序列中，但是在序列的范围内时，返回比target的最大位置</li>
+<li>当target比序列中任何元素都小时，返回-1</li>
+<li>当target比序列中任何元素都大时，返回最后一个元素的位置</li>
+</ul>
+<h2 id="写法1-3"><a href="#写法1-3" class="headerlink" title="写法1"></a>写法1</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">int left_bound(const vector&lt;int&gt; &amp;v , int target)&#123;</span><br><span class="line">    int l = 0 , r = v.size();</span><br><span class="line">    <span class="keyword">while</span>(l &lt; r)&#123;</span><br><span class="line">        int mid = (l + r) / 2;</span><br><span class="line">        <span class="keyword">if</span>(v[mid] &lt; target)&#123;</span><br><span class="line">            l = mid + 1;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> r = mid;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(v[l] == target)&#123;</span><br><span class="line">        <span class="built_in">return</span> l;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="built_in">return</span> l-1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="写法2-3"><a href="#写法2-3" class="headerlink" title="写法2"></a>写法2</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">int left_bound(const vector&lt;int&gt; &amp;v , int target)&#123;</span><br><span class="line">    int l = 0 , r = v.size() - 1;</span><br><span class="line">    <span class="keyword">while</span>(l &lt;= r)&#123;</span><br><span class="line">        int mid = (l + r) / 2;</span><br><span class="line">        <span class="keyword">if</span>(v[mid] &lt; target)&#123;</span><br><span class="line">            l = mid + 1;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> r = mid - 1;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(v[l] == target)&#123;</span><br><span class="line">        <span class="built_in">return</span> l;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="built_in">return</span> r;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="786-第-K-个最小的素数分数"><a href="#786-第-K-个最小的素数分数" class="headerlink" title="786. 第 K 个最小的素数分数"></a>786. 第 K 个最小的素数分数</h1><p>题目求的是第$k$个最小分数，而这些分数的范围都是$(0,1)$，所以我们可以用二分法来求，初始化$left = 0.0 , right = 1.0$。求第$k$个最小分数，也就是有一个数，小于它的数有$k$个，这$k$个数里的最大的那个数就是第$k$个最小分数了。</p>
+<p>所以对于每次求得的$mid$，我们求得小于$mid$的分数的数量，如果等于$k$，则我们找到了答案，如果大于$k$，则$r = mid$，如果小于$k$，则$l = mid$。</p>
+<h2 id="疑问1：此二分查找的终止条件是什么？"><a href="#疑问1：此二分查找的终止条件是什么？" class="headerlink" title="疑问1：此二分查找的终止条件是什么？"></a>疑问1：此二分查找的终止条件是什么？</h2><p>终止条件是对于某一次$mid$，小于其的分数的数量等于$k$，就终止了。由于每次$mid$都是分数，所以对于序列中的任意两个相邻分数$x和y$，两者之间总能找到一个$mid$。</p>
+<h2 id="疑问2：为什么-l-和-r-都赋值为-mid-？"><a href="#疑问2：为什么-l-和-r-都赋值为-mid-？" class="headerlink" title="疑问2：为什么$l$和$r$都赋值为$mid$？"></a>疑问2：为什么$l$和$r$都赋值为$mid$？</h2><p>因为现在的二分是按值二分，而不是按照索引二分，而且$mid、l、r$都是浮点数，我们二分的范围其实是$(l,r)$，所以每次缩小后的范围是$(mid,r)$或$(l,mid)$，这样并没有丢失目标解，因为现在$mid$是不符合题意的，所以这样是合理的。</p>
+<h2 id="疑问3：为什么-while-条件是-l-lt-r"><a href="#疑问3：为什么-while-条件是-l-lt-r" class="headerlink" title="疑问3：为什么$while$条件是$l &lt; r$ ?"></a>疑问3：为什么$while$条件是$l &lt; r$ ?</h2><p>因为二分的范围是$(l,r)$，而且$l和r$都是浮点数，所以当$l &lt; r$时，$(l,r)$不是空集，当$l == r$时，$(l,r)$是空集，则结束循环。而且不会出现$l == r$的情况。</p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    vector&lt;int&gt; kthSmallestPrimeFraction(vector&lt;int&gt;&amp; A, int k) &#123;</span><br><span class="line">        int n = A.size();</span><br><span class="line">        double l = 0.0;</span><br><span class="line">        double r = 1.0;</span><br><span class="line">        <span class="keyword">while</span>(l &lt; r)&#123;</span><br><span class="line">            double mid = (l + r) / 2.0;</span><br><span class="line">            int sum = 0;</span><br><span class="line">            vector&lt;int&gt; res = &#123;0 , 1&#125;;</span><br><span class="line">            int j = 0;</span><br><span class="line">            <span class="keyword">for</span>(int i = 0 ; i&lt;n ; ++i)&#123;</span><br><span class="line">                <span class="keyword">while</span>(j &lt; n &amp;&amp; A[i] &gt;= mid * A[j])&#123;</span><br><span class="line">                    ++j;</span><br><span class="line">                &#125;</span><br><span class="line">                sum += n - j; //对于每个mid，求出A[i]为分子且小于mid的分数的数量</span><br><span class="line">                <span class="keyword">if</span>(j &lt; n &amp;&amp; res[0] * A[j] &lt; res[1] * A[i])&#123;</span><br><span class="line">                    res = &#123;A[i] , A[j]&#125;; // 更新为最大分数</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(sum == k)&#123;</span><br><span class="line">                <span class="built_in">return</span> res;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(sum &lt; k)&#123;</span><br><span class="line">                l = mid;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> r = mid;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">return</span> &#123;&#125;;  //不可能出现的情况</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h1 id="378-有序矩阵中第K小的元素"><a href="#378-有序矩阵中第K小的元素" class="headerlink" title="378. 有序矩阵中第K小的元素"></a>378. 有序矩阵中第K小的元素</h1><p>这道题也是求第$k$小的元素，只不过是整数，由于这是一个未排好的序列，所以用索引二分法不可行，只能按值来二分。由题中矩阵的性质来看，整个序列的范围是$[matrix[0][0],matrix[n-1][n-1]]$，是左闭右闭的，我们初始化$l=matrix[0][0]$，$r=matrix[n-1][n-1]$。</p>
+<p>按值二分，那么我们每次的$mid$都是一个猜测出来的数，我们要求的就是序列中小于等于$mid$的数量，那么如果此数量&lt; $k$，我们令$l=mid+1$，如果此数量 &gt;= $k$，我们令$r=mid$。当$l == r$时，我们结束循环，返回$l 或 r$。</p>
+<h2 id="疑问1：解释一下每次-l-和-r-取值的原因"><a href="#疑问1：解释一下每次-l-和-r-取值的原因" class="headerlink" title="疑问1：解释一下每次$l$和$r$取值的原因"></a>疑问1：解释一下每次$l$和$r$取值的原因</h2><p>当数量小于$k$时，那么此时的$mid$是不符合题意的，应当被剔除，所以$l = mid+1$后范围变成了[mid+1,r]，这是毫无疑问的；</p>
+<p>当数量大于等于$k$，我们此时做了统一的处理就是$r = mid$，发现无论是大于还是等于，这个$mid$都做出了保留，这是因为我们求的是小于等于$mid$的数量，而且序列中有取值相同的元素，这些元素虽然位置不同，但是求出的数量是相同的，所以当数量大于$k$时，这个$mid$<strong>有可能</strong>是目标解，所以我们不能去除掉，所以得到$[l,mid]$。</p>
+<h2 id="疑问2：最终返回的是-l-或-r-，一定能保证返回的值在序列中？"><a href="#疑问2：最终返回的是-l-或-r-，一定能保证返回的值在序列中？" class="headerlink" title="疑问2：最终返回的是$l$(或$r$)，一定能保证返回的值在序列中？"></a>疑问2：最终返回的是$l$(或$r$)，一定能保证返回的值在序列中？</h2><p>答案是一定的，虽然$l、r、mid$都是猜测值，但是我们发现代码是在循环结束后返回了唯一值，而在循环内没有返回值，这是因为：</p>
+<ul>
+<li>可能找不到数量等于$k$的$mid$(因为有值相同的元素)</li>
+<li>虽然找到了数量等于$k$的$mid$，但是毕竟$mid$是猜测值，我们没有办法保证$mid$一定在序列中</li>
+</ul>
+<p>所以我们在循环中是没办法返回答案的。</p>
+<p>虽然我们没法确保$mid$是序列中的值，而且可能找不到数量等于$k$的$mid$，但是我们在循环中每一步都保证目标解都在范围内，所以我们等到$l == r$时，此时范围内只有一个解了，这个解一定就是目标解了。</p>
+<h2 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h2><p>至于如何求数量，可以去看官方题解。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int getSum(const vector&lt;vector&lt;int&gt;&gt; &amp;matrix , int k , int mid)&#123;</span><br><span class="line">        int n = matrix.size();</span><br><span class="line">        int i = n-1 , j = 0;</span><br><span class="line">        int res = 0;</span><br><span class="line">        <span class="keyword">while</span>(i &gt;=0 &amp;&amp; j &lt; n)&#123;</span><br><span class="line">            <span class="keyword">if</span>(matrix[i][j] &lt;= mid)&#123;</span><br><span class="line">                res += i+1;</span><br><span class="line">                ++j;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> --i;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">    int kthSmallest(vector&lt;vector&lt;int&gt;&gt;&amp; matrix, int k) &#123;</span><br><span class="line">        int n = matrix.size();</span><br><span class="line">        int l = matrix[0][0] , r = matrix[n-1][n-1];</span><br><span class="line">        <span class="keyword">while</span>(l &lt; r)&#123;</span><br><span class="line">            int mid = (l + r) / 2;</span><br><span class="line">            int sum = getSum(matrix , k , mid);</span><br><span class="line">            <span class="keyword">if</span>(sum &gt;= k)&#123;</span><br><span class="line">                r = mid;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> l = mid + 1;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">return</span> r;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/" rel="tag"># 二分查找</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/06/05/%E5%AD%97%E7%AC%A6%E4%B8%B2-leetcode/" rel="next" title="字符串-leetcode">
+                <i class="fa fa-chevron-left"></i> 字符串-leetcode
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.gif"
+                alt="lzc" />
+            
+              <p class="site-author-name" itemprop="name">lzc</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+                
+              
+                  <span class="site-state-item-count">36</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#基本代码"><span class="nav-number">1.</span> <span class="nav-text">基本代码</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#写法1"><span class="nav-number">1.1.</span> <span class="nav-text">写法1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#写法2"><span class="nav-number">1.2.</span> <span class="nav-text">写法2</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#查找-lt-target-的最大位置"><span class="nav-number">2.</span> <span class="nav-text">查找 &lt;&#x3D; target 的最大位置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#写法1-1"><span class="nav-number">2.1.</span> <span class="nav-text">写法1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#写法2-1"><span class="nav-number">2.2.</span> <span class="nav-text">写法2</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#查找-lt-target-的个数"><span class="nav-number">3.</span> <span class="nav-text">查找 &lt; target 的个数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#写法1-2"><span class="nav-number">3.1.</span> <span class="nav-text">写法1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#写法2-2"><span class="nav-number">3.2.</span> <span class="nav-text">写法2</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#查找-lt-target-的最大位置，-target的最小位置"><span class="nav-number">4.</span> <span class="nav-text">查找 &lt; target 的最大位置，&#x3D;&#x3D;target的最小位置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#写法1-3"><span class="nav-number">4.1.</span> <span class="nav-text">写法1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#写法2-3"><span class="nav-number">4.2.</span> <span class="nav-text">写法2</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#786-第-K-个最小的素数分数"><span class="nav-number">5.</span> <span class="nav-text">786. 第 K 个最小的素数分数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#疑问1：此二分查找的终止条件是什么？"><span class="nav-number">5.1.</span> <span class="nav-text">疑问1：此二分查找的终止条件是什么？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#疑问2：为什么-l-和-r-都赋值为-mid-？"><span class="nav-number">5.2.</span> <span class="nav-text">疑问2：为什么$l$和$r$都赋值为$mid$？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#疑问3：为什么-while-条件是-l-lt-r"><span class="nav-number">5.3.</span> <span class="nav-text">疑问3：为什么$while$条件是$l &lt; r$ ?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码"><span class="nav-number">5.4.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#378-有序矩阵中第K小的元素"><span class="nav-number">6.</span> <span class="nav-text">378. 有序矩阵中第K小的元素</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#疑问1：解释一下每次-l-和-r-取值的原因"><span class="nav-number">6.1.</span> <span class="nav-text">疑问1：解释一下每次$l$和$r$取值的原因</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#疑问2：最终返回的是-l-或-r-，一定能保证返回的值在序列中？"><span class="nav-number">6.2.</span> <span class="nav-text">疑问2：最终返回的是$l$(或$r$)，一定能保证返回的值在序列中？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码-1"><span class="nav-number">6.3.</span> <span class="nav-text">代码</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lzc</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">37.1k</span>
+  
+</div>
+
+
+
+
+
+  
+  <!-- <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div> 
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>  -->
+
+<div>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<span id="busuanzi_container_site_pv" style='display:none'>
+    本站总访问量 <span id="busuanzi_value_site_pv"></span> 次
+    <span class="post-meta-divider">|</span>
+</span>
+<span id="busuanzi_container_site_uv" style='display:none'>
+    有<span id="busuanzi_value_site_uv"></span>人看过我的博客啦
+</span>
+</div>
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>
