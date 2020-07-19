@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[面试题17.08.马戏团人塔]]></title>
+    <url>%2F2020%2F07%2F19%2F%E9%9D%A2%E8%AF%95%E9%A2%9817-08-%E9%A9%AC%E6%88%8F%E5%9B%A2%E4%BA%BA%E5%A1%94%2F</url>
+    <content type="text"><![CDATA[基本思路 问题要的是一个序列，序列中每个元素中有两个数，前一个元素的第一个和第二个数都比后一个元素的两者大。 我们可以这样，先把元素按第一个数降序排列，然后如果有相同的数，那么按第二个数升序排列，然后按第二个数来求最大下降子序列的长度。 为什么第一个数相同时，按第二个数升序排列？这是因为如果按第二个数降序排列，而求的是最大下降子序列的长度，那么有可能会产生有两个元素第一个数相同，但是都被选中的结果。而升序排列就避免了这种情况。 代码1234567891011121314151617181920212223242526272829303132333435363738class Solution &#123;public: struct peo&#123; int h , w; &#125;; static bool cmp(peo a , peo b)&#123; // 排序 if(a.h != b.h) return a.h &gt; b.h; else return a.w &lt; b.w; &#125; int bestSeqAtIndex(vector&lt;int&gt;&amp; height, vector&lt;int&gt;&amp; weight) &#123; vector&lt;peo&gt; v(height.size()); for(int i = 0 ; i&lt;height.size() ; ++i)&#123; v[i].h = height[i]; v[i].w = weight[i]; &#125; sort(v.begin() , v.end() , cmp); vector&lt;int&gt; d(v.size() + 1 , 0); d[1] = v[0].w; int len = 1; for(int i = 1 ; i&lt;v.size() ; ++i)&#123; // 求最大下降子序列的长度 if(d[len] &gt; v[i].w) d[++len] = v[i].w; else &#123; int left = 1 , right = len; while(left &lt;= right)&#123; int mid = (left + right) / 2; if(d[mid] &lt; v[i].w)&#123; right = mid - 1; &#125; else left = mid + 1; &#125; if(d[left - 1] != v[i].w)&#123; d[left] = v[i].w; //d[left]是序列中小于target的最大数 &#125; &#125; &#125; return len; &#125;&#125;;]]></content>
+      <categories>
+        <category>算法</category>
+        <category>leetcode</category>
+      </categories>
+      <tags>
+        <tag>二分查找</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[300.最长上升子序列]]></title>
     <url>%2F2020%2F07%2F19%2F300-%E6%9C%80%E9%95%BF%E4%B8%8A%E5%8D%87%E5%AD%90%E5%BA%8F%E5%88%97%2F</url>
     <content type="text"><![CDATA[基本思路 我们可以使用贪心来看，要想我们的序列尽可能地长，我们需要我们的序列上升得尽可能地慢。我们定义一个序列$d$，$d[i]$表示当前长度为$i+1$的上升子序列的末尾元素最小为$d[i]$，只有子序列末尾元素尽可能的小，后面才会有更多的数能插入到尽可能靠前的位置，从而形成尽可能长的序列。 当我们遇到一个数$nums[i]$，我们和序列$d$的最后一个元素进行比较，如果比这个元素小，那么就直接插入到序列$d$的末尾，否则，我们需要找到序列中比$nums[i]$大的最小元素，这里有个问题就是，如果序列$d$中有和$nums[i]$值一样的元素，那么此时不需要插入，这里需要特判一下。 代码123456789101112131415161718192021222324252627class Solution &#123;public: int lengthOfLIS(vector&lt;int&gt;&amp; nums) &#123; if(nums.empty()) return 0; int n = nums.size(); vector&lt;int&gt; d(n+1 , 0); d[1] = nums[0]; int len = 1; for(int i = 1 ; i&lt;n ; ++i)&#123; if(nums[i] &gt; d[len]) d[++len] = nums[i]; else &#123; int left = 1 , right = len; while(left &lt;= right)&#123; int mid = (left + right) / 2; if(d[mid] &gt; nums[i])&#123; right = mid - 1; &#125; else left = mid + 1; &#125; if(d[left - 1] &lt; nums[i])&#123; // 特判一下 d[left] = nums[i]; &#125; &#125; &#125; return len; &#125;&#125;;]]></content>

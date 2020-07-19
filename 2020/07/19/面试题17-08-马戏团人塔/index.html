@@ -70,7 +70,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="二分查找," />
 
 
 
@@ -81,15 +81,16 @@
 
 
 
-<meta name="description" content="题目要求我们输出栈中从小到大中间的数，考虑到有重复元素和排序，所以选择multiset，但是我们不能直接使用下标访问set元素，比如*(s.begin() + 2) 或 s[2]，都是不行的。直接遍历的话会超时，所以我们可以用以下思路：">
+<meta name="description" content="基本思路">
 <meta property="og:type" content="article">
-<meta property="og:title" content="1057 Stack (30分)">
-<meta property="og:url" content="http://yoursite.com/2020/02/22/1057-Stack-30%E5%88%86/index.html">
+<meta property="og:title" content="面试题17.08.马戏团人塔">
+<meta property="og:url" content="http://yoursite.com/2020/07/19/%E9%9D%A2%E8%AF%95%E9%A2%9817-08-%E9%A9%AC%E6%88%8F%E5%9B%A2%E4%BA%BA%E5%A1%94/index.html">
 <meta property="og:site_name" content="I am Art">
-<meta property="og:description" content="题目要求我们输出栈中从小到大中间的数，考虑到有重复元素和排序，所以选择multiset，但是我们不能直接使用下标访问set元素，比如*(s.begin() + 2) 或 s[2]，都是不行的。直接遍历的话会超时，所以我们可以用以下思路：">
-<meta property="article:published_time" content="2020-02-22T12:54:50.000Z">
-<meta property="article:modified_time" content="2020-02-29T04:24:38.356Z">
+<meta property="og:description" content="基本思路">
+<meta property="article:published_time" content="2020-07-19T14:30:06.000Z">
+<meta property="article:modified_time" content="2020-07-19T14:40:41.051Z">
 <meta property="article:author" content="lzc">
+<meta property="article:tag" content="二分查找">
 <meta name="twitter:card" content="summary">
 
 
@@ -120,13 +121,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2020/02/22/1057-Stack-30分/"/>
+  <link rel="canonical" href="http://yoursite.com/2020/07/19/面试题17-08-马戏团人塔/"/>
 
 
 
 
 
-  <title>1057 Stack (30分) | I am Art</title>
+  <title>面试题17.08.马戏团人塔 | I am Art</title>
   
 
 
@@ -297,7 +298,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/22/1057-Stack-30%E5%88%86/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/19/%E9%9D%A2%E8%AF%95%E9%A2%9817-08-%E9%A9%AC%E6%88%8F%E5%9B%A2%E4%BA%BA%E5%A1%94/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="lzc">
@@ -314,7 +315,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">1057 Stack (30分)</h1>
+          <h1 class="post-title" itemprop="name headline">面试题17.08.马戏团人塔</h1>
         
 
         <div class="post-meta">
@@ -326,8 +327,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-02-22T20:54:50+08:00">
-                2020-02-22
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-19T22:30:06+08:00">
+                2020-07-19
               </time>
             
 
@@ -349,8 +350,19 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/PTA%E7%94%B2%E7%BA%A7%E9%A2%98%E7%9B%AE/" itemprop="url" rel="index">
-                    <span itemprop="name">PTA甲级题目</span>
+                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AE%97%E6%B3%95/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
                   </a>
                 </span>
 
@@ -385,7 +397,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  575
+                  405
                 </span>
               
 
@@ -401,7 +413,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  2
+                  1
                 </span>
               
             </div>
@@ -422,15 +434,11 @@
       
 
       
-        <p>题目要求我们输出栈中从小到大中间的数，考虑到有重复元素和排序，所以选择multiset，但是我们不能直接使用下标访问set元素，比如*(s.begin() + 2) 或 s[2]，都是不行的。直接遍历的话会超时，所以我们可以用以下思路：<br><a id="more"></a></p>
-<ul>
-<li>我们可以动态化地更新mid的值，比如3的时候mid = 3，2 3 的时候mid = 2，1 2 3的时候mid值是2，1 1 2 3 的时候mid = 1。</li>
-<li>我们可以用两个multiset来存放值，s1用来存放 &lt;= mid的值，s2用来存放 &gt; mid的值。1 2 3 的时候s1里放1 2，s2里放3，mid的值是s1的最后一个元素2，1 1 2 3 的时候s1里放1 1，s2里放2 3，mid的值是1。</li>
-<li>由于插入和删除的时候mid的值会有所变化，我们可以通过更新s1和s2里存放的值来更新mid，我们要使得s1.size() == s2.size() （这是偶数情况），或s1.size() == s2.size() + 1（这是奇数情况）。</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#include&lt;bits/stdc++.h&gt;</span></span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">stack&lt;int&gt; s;</span><br><span class="line">multiset&lt;int&gt; s1 , s2;</span><br><span class="line">int mid = 0;</span><br><span class="line"></span><br><span class="line">void <span class="function"><span class="title">opt</span></span>()&#123;</span><br><span class="line">    <span class="keyword">if</span>(s1.size() &lt; s2.size())&#123;</span><br><span class="line">        multiset&lt;int&gt;::iterator iter = s2.begin();</span><br><span class="line">        s1.insert(*iter);</span><br><span class="line">        s2.erase(iter);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(s1.size() &gt; s2.size() + 1)&#123;</span><br><span class="line">        multiset&lt;int&gt;::iterator iter = s1.end();</span><br><span class="line">        iter--;</span><br><span class="line">        s2.insert(*iter);</span><br><span class="line">        s1.erase(iter);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(!s1.empty())&#123;</span><br><span class="line">        multiset&lt;int&gt;::iterator iter = s1.end();</span><br><span class="line">        iter--;</span><br><span class="line">        mid = *iter;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    //freopen(<span class="string">"input.txt"</span>,<span class="string">"r"</span>,stdin);</span><br><span class="line">    //freopen(<span class="string">"output.txt"</span>,<span class="string">"w"</span>,stdout);</span><br><span class="line">    int n;</span><br><span class="line">    cin&gt;&gt;n;</span><br><span class="line">    <span class="keyword">for</span>(int i = 0 ; i&lt;n ; ++i)&#123;</span><br><span class="line">        string c;</span><br><span class="line">        cin&gt;&gt;c;</span><br><span class="line">        <span class="keyword">if</span>(c[1] == <span class="string">'o'</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span>(s.empty())&#123;</span><br><span class="line">                cout&lt;&lt;<span class="string">"Invalid"</span>&lt;&lt;endl;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">if</span>(s.top() &lt;= mid)&#123;</span><br><span class="line">                    s1.erase(s1.find(s.top()));</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span> s2.erase(s2.find(s.top()));</span><br><span class="line">                opt();</span><br><span class="line">                cout&lt;&lt;s.top()&lt;&lt;endl;</span><br><span class="line">                s.pop();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(c[1] == <span class="string">'u'</span>)&#123;</span><br><span class="line">            int a;</span><br><span class="line">            scanf(<span class="string">"%d"</span> , &amp;a);</span><br><span class="line">            s.push(a);</span><br><span class="line">            <span class="keyword">if</span>(s1.empty() || a &lt;= mid)&#123;</span><br><span class="line">                s1.insert(a);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> s2.insert(a);</span><br><span class="line">            opt();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">if</span>(s.empty())&#123;</span><br><span class="line">                cout&lt;&lt;<span class="string">"Invalid"</span>&lt;&lt;endl;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                cout&lt;&lt;mid&lt;&lt;endl;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        //cout&lt;&lt;s1.size()&lt;&lt;<span class="string">' '</span>&lt;&lt;s2.size()&lt;&lt;<span class="string">' '</span>&lt;&lt;mid&lt;&lt;endl;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>反思：由于是一个一个元素插入或删除，所以mid的值只会移动一步，所以找到这个位置是关键，如果只用一个multiset的话，这个位置是找不到的。</p>
-
+        <h1 id="基本思路"><a href="#基本思路" class="headerlink" title="基本思路"></a>基本思路</h1><a id="more"></a>
+<p>问题要的是一个序列，序列中每个元素中有两个数，前一个元素的第一个和第二个数都比后一个元素的两者大。</p>
+<p>我们可以这样，先把元素按第一个数降序排列，然后如果有相同的数，那么按第二个数升序排列，然后按第二个数来求最大下降子序列的长度。</p>
+<h2 id="为什么第一个数相同时，按第二个数升序排列？"><a href="#为什么第一个数相同时，按第二个数升序排列？" class="headerlink" title="为什么第一个数相同时，按第二个数升序排列？"></a>为什么第一个数相同时，按第二个数升序排列？</h2><p>这是因为如果按第二个数降序排列，而求的是最大下降子序列的长度，那么有可能会产生有两个元素第一个数相同，但是都被选中的结果。而升序排列就避免了这种情况。</p>
+<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    struct peo&#123;</span><br><span class="line">        int h , w;</span><br><span class="line">    &#125;;</span><br><span class="line">    static bool cmp(peo a , peo b)&#123;  // 排序</span><br><span class="line">        <span class="keyword">if</span>(a.h != b.h) <span class="built_in">return</span> a.h &gt; b.h;</span><br><span class="line">        <span class="keyword">else</span> <span class="built_in">return</span> a.w &lt; b.w;</span><br><span class="line">    &#125;</span><br><span class="line">    int bestSeqAtIndex(vector&lt;int&gt;&amp; height, vector&lt;int&gt;&amp; weight) &#123;</span><br><span class="line">        vector&lt;peo&gt; v(height.size());</span><br><span class="line">        <span class="keyword">for</span>(int i = 0 ; i&lt;height.size() ; ++i)&#123;</span><br><span class="line">            v[i].h = height[i];</span><br><span class="line">            v[i].w = weight[i];</span><br><span class="line">        &#125;</span><br><span class="line">        sort(v.begin() , v.end() , cmp);</span><br><span class="line">        vector&lt;int&gt; d(v.size() + 1 , 0);</span><br><span class="line">        d[1] = v[0].w;</span><br><span class="line">        int len = 1;</span><br><span class="line">        <span class="keyword">for</span>(int i = 1 ; i&lt;v.size() ; ++i)&#123; // 求最大下降子序列的长度</span><br><span class="line">            <span class="keyword">if</span>(d[len] &gt; v[i].w) d[++len] = v[i].w;</span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                int left = 1 , right = len;</span><br><span class="line">                <span class="keyword">while</span>(left &lt;= right)&#123;</span><br><span class="line">                    int mid = (left + right) / 2;</span><br><span class="line">                    <span class="keyword">if</span>(d[mid] &lt; v[i].w)&#123;</span><br><span class="line">                        right = mid - 1;</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">else</span> left = mid + 1;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span>(d[left - 1] != v[i].w)&#123;</span><br><span class="line">                    d[left] = v[i].w;      //d[left]是序列中小于target的最大数</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">return</span> len;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -445,6 +453,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/" rel="tag"># 二分查找</a>
+          
+        </div>
+      
 
       
       
@@ -454,8 +468,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/02/20/1049%20Counting%20Ones%20(30%20%E5%88%86)/" rel="next" title="1049 Counting Ones (30 分)">
-                <i class="fa fa-chevron-left"></i> 1049 Counting Ones (30 分)
+              <a href="/2020/07/19/300-%E6%9C%80%E9%95%BF%E4%B8%8A%E5%8D%87%E5%AD%90%E5%BA%8F%E5%88%97/" rel="next" title="300.最长上升子序列">
+                <i class="fa fa-chevron-left"></i> 300.最长上升子序列
               </a>
             
           </div>
@@ -463,10 +477,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2020/02/24/%E5%B9%B3%E8%A1%A1%E4%BA%8C%E5%8F%89%E6%A0%91/" rel="prev" title="平衡二叉树">
-                平衡二叉树 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -518,8 +528,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -584,6 +603,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#基本思路"><span class="nav-number">1.</span> <span class="nav-text">基本思路</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么第一个数相同时，按第二个数升序排列？"><span class="nav-number">1.1.</span> <span class="nav-text">为什么第一个数相同时，按第二个数升序排列？</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#代码"><span class="nav-number">2.</span> <span class="nav-text">代码</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -1135,6 +1170,26 @@
   
 
   
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
   
 
 
