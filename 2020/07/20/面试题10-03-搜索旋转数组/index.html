@@ -70,7 +70,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="二分查找," />
 
 
 
@@ -81,12 +81,21 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="I am Art">
-<meta property="og:url" content="http://yoursite.com/categories/%E6%95%B0%E5%AD%A6/index.html">
+<meta name="description" content="基本思路这道题是数组旋转，而不会有局部旋转，所以旋转后的数组一定会形成两段，且前一段中每个元素的值一定大于等于后一段每个元素的值，且两段都是各自升序排列。如果是一段的话，那就是原数组了。 既然是两段，那么这两段一定会有长度上的区别，我们设$left$为数组左端，$right$为数组右端。如图所示：    如果$mid$大于$left$，那么第一段长度大于第二段，从$left$到$mid$是一段升序">
+<meta property="og:type" content="article">
+<meta property="og:title" content="面试题10.03.搜索旋转数组">
+<meta property="og:url" content="http://yoursite.com/2020/07/20/%E9%9D%A2%E8%AF%95%E9%A2%9810-03-%E6%90%9C%E7%B4%A2%E6%97%8B%E8%BD%AC%E6%95%B0%E7%BB%84/index.html">
 <meta property="og:site_name" content="I am Art">
+<meta property="og:description" content="基本思路这道题是数组旋转，而不会有局部旋转，所以旋转后的数组一定会形成两段，且前一段中每个元素的值一定大于等于后一段每个元素的值，且两段都是各自升序排列。如果是一段的话，那就是原数组了。 既然是两段，那么这两段一定会有长度上的区别，我们设$left$为数组左端，$right$为数组右端。如图所示：    如果$mid$大于$left$，那么第一段长度大于第二段，从$left$到$mid$是一段升序">
+<meta property="og:image" content="http://yoursite.com/2020/07/20/%E9%9D%A2%E8%AF%95%E9%A2%9810-03-%E6%90%9C%E7%B4%A2%E6%97%8B%E8%BD%AC%E6%95%B0%E7%BB%84/1.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/20/%E9%9D%A2%E8%AF%95%E9%A2%9810-03-%E6%90%9C%E7%B4%A2%E6%97%8B%E8%BD%AC%E6%95%B0%E7%BB%84/2.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/20/%E9%9D%A2%E8%AF%95%E9%A2%9810-03-%E6%90%9C%E7%B4%A2%E6%97%8B%E8%BD%AC%E6%95%B0%E7%BB%84/3.png">
+<meta property="article:published_time" content="2020-07-20T03:36:39.000Z">
+<meta property="article:modified_time" content="2020-07-20T04:13:57.997Z">
 <meta property="article:author" content="lzc">
+<meta property="article:tag" content="二分查找">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/2020/07/20/%E9%9D%A2%E8%AF%95%E9%A2%9810-03-%E6%90%9C%E7%B4%A2%E6%97%8B%E8%BD%AC%E6%95%B0%E7%BB%84/1.png">
 
 
 
@@ -116,13 +125,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/categories/数学/"/>
+  <link rel="canonical" href="http://yoursite.com/2020/07/20/面试题10-03-搜索旋转数组/"/>
 
 
 
 
 
-  <title>分类: 数学 | I am Art</title>
+  <title>面试题10.03.搜索旋转数组 | I am Art</title>
   
 
 
@@ -141,7 +150,7 @@
     
   
 
-  <div class="container sidebar-position-right ">
+  <div class="container sidebar-position-right page-post-detail">
     <div class="headband"></div>
     <a href="https://github.com/lzclzclzc12" target="_blank" rel="noopener"><img align = "left" width="149" height="149" src="https://github.blog/wp-content/uploads/2008/12/forkme_left_darkblue_121621.png?resize=149%2C149" class="attachment-full size-full" alt="Fork me on GitHub" data-recalc-dims="1"></a>
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -279,55 +288,226 @@
           <div id="content" class="content">
             
 
+  <div id="posts" class="posts-expand">
+    
   
   
-  
-  <div class="post-block category">
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>数学<small>分类</small>
-        </h1>
-      </div>
-
-      
-        
+  
+  
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/20/%E9%9D%A2%E8%AF%95%E9%A2%9810-03-%E6%90%9C%E7%B4%A2%E6%97%8B%E8%BD%AC%E6%95%B0%E7%BB%84/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lzc">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="I am Art">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2020/03/21/%E6%B1%82%E6%9C%80%E5%A4%A7%E5%85%AC%E7%BA%A6%E6%95%B0%E5%92%8C%E6%9C%80%E5%B0%8F%E5%85%AC%E5%80%8D%E6%95%B0/" itemprop="url">
-              
-                <span itemprop="name">求最大公约数和最小公倍数</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">面试题10.03.搜索旋转数组</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2020-03-21T10:19:19+08:00"
-              content="2020-03-21" >
-          03-21
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-20T11:36:39+08:00">
+                2020-07-20
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AE%97%E6%B3%95/leetcode/" itemprop="url" rel="index">
+                    <span itemprop="name">leetcode</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span id="busuanzi_value_page_pv"></span>次阅读
+          
+          
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  439
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  1
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-    </div>
+      
 
+      
+        <h1 id="基本思路"><a href="#基本思路" class="headerlink" title="基本思路"></a>基本思路</h1><p>这道题是数组旋转，而不会有局部旋转，所以旋转后的数组一定会形成两段，且前一段中每个元素的值一定大于等于后一段每个元素的值，且两段都是各自升序排列。如果是一段的话，那就是原数组了。</p>
+<p>既然是两段，那么这两段一定会有长度上的区别，我们设$left$为数组左端，$right$为数组右端。如图所示：</p>
+<p><img src="/2020/07/20/%E9%9D%A2%E8%AF%95%E9%A2%9810-03-%E6%90%9C%E7%B4%A2%E6%97%8B%E8%BD%AC%E6%95%B0%E7%BB%84/1.png" alt="1"></p>
+<p><img src="/2020/07/20/%E9%9D%A2%E8%AF%95%E9%A2%9810-03-%E6%90%9C%E7%B4%A2%E6%97%8B%E8%BD%AC%E6%95%B0%E7%BB%84/2.png" alt="1"></p>
+<ul>
+<li>如果$mid$大于$left$，那么第一段长度大于第二段，从$left$到$mid$是一段升序的排列，我们可以通过$target$的值和$v[left]和v[mid]$比较来得出下一步的范围。</li>
+<li>如果$mid$小于$left$，那么第一段长度小于第二顿，从$mid$到$right$是一段降序的排列，我们可以通过$target$的值和$v[left]和v[mid]$比较来得出下一步的范围。</li>
+</ul>
+<h2 id="当-v-mid-v-left-时是特殊情况"><a href="#当-v-mid-v-left-时是特殊情况" class="headerlink" title="当$v[mid] == v[left]$时是特殊情况"></a>当$v[mid] == v[left]$时是特殊情况</h2><p>如图所示：</p>
+<p><img src="/2020/07/20/%E9%9D%A2%E8%AF%95%E9%A2%9810-03-%E6%90%9C%E7%B4%A2%E6%97%8B%E8%BD%AC%E6%95%B0%E7%BB%84/3.png" alt="1"></p>
+<p>当$v[mid] == v[left]$时，如果$target != v[mid]$，那么下一步的位置没法直接判断出来，需要$left++$ 来逐一缩小范围。</p>
+<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int search(vector&lt;int&gt;&amp; arr, int target) &#123;</span><br><span class="line">        int left = 0 , right = arr.size() - 1;</span><br><span class="line">        <span class="keyword">while</span>(left &lt; right)&#123;</span><br><span class="line">            <span class="keyword">if</span>(arr[left] == target) <span class="built_in">return</span> left;</span><br><span class="line">            int mid = (left + right) / 2;</span><br><span class="line">            <span class="keyword">if</span>(arr[left] &lt; arr[mid])&#123;</span><br><span class="line">                <span class="keyword">if</span>(arr[left] &lt;= target &amp;&amp; target &lt;= arr[mid])&#123;</span><br><span class="line">                    right = mid;  //target == arr[mid]也是向左缩小范围，因为题目要求值相同的输出最小位置</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span> left = mid + 1;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(arr[left] &gt; arr[mid])&#123;</span><br><span class="line">                <span class="keyword">if</span>(arr[left] &lt;= target || arr[mid] &gt;= target)&#123;</span><br><span class="line">                    right = mid;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span> left = mid;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(arr[left] == arr[mid])&#123;  //特殊情况</span><br><span class="line">                <span class="keyword">if</span>(arr[left] == target)&#123;</span><br><span class="line">                    right = left;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span> left++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">return</span> (arr[left] == target) ? left : -1;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/" rel="tag"># 二分查找</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/07/19/%E9%9D%A2%E8%AF%95%E9%A2%9817-08-%E9%A9%AC%E6%88%8F%E5%9B%A2%E4%BA%BA%E5%A1%94/" rel="next" title="面试题17.08.马戏团人塔">
+                <i class="fa fa-chevron-left"></i> 面试题17.08.马戏团人塔
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -335,6 +515,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -355,8 +539,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -421,6 +614,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#基本思路"><span class="nav-number">1.</span> <span class="nav-text">基本思路</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#当-v-mid-v-left-时是特殊情况"><span class="nav-number">1.1.</span> <span class="nav-text">当$v[mid] &#x3D;&#x3D; v[left]$时是特殊情况</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#代码"><span class="nav-number">2.</span> <span class="nav-text">代码</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -594,6 +803,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
