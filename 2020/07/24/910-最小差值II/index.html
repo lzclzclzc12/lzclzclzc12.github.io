@@ -88,7 +88,7 @@
 <meta property="og:site_name" content="I am Art">
 <meta property="og:description" content="基本思路">
 <meta property="article:published_time" content="2020-07-24T03:04:18.000Z">
-<meta property="article:modified_time" content="2020-07-24T04:00:17.389Z">
+<meta property="article:modified_time" content="2020-07-24T04:05:16.516Z">
 <meta property="article:author" content="lzc">
 <meta property="article:tag" content="贪心算法">
 <meta name="twitter:card" content="summary">
@@ -397,7 +397,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  422
+                  424
                 </span>
               
 
@@ -439,7 +439,7 @@
 <p>那么哪些是所谓的’大数’呢？我们可以设置一个分割点$i$，即$i$为序列中最后一个需要+$k$的下标，在$i$之前的数是小数，在$i$之后的数是大数。那么整个序列的最大值就是$max(A.back()-k , A[i] + k)$，最小值就是$min(A[0]+k , A[i+1]-k)$</p>
 <h2 id="为什么分割点之前的数都是小数呢？"><a href="#为什么分割点之前的数都是小数呢？" class="headerlink" title="为什么分割点之前的数都是小数呢？"></a>为什么分割点之前的数都是小数呢？</h2><p>首先我们令$i$是序列中最后一个需要+$k$的下标，使得$A[i]$要+$k$，其次$A[0]$一定要+$k$，$A.back()$一定要-$k$，我们设$j &lt; i$，由于$A[j]+k &lt; A[i]+k$，$A[j]-k$要么$&gt; A[0]+k$，此时对结果没有影响，要么$A[j]-k &lt; A[0]+k$，此时使得结果变大了，不可取，所以我们干脆使得$A[j]+k$，这样对结果没有影响，所以对于$j &lt; i$，$A[j]$必须+$k$。</p>
 <h2 id="为什么分割点之后的数都是大数呢？"><a href="#为什么分割点之后的数都是大数呢？" class="headerlink" title="为什么分割点之后的数都是大数呢？"></a>为什么分割点之后的数都是大数呢？</h2><p>我们令$i$是序列中最后一个需要+$k$的下标，使得$A[i]$要+$k$，所以之后的都是大数了。</p>
-<h2 id="分割点不存在怎么办？"><a href="#分割点不存在怎么办？" class="headerlink" title="分割点不存在怎么办？"></a>分割点不存在怎么办？</h2><p>不可能，分割点最小是0，此时的差值是$A.back()-A[0]$。</p>
+<h2 id="分割点不存在怎么办？"><a href="#分割点不存在怎么办？" class="headerlink" title="分割点不存在怎么办？"></a>分割点不存在怎么办？</h2><p>不可能，分割点最小是0，此时的差值是$A.back()-A[0] - 2*k$。</p>
 <h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int smallestRangeII(vector&lt;int&gt;&amp; A, int k) &#123;</span><br><span class="line">        sort(A.begin() , A.end());</span><br><span class="line">        int res = A.back() - A[0];</span><br><span class="line">        <span class="keyword">for</span>(int i = 0 ; i&lt;A.size() - 1 ; ++i)&#123;</span><br><span class="line">            int Min = min(A[0] + k , A[i+1] - k);</span><br><span class="line">            int Max = max(A.back() - k , A[i] + k);</span><br><span class="line">            res = min(res , Max - Min);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
       
