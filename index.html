@@ -294,6 +294,477 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/28/%E5%8D%B7%E7%A7%AF%E3%80%81%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0%E5%92%8C%E5%88%9D%E5%A7%8B%E5%8C%96/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lzc">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="I am Art">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/08/28/%E5%8D%B7%E7%A7%AF%E3%80%81%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0%E5%92%8C%E5%88%9D%E5%A7%8B%E5%8C%96/" itemprop="url">卷积、激活函数和初始化</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-28T18:49:43+08:00">
+                2020-08-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index">
+                    <span itemprop="name">深度学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+          
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2.7k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  10
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="1-卷积层"><a href="#1-卷积层" class="headerlink" title="1. 卷积层"></a>1. 卷积层</h1><h2 id="1-3-公式"><a href="#1-3-公式" class="headerlink" title="1.3 公式"></a>1.3 公式</h2><p>$Y = W^TX+b$，其中$W$为卷积核参数</p>
+<h2 id="1-2-输出特征图大小"><a href="#1-2-输出特征图大小" class="headerlink" title="1.2 输出特征图大小"></a>1.2 输出特征图大小</h2><p>设$N$为输入图像的大小，$P$为填充大小，$F$为卷积核大小，$stride$为步长，则：</p>
+<p>输出特征图大小 = $（N + 2P - F）/ stride + 1$（这里默认图像和卷积核为正方形，上下左右填充和步长相同）</p>
+<h2 id="1-3-卷积核参数的个数"><a href="#1-3-卷积核参数的个数" class="headerlink" title="1.3 卷积核参数的个数"></a>1.3 卷积核参数的个数</h2><p>设卷积核为$[N , C , H , W]$，那么参数个数为：$N<em>(C</em>H*W + 1)$，一个卷积核有一个$bias$。</p>
+<h1 id="2-池化层"><a href="#2-池化层" class="headerlink" title="2. 池化层"></a>2. 池化层</h1><p>池化是一种下采样，它压缩了输入的特征图，一方面减少了特征，导致了参数减少，进而简化了卷积网络计算时的复杂度；另一方面保持了特征的某种不变性（旋转、平移、伸缩等）。</p>
+<h2 id="2-1-池化层的作用"><a href="#2-1-池化层的作用" class="headerlink" title="2.1 池化层的作用"></a>2.1 池化层的作用</h2><ul>
+<li>池化层保持了特征的某种不变性（旋转、平移、伸缩等），使得模型更关注是否存在某些特征而不是特征具体的位置。比如最大池化。</li>
+<li>保留了主要特征，减少了特征，从而导致了参数减少，进而简化了卷积网络计算时的复杂度</li>
+<li>在一定程度上能防止过拟合的发生</li>
+</ul>
+<h2 id="2-2-池化层分类"><a href="#2-2-池化层分类" class="headerlink" title="2.2 池化层分类"></a>2.2 池化层分类</h2><p>最大池化层和平均池化层</p>
+<h1 id="3-激活函数"><a href="#3-激活函数" class="headerlink" title="3. 激活函数"></a>3. 激活函数</h1><p>在卷积层或全连接层后的非线性函数叫激活函数。激活函数的输入是标量。</p>
+<h2 id="3-1-Sigmoid-函数"><a href="#3-1-Sigmoid-函数" class="headerlink" title="3.1 $Sigmoid$函数"></a>3.1 $Sigmoid$函数</h2><p><strong>数学公式</strong>：$\sigma(x)=1 /\left(1+e^{-x}\right)$</p>
+<p><strong>求导公式</strong>：$\frac{d \sigma(x)}{d x}=(1-\sigma(x)) \sigma(x)$</p>
+<p><strong>特点</strong>：把输入值“挤压”到0到1范围内</p>
+<p><strong>图像</strong>： </p>
+<p><img src="/2020/08/28/%E5%8D%B7%E7%A7%AF%E3%80%81%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0%E5%92%8C%E5%88%9D%E5%A7%8B%E5%8C%96/1.png" alt="1"></p>
+<p><strong>缺点</strong>：</p>
+<ul>
+<li>Sigmoid函数饱和时会使梯度消失：当输入过大或过小时会饱和，使得梯度几乎为0，在反向传播时会阻碍梯度传递。因此，为了防止饱和，必须对于权重矩阵初始化特别留意。</li>
+<li>Sigmoid函数的输出不是零中心的：这会导致其下一层的输入均为正数，对于公式$f\left(\sum_{i} w_{i} x_{i}+b\right)$，其导数为$\frac{\partial L}{\partial w}=\sigma\left(\sum_{i} w_{i} x_{i}+b\right)\left(1-\sigma\left(\sum_{i} w_{i} x_{i}+b\right)\right) x \times \frac{\partial L}{\partial f}$，那么会导致导数（是向量）的正负依赖于$\frac{\partial L}{\partial f}$，而$\frac{\partial L}{\partial f}$是标量，所以所有$w_{i}$的正负都是一样的，所以会导致梯度下降权重更新时出现z字型的下降，即使得更新速度减慢。如图所示。</li>
+</ul>
+<p><img src="/2020/08/28/%E5%8D%B7%E7%A7%AF%E3%80%81%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0%E5%92%8C%E5%88%9D%E5%A7%8B%E5%8C%96/2.png" alt="1"></p>
+<ul>
+<li>指数型计算量比较大。</li>
+</ul>
+<h2 id="3-2-tanh-函数"><a href="#3-2-tanh-函数" class="headerlink" title="3.2 $tanh$函数"></a>3.2 $tanh$函数</h2><p><strong>数学公式：</strong>$\tanh (x)=2 \sigma(2 x)-1$</p>
+<p><strong>特点</strong>：将实数值压缩到[-1,1]之间。</p>
+<p><strong>图像：</strong></p>
+<p><img src="/2020/08/28/%E5%8D%B7%E7%A7%AF%E3%80%81%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0%E5%92%8C%E5%88%9D%E5%A7%8B%E5%8C%96/4.png" alt="1"></p>
+<p><strong>缺点：</strong> 存在饱和问题</p>
+<h2 id="3-3-relu-函数"><a href="#3-3-relu-函数" class="headerlink" title="3.3 $relu$函数"></a>3.3 $relu$函数</h2><p><strong>数学公式：</strong>$f(x)=\max (0, x)$</p>
+<p><strong>特点：</strong> 一个关于0的阈值</p>
+<p><strong>图像：</strong></p>
+<p><img src="/2020/08/28/%E5%8D%B7%E7%A7%AF%E3%80%81%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0%E5%92%8C%E5%88%9D%E5%A7%8B%E5%8C%96/5.png" alt="1"></p>
+<p><strong>优点：</strong> </p>
+<ul>
+<li>只有负半轴会饱和</li>
+<li>节省计算资源，不含指数运算，只对一个矩阵进行阈值计算</li>
+<li>更符合生物学观念</li>
+<li>加速随机梯度下降的收敛，Krizhevsky论文指出比sigmoid和tanh函数快6倍之多，据称这是由它的线性，非饱和的公式导致的。</li>
+</ul>
+<p><strong>缺点：</strong></p>
+<ul>
+<li>仍有一半会饱和</li>
+<li>非零中心</li>
+<li>relu单元比较脆弱并且可能“死掉”。当一个节点的梯度变为0时，那么从这个节点向后的节点的梯度均变为0，这使得参数没法更新。</li>
+</ul>
+<h3 id="3-3-1-造成梯度消失的原因"><a href="#3-3-1-造成梯度消失的原因" class="headerlink" title="3.3.1 造成梯度消失的原因"></a>3.3.1 造成梯度消失的原因</h3><ul>
+<li>初始化的权值太差</li>
+<li>学习率太大，导致梯度很大，那么权重的变化就很大，有可能使得输入为负数。</li>
+</ul>
+<h2 id="3-4-Leaky-relu和PReLU"><a href="#3-4-Leaky-relu和PReLU" class="headerlink" title="3.4 Leaky relu和PReLU"></a>3.4 Leaky relu和PReLU</h2><p><strong>Leaky relu数学公式：</strong> $f(x)=\max (0.01 x, x)$</p>
+<p><strong>PReLU数学公式：</strong>  $f(x)=\max (\alpha x, x)$</p>
+<p><strong>特点：</strong> 解决“ReLU死亡”问题，x&lt;0时给出一个很小的梯度值，比如0.01。</p>
+<p><strong>图像：</strong></p>
+<p><img src="/2020/08/28/%E5%8D%B7%E7%A7%AF%E3%80%81%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0%E5%92%8C%E5%88%9D%E5%A7%8B%E5%8C%96/6.png" alt="1"></p>
+<h2 id="3-5-指数线性单元（Exponential-Linear-Units，ELU）"><a href="#3-5-指数线性单元（Exponential-Linear-Units，ELU）" class="headerlink" title="3.5 指数线性单元（Exponential Linear Units，ELU）"></a>3.5 指数线性单元（Exponential Linear Units，ELU）</h2><p><strong>数学公式：</strong> $f(x)=\left\{\begin{array}{ll}<br>x &amp; \text { if } x&gt;0 \\<br>\alpha(\exp (x)-1) &amp; \text { otherwise }<br>\end{array}\right.$</p>
+<p><strong>特点：</strong> 介于ReLU和Leaky ReLU之间</p>
+<p><strong>图像：</strong></p>
+<p><img src="/2020/08/28/%E5%8D%B7%E7%A7%AF%E3%80%81%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0%E5%92%8C%E5%88%9D%E5%A7%8B%E5%8C%96/7.png" alt="1"></p>
+<h1 id="4-数据预处理"><a href="#4-数据预处理" class="headerlink" title="4. 数据预处理"></a>4. 数据预处理</h1><h2 id="4-1-去均值"><a href="#4-1-去均值" class="headerlink" title="4.1 去均值"></a>4.1 去均值</h2><h3 id="4-1-1-image-mean"><a href="#4-1-1-image-mean" class="headerlink" title="4.1.1 image mean"></a>4.1.1 image mean</h3><p>将训练集中所有图片的同一位置的像素求均值。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">img = img - np.mean(train , axis = 0) <span class="comment"># train 的shape为(n , 3 , w , h)</span></span><br></pre></td></tr></table></figure>
+<h3 id="4-1-2-pixel-mean"><a href="#4-1-2-pixel-mean" class="headerlink" title="4.1.2 pixel mean"></a>4.1.2 pixel mean</h3><p>分别计算训练集的$RGB$三个通道的像素均值。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mean_rgb = np.array([0 , 0 , 0])</span><br><span class="line">count = 0</span><br><span class="line"><span class="keyword">for</span> img <span class="keyword">in</span> img_list:   <span class="comment"># [3 , w , h]</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(3):</span><br><span class="line">        mean_rgb[i] += img[i , : , :].mean()</span><br><span class="line">    count += 1</span><br><span class="line">mean_rgb /= count</span><br></pre></td></tr></table></figure>
+<h3 id="4-1-3-图像去均值的目的"><a href="#4-1-3-图像去均值的目的" class="headerlink" title="4.1.3 图像去均值的目的"></a>4.1.3 图像去均值的目的</h3><ul>
+<li>消除图像的共性，突显个体差异</li>
+<li>为了进行数据特征标准化，即像机器学习中的特征预处理那样对输入特征向量各维去均值再除以标准差，但由于自然图像各点像素值的范围都在0-255之间，方差大致一样，只要做去均值处理即可。</li>
+<li>构造0中心的数据，加快下降速度</li>
+<li>标准化使得数据之间的差值缩小，而参数$w$的梯度和$x$有关，如果$x$之间相差太大，那么所求出的梯度也会相差很大，而不同梯度所对应的好的学习率不同，这样导致同一学习率不能使用不同的梯度。</li>
+</ul>
+<h2 id="4-2-标准化"><a href="#4-2-标准化" class="headerlink" title="4.2 标准化"></a>4.2 标准化</h2><p>多一步除标准差。</p>
+<h2 id="4-3-测试集和训练集进行相同的预处理"><a href="#4-3-测试集和训练集进行相同的预处理" class="headerlink" title="4.3 测试集和训练集进行相同的预处理"></a>4.3 测试集和训练集进行相同的预处理</h2><p>即测试集中的均值和标准差是通过训练集求得的。</p>
+<ul>
+<li>因为深度学习算法是建立在训练集和测试集服从同一或者类似分布的假设之上的，所以预处理训练集和测试集要保持一致。</li>
+<li>算法要求训练时不能有测试集的信息，所以不能是先预处理再分训练集和测试集。</li>
+</ul>
+<h1 id="5-权重初始化"><a href="#5-权重初始化" class="headerlink" title="5. 权重初始化"></a>5. 权重初始化</h1><h2 id="5-1-全0初始化"><a href="#5-1-全0初始化" class="headerlink" title="5.1 全0初始化"></a>5.1 全0初始化</h2><p>这种做法是错误的，这样会导致同一层的参数的梯度相同，进而进行相同的参数更新。</p>
+<h2 id="5-2-小随机数初始化"><a href="#5-2-小随机数初始化" class="headerlink" title="5.2 小随机数初始化"></a>5.2 小随机数初始化</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">W = 0.01 * np.random.randn(fan_in,fan_out)</span><br></pre></td></tr></table></figure>
+<p>实验表明小随机数初始化在简单的网络中效果比较好，但是网络结构比较深的情况不一定会得到好的结果。比如一个10层的全连接网络，如图所示。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">import numpy as np</span><br><span class="line">import matplotlib</span><br><span class="line">matplotlib.use(<span class="string">'TkAgg'</span>)</span><br><span class="line">import matplotlib.pyplot as plt</span><br><span class="line">%matplotlib notebook</span><br><span class="line"><span class="comment"># 假设一些高斯分布单元</span></span><br><span class="line">D = np.random.randn(1000, 500)</span><br><span class="line">hidden_layer_sizes = [500]*10  <span class="comment"># 隐藏层尺寸都是500，10层</span></span><br><span class="line">nonlinearities = [<span class="string">'tanh'</span>]*len(hidden_layer_sizes)  <span class="comment"># 非线性函数都是用tanh函数</span></span><br><span class="line"></span><br><span class="line">act = &#123;<span class="string">'relu'</span>: lambda x: np.maximum(0, x), <span class="string">'tanh'</span>: lambda x: np.tanh(x)&#125;</span><br><span class="line">Hs = &#123;&#125;</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(len(hidden_layer_sizes)):</span><br><span class="line">    X = D <span class="keyword">if</span> i == 0 <span class="keyword">else</span> Hs[i-1]  <span class="comment"># 当前隐藏层的输入</span></span><br><span class="line">    fan_in = X.shape[1]</span><br><span class="line">    fan_out = hidden_layer_sizes[i]</span><br><span class="line">    W = np.random.randn(fan_in, fan_out) * 0.01  <span class="comment"># 权重初始化</span></span><br><span class="line"></span><br><span class="line">    H = np.dot(X, W)  <span class="comment"># 得到当前层输出</span></span><br><span class="line">    H = act[nonlinearities[i]](H)  <span class="comment"># 激活函数</span></span><br><span class="line">    Hs[i] = H  <span class="comment"># 保存当前层的结果并作为下层的输入</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 绘制直方图</span></span><br><span class="line">fig , ax1 = plt.subplots(1 , 10 , figsize = (12 , 5))</span><br><span class="line"><span class="keyword">for</span> i,H <span class="keyword">in</span> Hs.items():</span><br><span class="line">    ax1[i].hist(H.ravel(), bins = 30, range=(-1,1))</span><br><span class="line">plt.subplots_adjust(wspace = 1)</span><br></pre></td></tr></table></figure>
+<p><img src="/2020/08/28/%E5%8D%B7%E7%A7%AF%E3%80%81%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0%E5%92%8C%E5%88%9D%E5%A7%8B%E5%8C%96/8.png" alt="1"></p>
+<p>可以看出，只有第一层表现好，后几层的均值和方差都接近于0，那么梯度就接近于0。</p>
+<p>如果我们参数扩大，如下图，那么由于参数很大而且使用$tanh$函数，那么很容易达到饱和。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">W = np.random.randn(fan_in, fan_out) * 1</span><br></pre></td></tr></table></figure>
+<p><img src="/2020/08/28/%E5%8D%B7%E7%A7%AF%E3%80%81%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0%E5%92%8C%E5%88%9D%E5%A7%8B%E5%8C%96/9.png" alt="1"></p>
+<h2 id="5-3-Xavier初始化"><a href="#5-3-Xavier初始化" class="headerlink" title="5.3 Xavier初始化"></a>5.3 Xavier初始化</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">W = np.random.randn(fan_in, fan_out) / np.sqrt(fan_in)</span><br></pre></td></tr></table></figure>
+<p>这种初始化使得输入和输出有相同的分布。</p>
+<p>我们设输出 $Y =\sum_{i}^{n} w_{i} x_{i}$，则：</p>
+<script type="math/tex; mode=display">\begin{aligned}
+\operatorname{Var}(Y) &=\operatorname{Var}\left(\sum_{i}^{n} w_{i} x_{i}\right) \\
+&=\sum_{i}^{n} \operatorname{Var}\left(w_{i} x_{i}\right) \\
+&=\sum_{i}^{n}\left[E\left(w_{i}\right)\right]^{2} \operatorname{Var}\left(x_{i}\right)+E\left[\left(x_{i}\right)\right]^{2} \operatorname{Var}\left(w_{i}\right)+\operatorname{Var}\left(x_{i}\right) \operatorname{Var}\left(w_{i}\right) \\
+&=\sum_{i}^{n} \operatorname{Var}\left(x_{i}\right) \operatorname{Var}\left(w_{i}\right) \\
+&=n \operatorname{Var}(w) \operatorname{Var}(x)
+\end{aligned}</script><p>第三步我们假设输入和权重的均值都是0。所以当$\operatorname{Var}(\sqrt{1 / n} \cdot w)=1 / n \operatorname{Var}(w)=1 / n$时，$\operatorname{Var}(Y) = \operatorname{Var}(x)$</p>
+<p>结果：</p>
+<p><img src="/2020/08/28/%E5%8D%B7%E7%A7%AF%E3%80%81%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0%E5%92%8C%E5%88%9D%E5%A7%8B%E5%8C%96/10.png" alt="1"></p>
+<p>但是，当我们使用$relu$时，如图，又出现了问题：</p>
+<p><img src="/2020/08/28/%E5%8D%B7%E7%A7%AF%E3%80%81%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0%E5%92%8C%E5%88%9D%E5%A7%8B%E5%8C%96/11.png" alt="1"></p>
+<h2 id="5-4-He初始化"><a href="#5-4-He初始化" class="headerlink" title="5.4 He初始化"></a>5.4 He初始化</h2><p>$relu$后的输出会有大约一半变为0，那么方差就会减半，所以我们用He初始化。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">W = np.random.randn(fan_in, fan_out) / np.sqrt(fan_in/2)</span><br></pre></td></tr></table></figure>
+<p>我们使得输出$Y$的方差变为2倍来抵消。</p>
+<p><img src="/2020/08/28/%E5%8D%B7%E7%A7%AF%E3%80%81%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0%E5%92%8C%E5%88%9D%E5%A7%8B%E5%8C%96/15.png" alt="1"></p>
+<h1 id="6-批量归一化"><a href="#6-批量归一化" class="headerlink" title="6. 批量归一化"></a>6. 批量归一化</h1><p>因为底层网络在训练的时候更新了参数，那么引起了输出数据分布的改变，那么我们在卷积层或全连接层后加$BN$层，就可以使得输出数据归一化。</p>
+<h2 id="6-1-算法前向推导公式"><a href="#6-1-算法前向推导公式" class="headerlink" title="6.1 算法前向推导公式"></a>6.1 算法前向推导公式</h2><ol>
+<li>首先通过小批量训练集计算均值： $\mu_{\mathcal{B}} \leftarrow \frac{1}{m} \sum_{i=1}^{m} x_{i}$</li>
+<li>计算小批量训练集的标准差：$\sigma_{\mathcal{B}}^{2} \leftarrow \frac{1}{m} \sum_{i=1}^{m}\left(x_{i}-\mu_{\mathcal{B}}\right)^{2}$</li>
+<li>将本批次训练集归一化：$\widehat{x}_{i} \leftarrow \frac{x_{i}-\mu_{\mathcal{B}}}{\sqrt{\sigma_{\mathcal{B}}^{2}+\epsilon}}$</li>
+<li>计算输出：$y_{i} \leftarrow \gamma \widehat{x}_{i}+\beta$，其中$\gamma$和$\beta$分别为可学习的参数，让我们的网络可以学习恢复出原始网络所要学习的特征分布。批量归一化会把输入限制在非线性函数的线性区域，有时候我们并不想没有一点饱和，所以希望能控制饱和程度，所以引入了参数。</li>
+</ol>
+<h2 id="6-2-维度"><a href="#6-2-维度" class="headerlink" title="6.2 维度"></a>6.2 维度</h2><p><img src="/2020/08/28/%E5%8D%B7%E7%A7%AF%E3%80%81%E6%BF%80%E6%B4%BB%E5%87%BD%E6%95%B0%E5%92%8C%E5%88%9D%E5%A7%8B%E5%8C%96/13.png" alt="1"></p>
+<p>在卷积层后使用$BN$时，我们以一张特征图为单位计算均值和方差，主要是为了节省参数。</p>
+<h2 id="6-3-BN在测试集"><a href="#6-3-BN在测试集" class="headerlink" title="6.3 BN在测试集"></a>6.3 BN在测试集</h2><p>测试集上的均值和方差：</p>
+<script type="math/tex; mode=display">\begin{aligned}
+\mathrm{E}[x] & \leftarrow \mathrm{E}_{\mathcal{B}}\left[\mu_{\mathcal{B}}\right] \\
+\operatorname{Var}[x] & \leftarrow \frac{m}{m-1} \mathrm{E}_{\mathcal{B}}\left[\sigma_{\mathcal{B}}^{2}\right]
+\end{aligned}</script><h1 id="7-检查合理性"><a href="#7-检查合理性" class="headerlink" title="7. 检查合理性"></a>7. 检查合理性</h1><ol>
+<li>使用小参数进行初始化，使正则损失为0，确保得到的损失值与期望一致。例如，对于一个输入CIFAR-10的Softmax分类器，一般期望它的初始损失值是2.302，这是因为初始时预计每个类别的概率是0.1（因为有10个类别），然后Softmax损失值正确分类的负对数概率-ln(0.1) = 2.302。</li>
+<li>提高正则化强度，损失值会变大</li>
+<li>对小数据子集过拟合。在整个数据集进行训练之前，尝试在一个很小的数据集上进行训练（比如20个数据），然后确保能到达0的损失值（正则损失为0）。</li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/18/%E5%B9%B6%E6%9F%A5%E9%9B%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lzc">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="I am Art">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/08/18/%E5%B9%B6%E6%9F%A5%E9%9B%86/" itemprop="url">并查集</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-08-18T12:37:56+08:00">
+                2020-08-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" itemprop="url" rel="index">
+                    <span itemprop="name">数据结构</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+          
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  237
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  1
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="基本代码"><a href="#基本代码" class="headerlink" title="基本代码"></a>基本代码</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">#include&lt;bits/stdc++.h&gt;</span></span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">int n;</span><br><span class="line">vector&lt;int&gt; parent;</span><br><span class="line">int Find(int x)&#123;      // 并查集的查找父亲节点函数</span><br><span class="line">    int origin = x;</span><br><span class="line">    <span class="keyword">while</span>(x != parent[x])&#123;</span><br><span class="line">        x = parent[x];</span><br><span class="line">    &#125;</span><br><span class="line">    parent[origin] = x;        // 查找的过程中顺便路径压缩</span><br><span class="line">    <span class="built_in">return</span> x;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void to_union(int x1 , int x2)&#123;  // 将两个节点合并</span><br><span class="line">    int p1 = Find(x1);</span><br><span class="line">    int p2 = Find(x2);</span><br><span class="line">    parent[p2] = p1;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">bool isSame(int x1 , int x2)&#123;    // 判断两个节点的父亲节点是不是相同</span><br><span class="line">    <span class="built_in">return</span> Find(x1) == Find(x2);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">    //freopen(<span class="string">"input.txt"</span>,<span class="string">"r"</span>,stdin);</span><br><span class="line">    //freopen(<span class="string">"output.txt"</span>,<span class="string">"w"</span>,stdout);</span><br><span class="line">    cin&gt;&gt;n;</span><br><span class="line">    <span class="keyword">for</span>(unsigned int i = 0 ; i&lt;n ; ++i)&#123;</span><br><span class="line">        parent.push_back(i);               // 初始化每个节点的父亲节点是自己</span><br><span class="line">    &#125;</span><br><span class="line">    int u , v;</span><br><span class="line">    int m;</span><br><span class="line">    cin&gt;&gt;m;</span><br><span class="line">    <span class="keyword">for</span>(int i = 0 ; i&lt;m ; ++i)&#123;</span><br><span class="line">        cin&gt;&gt;u&gt;&gt;v;</span><br><span class="line">        to_union(u , v);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(int i = 0 ; i&lt;n ; ++i)&#123;</span><br><span class="line">        Find(i);                  // 每个节点都路径压缩</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(int i = 0 ; i&lt;n ; ++i)&#123;</span><br><span class="line">        cout&lt;&lt;parent[i]&lt;&lt;<span class="string">' '</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/24/910-%E6%9C%80%E5%B0%8F%E5%B7%AE%E5%80%BCII/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1790,375 +2261,6 @@
 
 
     
-      
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/19/786-%E7%AC%AC-K-%E4%B8%AA%E6%9C%80%E5%B0%8F%E7%9A%84%E7%B4%A0%E6%95%B0%E5%88%86%E6%95%B0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lzc">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="I am Art">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/07/19/786-%E7%AC%AC-K-%E4%B8%AA%E6%9C%80%E5%B0%8F%E7%9A%84%E7%B4%A0%E6%95%B0%E5%88%86%E6%95%B0/" itemprop="url">786.第_K_个最小的素数分数</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-19T17:36:26+08:00">
-                2020-07-19
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%AE%97%E6%B3%95/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-          
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  579
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  2
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="786-第-K-个最小的素数分数"><a href="#786-第-K-个最小的素数分数" class="headerlink" title="786. 第 K 个最小的素数分数"></a>786. 第 K 个最小的素数分数</h1>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/07/19/786-%E7%AC%AC-K-%E4%B8%AA%E6%9C%80%E5%B0%8F%E7%9A%84%E7%B4%A0%E6%95%B0%E5%88%86%E6%95%B0/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/19/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lzc">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="I am Art">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/07/19/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/" itemprop="url">二分查找</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-19T10:09:10+08:00">
-                2020-07-19
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" itemprop="url" rel="index">
-                    <span itemprop="name">数据结构</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-          
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  697
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  3
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="基本代码"><a href="#基本代码" class="headerlink" title="基本代码"></a>基本代码</h1>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/07/19/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2214,7 +2316,7 @@
                 <a href="/archives/">
                 
               
-                  <span class="site-state-item-count">45</span>
+                  <span class="site-state-item-count">47</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2236,7 +2338,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-count">23</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -2288,7 +2390,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">41.2k</span>
+    <span title="Site words total count">44.2k</span>
   
 </div>
 
