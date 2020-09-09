@@ -419,19 +419,14 @@
 
       
         
-          
-            <h1 id="算法流程"><a href="#算法流程" class="headerlink" title="算法流程"></a>算法流程</h1><ol>
-<li>设图有$n$个点，$m$条边，首先每个像素点都为一个区域，初始化区域集合$S = \{C_1 , C_2 , …. , C_n\}$。</li>
-<li>对于$m$条边，按权值升序排列。</li>
-<li>for q in range(m)，重复4的操作</li>
-<li>对于边$(v_i , v_j)$，如果$v_i$和$v_j$不在同一颗树上，那么比较这条边和这两颗树的最大边$MInt$，如果$w(v_i , v_j) &lt; MInt$，那么合并这两棵树，否则，continue</li>
-</ol>
-<h1 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h1><p>$MInt$为一棵树的最大边</p>
-<p>$\begin{array}{l}<br>\operatorname{MInt}\left(C_{1}, C_{2}\right) =\min \left(\operatorname{Int}\left(C_{1}\right)+\tau\left(C_{1}\right), \operatorname{Int}\left(C_{2}\right)+\tau\left(C_{2}\right)\right)<br>\end{array}$</p>
-<p>$\tau(C)=k /|C|$</p>
-<h2 id="为什么要有-tau-C"><a href="#为什么要有-tau-C" class="headerlink" title="为什么要有$\tau(C)$?"></a>为什么要有$\tau(C)$?</h2><p>当初始情况下，每个点都为一个区域，那么$MInt$都是0，如果没有$\tau(C)$，则两个像素点必须相同才能合并，所以我们要先设一个阈值，当我们的树逐渐增大时，这样阈值逐渐减小，而使得我们的自适应阈值逐渐起主导位置。</p>
-
-          
+          <h1 id="算法流程"><a href="#算法流程" class="headerlink" title="算法流程"></a>算法流程</h1>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/09/09/%E5%9F%BA%E4%BA%8E%E5%9B%BE%E7%9A%84%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -603,30 +598,14 @@
 
       
         
-          
-            <h1 id="选择性搜索法出现之前的算法"><a href="#选择性搜索法出现之前的算法" class="headerlink" title="选择性搜索法出现之前的算法"></a>选择性搜索法出现之前的算法</h1><p>穷举法或滑窗法，即在图片上的各个位置使用不同尺度不同大小的窗口来遍历物体的每一个位置，这样做框太多，复杂度高，而且不可能每个尺度都兼顾到，所以框不太标准。</p>
-<h1 id="选择性搜索的优点"><a href="#选择性搜索的优点" class="headerlink" title="选择性搜索的优点"></a>选择性搜索的优点</h1><ul>
-<li>可以适应多尺度：算法采用图像分割然后合并的方式将相似度大的区域作为一个整体区域</li>
-<li>多样化：算法采用颜色、纹理、大小等多种策略来将分割好的区域合并</li>
-<li>速度快：框较少</li>
-</ul>
-<h1 id="算法流程"><a href="#算法流程" class="headerlink" title="算法流程"></a>算法流程</h1><ol>
-<li>先采用《基于图的图像分割算法》将原图分割，并将每一个像素点分好类，得到区域集合$R = \{r_1 , r_2 , r_3 …. r_n\}$</li>
-<li>初始化相似集合$S = ϕ$，然后对于每一个区域$i$和$j$，计算其相似度$s(r_i , r_j)$（只有两个区域有交集时才计算相似度），更新$S = S  ∪ s(r_i,r_j)$</li>
-<li>当$S != ϕ$时，从$S$中选择相似度最大的区域对$s(r_i , r_j) = max(S)$，将$r_i$和$r_j$合并成区域$r_t$，即$r_t = merge(r_i , r_j)$，然后$S$中去掉与$r_i$有关的相似度$s(r_i , r_<em>)$和与$r_j$有关的相似度$s(r_</em> , r_j)$，计算$r_t$有关的相似度集合$S_t$，最后$S = S ∪ S_t$，$R = R ∪ r_t$，重复第3步</li>
-<li>$R$中对应的区域即为所求的候选区域</li>
-</ol>
-<h1 id="相似度计算的策略"><a href="#相似度计算的策略" class="headerlink" title="相似度计算的策略"></a>相似度计算的策略</h1><h2 id="颜色相似度"><a href="#颜色相似度" class="headerlink" title="颜色相似度"></a>颜色相似度</h2><p>对每个区域的3个颜色通道分别计算$25bins$的直方图，这样每个区域都生成了75维的向量$C = \{c_i^1 , c_i^2 , …., c_i^n\}$，然后$C /= size$，其中$size$为本区域的像素点的个数。</p>
-<p>区域颜色相似度的计算：<script type="math/tex">s_{\text {colour}}\left(r_{i}, r_{j}\right)=\sum_{k=1}^{n} \min \left(c_{i}^{k}, c_{j}^{k}\right)</script>.</p>
-<p>区域合并后的颜色直方图：<script type="math/tex">C_{t}=\frac{\operatorname{size}\left(r_{i}\right) \times C_{i}+\operatorname{size}\left(r_{j}\right) \times C_{j}}{\operatorname{size}\left(r_{i}\right)+\operatorname{size}\left(\mathrm{r}_{\mathrm{j}}\right)}</script></p>
-<h2 id="纹理相似度"><a href="#纹理相似度" class="headerlink" title="纹理相似度"></a>纹理相似度</h2><p>对每个区域的3个颜色通道的每个像素点计算其8个不同方向的$\sigma=1$的高斯导数，也可以用$LBP$特征，然后计算每个颜色通道的每个方向的$10bins$的直方图，获得240(10x8x3)的向量，纹理相似度计算以及直方图的更新与颜色相似度类似</p>
-<h2 id="优先合并小的区域"><a href="#优先合并小的区域" class="headerlink" title="优先合并小的区域"></a>优先合并小的区域</h2><script type="math/tex; mode=display">s_{\text {size}}\left(r_{i}, r_{j}\right)=1-\frac{\operatorname{size}\left(r_{i}\right)+\operatorname{size}\left(\mathrm{r}_{j}\right)}{\operatorname{size}(image)}</script><h2 id="合适度"><a href="#合适度" class="headerlink" title="合适度"></a>合适度</h2><script type="math/tex; mode=display">f i l l\left(r_{i}, r_{j}\right)=1-\frac{\operatorname{size}\left(B B_{i j}\right)-\operatorname{size}\left(r_{i}\right)-\operatorname{size}\left(r_{i}\right)}{\operatorname{size}(image)}</script><p>区域的合适度主要是为了衡量两个区域是否”吻合”，合并后的区域$BoundingBox$越小，其吻合度越高。</p>
-<h2 id="相似度的最终公式"><a href="#相似度的最终公式" class="headerlink" title="相似度的最终公式"></a>相似度的最终公式</h2><script type="math/tex; mode=display">\begin{aligned}
-s\left(r_{i}, r_{j}\right)=& a_{1} s_{\text {colour}}\left(r_{i}, r_{j}\right)+a_{2} s_{\text {texture}}\left(r_{i}, r_{j}\right)+\\
-& a_{3} s_{\text {size}}\left(r_{i}, r_{j}\right)+a_{4} s_{\text {fill}}\left(r_{i}, r_{j}\right)
-\end{aligned}</script><p>其中$a_{i} \in\{0,1\}$</p>
-
-          
+          <h1 id="选择性搜索法出现之前的算法"><a href="#选择性搜索法出现之前的算法" class="headerlink" title="选择性搜索法出现之前的算法"></a>选择性搜索法出现之前的算法</h1>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2020/09/09/Selective-Search/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
