@@ -419,36 +419,14 @@
 
       
         
-          
-            <h1 id="操作系统启动过程"><a href="#操作系统启动过程" class="headerlink" title="操作系统启动过程"></a>操作系统启动过程</h1><h2 id="1-打开电源，计算机执行的第一句指令什么"><a href="#1-打开电源，计算机执行的第一句指令什么" class="headerlink" title="1. 打开电源，计算机执行的第一句指令什么?"></a>1. 打开电源，计算机执行的第一句指令什么?</h2><p><img src="/2021/01/09/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%93%88%E5%B7%A5%E5%A4%A7%E6%9D%8E%E6%B2%BB%E5%86%9B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-1/1.png" alt="1"></p>
-<p>x86指令计算机的数据线有16根，所以其寄存器都是16位，而其数据线为20根，所以其物理地址的位数为20位，16位寄存器要想寻20位的物理地址可以按照：物理地址 = 段地址左移4位 + 偏移地址 来实现，当操作系统处于<strong>实模式</strong>的时候，其寻址方式为CS:IP(CS左移4位+IP)。</p>
-<p>当计算机开机时，内存中就已经固化了一部分指令，即<strong>ROM BIOS映射区</strong>，我们从这里开始执行指令，然后将0磁道0扇区的内容读到内存(512字节)，0磁道0扇区即为引导扇区。</p>
-<h2 id="2-引导扇区代码"><a href="#2-引导扇区代码" class="headerlink" title="2. 引导扇区代码"></a>2. 引导扇区代码</h2><p><img src="/2021/01/09/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%93%88%E5%B7%A5%E5%A4%A7%E6%9D%8E%E6%B2%BB%E5%86%9B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-1/2.png" alt="1"></p>
-<p><img src="/2021/01/09/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%93%88%E5%B7%A5%E5%A4%A7%E6%9D%8E%E6%B2%BB%E5%86%9B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-1/3.png" alt="1"></p>
-<p><img src="/2021/01/09/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%93%88%E5%B7%A5%E5%A4%A7%E6%9D%8E%E6%B2%BB%E5%86%9B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-1/4.png" alt="1"></p>
-<p>如图所示，引导扇区代码使用汇编语言编写，他的主要工作就是先把自己的256个字移动位置(为system模块腾空间)，然后读setup的4个扇区，最后把system读入内存，打出开机logo，转向setup代码。</p>
-<h2 id="3-setup模块"><a href="#3-setup模块" class="headerlink" title="3. setup模块"></a>3. setup模块</h2><p><img src="/2021/01/09/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%93%88%E5%B7%A5%E5%A4%A7%E6%9D%8E%E6%B2%BB%E5%86%9B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-1/5.png" alt="1"></p>
-<p>如上图，首先进行int 0x15来获取内存大小，放到ax中，然后放到内存中，然后将system模块放到内存的0地址处。</p>
-<p><img src="/2021/01/09/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%93%88%E5%B7%A5%E5%A4%A7%E6%9D%8E%E6%B2%BB%E5%86%9B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-1/6.png" alt="1"></p>
-<p>cr0是一个32位寄存器，如果其最后一位置为1，那么计算机就进入保护模式，即寻址方式发生了改变。</p>
-<p><img src="/2021/01/09/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%93%88%E5%B7%A5%E5%A4%A7%E6%9D%8E%E6%B2%BB%E5%86%9B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-1/7.png" alt="1"></p>
-<p>保护模型下，我们需要有GDT来实现32位地址的寻址，这里cs变成了GDT的选择子，物理地址 = cs查表+ip。</p>
-<p><img src="/2021/01/09/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%93%88%E5%B7%A5%E5%A4%A7%E6%9D%8E%E6%B2%BB%E5%86%9B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-1/8.png" alt="1"></p>
-<p>我们需要初始化一下GDT，GDT的每个表项是64位的，而我们是按字节寻址的，所以第二个表项的地址为8。</p>
-<p><img src="/2021/01/09/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%93%88%E5%B7%A5%E5%A4%A7%E6%9D%8E%E6%B2%BB%E5%86%9B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-1/9.png" alt="1"></p>
-<p>上图展示了GDT中表项与32位基址的对应关系，所以我们setup模块中jmpi 0, 8，最终指到了0x00000处，即为system模块。</p>
-<h2 id="4-system模块"><a href="#4-system模块" class="headerlink" title="4. system模块"></a>4. system模块</h2><p><img src="/2021/01/09/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%93%88%E5%B7%A5%E5%A4%A7%E6%9D%8E%E6%B2%BB%E5%86%9B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-1/10.png" alt="1"></p>
-<p>如上图，我们操作系统最后要形成image(镜像)来放到磁盘上，它的结构必须是图上所示的结构。system模块的第一部分代码是head.s，system模块依赖于head.o、main.o…..，而这些文件又依赖于.s文件(如head.s)和.c文件(如main.c)等源码文件，最终将这些.o文件链接成system模块。</p>
-<p><img src="/2021/01/09/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%93%88%E5%B7%A5%E5%A4%A7%E6%9D%8E%E6%B2%BB%E5%86%9B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-1/11.png" alt="1"></p>
-<p>head.s文件继续初始化GDT然后jmp after_page_table。</p>
-<p><img src="/2021/01/09/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%93%88%E5%B7%A5%E5%A4%A7%E6%9D%8E%E6%B2%BB%E5%86%9B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-1/12.png" alt="1"></p>
-<p>after_page_table将调用main.c代码，将其入栈，操作系统的mian是一个永不停止的函数，如果main返回，则死机。</p>
-<p><img src="/2021/01/09/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%93%88%E5%B7%A5%E5%A4%A7%E6%9D%8E%E6%B2%BB%E5%86%9B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-1/13.png" alt="1"></p>
-<p>main.c进行各种数据结构的初始化。</p>
-<p><img src="/2021/01/09/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%93%88%E5%B7%A5%E5%A4%A7%E6%9D%8E%E6%B2%BB%E5%86%9B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-1/14.png" alt="1"></p>
-<p>这里以内存初始化为例，end_mem算出来是空闲内存的大小，我们这里将内存按页划分，每一页4kb，所以end_mem先右移12位，对应4kb，然后将空闲内存状态置为0，表示空闲。</p>
-
-          
+          <h1 id="操作系统启动过程"><a href="#操作系统启动过程" class="headerlink" title="操作系统启动过程"></a>操作系统启动过程</h1>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2021/01/09/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%93%88%E5%B7%A5%E5%A4%A7%E6%9D%8E%E6%B2%BB%E5%86%9B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-1/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
