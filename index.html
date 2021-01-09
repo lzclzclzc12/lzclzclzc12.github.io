@@ -294,6 +294,420 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/01/09/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%93%88%E5%B7%A5%E5%A4%A7%E6%9D%8E%E6%B2%BB%E5%86%9B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lzc">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="I am Art">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2021/01/09/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%93%88%E5%B7%A5%E5%A4%A7%E6%9D%8E%E6%B2%BB%E5%86%9B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-1/" itemprop="url">操作系统哈工大李治军学习笔记(1)</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-01-09T23:21:56+08:00">
+                2021-01-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" itemprop="url" rel="index">
+                    <span itemprop="name">操作系统</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+          
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  706
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  2
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="操作系统启动过程"><a href="#操作系统启动过程" class="headerlink" title="操作系统启动过程"></a>操作系统启动过程</h1><h2 id="1-打开电源，计算机执行的第一句指令什么"><a href="#1-打开电源，计算机执行的第一句指令什么" class="headerlink" title="1. 打开电源，计算机执行的第一句指令什么?"></a>1. 打开电源，计算机执行的第一句指令什么?</h2><p><img src="/2021/01/09/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%93%88%E5%B7%A5%E5%A4%A7%E6%9D%8E%E6%B2%BB%E5%86%9B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-1/1.png" alt="1"></p>
+<p>x86指令计算机的数据线有16根，所以其寄存器都是16位，而其数据线为20根，所以其物理地址的位数为20位，16位寄存器要想寻20位的物理地址可以按照：物理地址 = 段地址左移4位 + 偏移地址 来实现，当操作系统处于<strong>实模式</strong>的时候，其寻址方式为CS:IP(CS左移4位+IP)。</p>
+<p>当计算机开机时，内存中就已经固化了一部分指令，即<strong>ROM BIOS映射区</strong>，我们从这里开始执行指令，然后将0磁道0扇区的内容读到内存(512字节)，0磁道0扇区即为引导扇区。</p>
+<h2 id="2-引导扇区代码"><a href="#2-引导扇区代码" class="headerlink" title="2. 引导扇区代码"></a>2. 引导扇区代码</h2><p><img src="/2021/01/09/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%93%88%E5%B7%A5%E5%A4%A7%E6%9D%8E%E6%B2%BB%E5%86%9B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-1/2.png" alt="1"></p>
+<p><img src="/2021/01/09/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%93%88%E5%B7%A5%E5%A4%A7%E6%9D%8E%E6%B2%BB%E5%86%9B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-1/3.png" alt="1"></p>
+<p><img src="/2021/01/09/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%93%88%E5%B7%A5%E5%A4%A7%E6%9D%8E%E6%B2%BB%E5%86%9B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-1/4.png" alt="1"></p>
+<p>如图所示，引导扇区代码使用汇编语言编写，他的主要工作就是先把自己的256个字移动位置(为system模块腾空间)，然后读setup的4个扇区，最后把system读入内存，打出开机logo，转向setup代码。</p>
+<h2 id="3-setup模块"><a href="#3-setup模块" class="headerlink" title="3. setup模块"></a>3. setup模块</h2><p><img src="/2021/01/09/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%93%88%E5%B7%A5%E5%A4%A7%E6%9D%8E%E6%B2%BB%E5%86%9B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-1/5.png" alt="1"></p>
+<p>如上图，首先进行int 0x15来获取内存大小，放到ax中，然后放到内存中，然后将system模块放到内存的0地址处。</p>
+<p><img src="/2021/01/09/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%93%88%E5%B7%A5%E5%A4%A7%E6%9D%8E%E6%B2%BB%E5%86%9B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-1/6.png" alt="1"></p>
+<p>cr0是一个32位寄存器，如果其最后一位置为1，那么计算机就进入保护模式，即寻址方式发生了改变。</p>
+<p><img src="/2021/01/09/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%93%88%E5%B7%A5%E5%A4%A7%E6%9D%8E%E6%B2%BB%E5%86%9B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-1/7.png" alt="1"></p>
+<p>保护模型下，我们需要有GDT来实现32位地址的寻址，这里cs变成了GDT的选择子，物理地址 = cs查表+ip。</p>
+<p><img src="/2021/01/09/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%93%88%E5%B7%A5%E5%A4%A7%E6%9D%8E%E6%B2%BB%E5%86%9B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-1/8.png" alt="1"></p>
+<p>我们需要初始化一下GDT，GDT的每个表项是64位的，而我们是按字节寻址的，所以第二个表项的地址为8。</p>
+<p><img src="/2021/01/09/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%93%88%E5%B7%A5%E5%A4%A7%E6%9D%8E%E6%B2%BB%E5%86%9B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-1/9.png" alt="1"></p>
+<p>上图展示了GDT中表项与32位基址的对应关系，所以我们setup模块中jmpi 0, 8，最终指到了0x00000处，即为system模块。</p>
+<h2 id="4-system模块"><a href="#4-system模块" class="headerlink" title="4. system模块"></a>4. system模块</h2><p><img src="/2021/01/09/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%93%88%E5%B7%A5%E5%A4%A7%E6%9D%8E%E6%B2%BB%E5%86%9B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-1/10.png" alt="1"></p>
+<p>如上图，我们操作系统最后要形成image(镜像)来放到磁盘上，它的结构必须是图上所示的结构。system模块的第一部分代码是head.s，system模块依赖于head.o、main.o…..，而这些文件又依赖于.s文件(如head.s)和.c文件(如main.c)等源码文件，最终将这些.o文件链接成system模块。</p>
+<p><img src="/2021/01/09/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%93%88%E5%B7%A5%E5%A4%A7%E6%9D%8E%E6%B2%BB%E5%86%9B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-1/11.png" alt="1"></p>
+<p>head.s文件继续初始化GDT然后jmp after_page_table。</p>
+<p><img src="/2021/01/09/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%93%88%E5%B7%A5%E5%A4%A7%E6%9D%8E%E6%B2%BB%E5%86%9B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-1/12.png" alt="1"></p>
+<p>after_page_table将调用main.c代码，将其入栈，操作系统的mian是一个永不停止的函数，如果main返回，则死机。</p>
+<p><img src="/2021/01/09/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%93%88%E5%B7%A5%E5%A4%A7%E6%9D%8E%E6%B2%BB%E5%86%9B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-1/13.png" alt="1"></p>
+<p>main.c进行各种数据结构的初始化。</p>
+<p><img src="/2021/01/09/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%93%88%E5%B7%A5%E5%A4%A7%E6%9D%8E%E6%B2%BB%E5%86%9B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-1/14.png" alt="1"></p>
+<p>这里以内存初始化为例，end_mem算出来是空闲内存的大小，我们这里将内存按页划分，每一页4kb，所以end_mem先右移12位，对应4kb，然后将空闲内存状态置为0，表示空闲。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/05/YOLOv5%E7%9A%84%E4%B8%80%E4%BA%9B%E7%90%86%E8%A7%A3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="lzc">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="I am Art">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/12/05/YOLOv5%E7%9A%84%E4%B8%80%E4%BA%9B%E7%90%86%E8%A7%A3/" itemprop="url">YOLOv5的一些理解</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-12-05T20:39:47+08:00">
+                2020-12-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index">
+                    <span itemprop="name">深度学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+          
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  513
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  2
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="网络结构图"><a href="#网络结构图" class="headerlink" title="网络结构图"></a>网络结构图</h1><p><img src="/2020/12/05/YOLOv5%E7%9A%84%E4%B8%80%E4%BA%9B%E7%90%86%E8%A7%A3/1.jpg" alt="1"></p>
+<p><img src="/2020/12/05/YOLOv5%E7%9A%84%E4%B8%80%E4%BA%9B%E7%90%86%E8%A7%A3/2.jpg" alt="1"></p>
+<p>Hardswish $(x)=\left\{\begin{array}{ll}0 &amp; \text { if } x \leq-3 \\ x &amp; \text { if } x \geq+3 \\ x \cdot(x+3) / 6 &amp; \text { otherwise }\end{array}\right.$</p>
+<p><img src="/2020/12/05/YOLOv5%E7%9A%84%E4%B8%80%E4%BA%9B%E7%90%86%E8%A7%A3/lzc.jpg" alt="1"></p>
+<ul>
+<li>输入端：Mosaic数据增强、自适应锚框计算、自适应图片缩放</li>
+<li>Backbone：Focus结构，CSP结构</li>
+<li>Neck：FPN+PAN结构</li>
+<li>Prediction：GIOU_Loss</li>
+</ul>
+<h1 id="输入端"><a href="#输入端" class="headerlink" title="输入端"></a>输入端</h1><h2 id="Mosaic数据增强"><a href="#Mosaic数据增强" class="headerlink" title="Mosaic数据增强"></a>Mosaic数据增强</h2><p>Mosaic数据增强采用了4张图片，随机缩放、随机裁剪、随机排布的方式进行拼接。</p>
+<p><img src="/2020/12/05/YOLOv5%E7%9A%84%E4%B8%80%E4%BA%9B%E7%90%86%E8%A7%A3/lzc0.jpg" alt="1"></p>
+<p><img src="/2020/12/05/YOLOv5%E7%9A%84%E4%B8%80%E4%BA%9B%E7%90%86%E8%A7%A3/lzc3.jpg" alt="1"></p>
+<ul>
+<li><strong>小目标的分布不均匀</strong>：Coco数据集中小目标占比达到41.4%，但在所有的训练集图片中，只有52.3%的图片有小目标，而中目标和大目标的分布相对来说更加均匀一些。</li>
+<li><strong>丰富数据集</strong>：随机使用4张图片，随机缩放，再随机分布进行拼接，大大丰富了检测数据集，特别是随机缩放增加了很多小目标，让网络的鲁棒性更好。</li>
+<li><strong>减少GPU</strong>：作者考虑到很多人可能只有一个GPU，因此Mosaic增强训练时，可以直接计算4张图片的数据，使得Mini-batch大小并不需要很大，一个GPU就可以达到比较好的效果。</li>
+</ul>
+<h2 id="自定义锚框"><a href="#自定义锚框" class="headerlink" title="自定义锚框"></a>自定义锚框</h2><p>kmean + 遗传算法</p>
+<p>antoanchor.py</p>
+<h2 id="自适应图片缩放"><a href="#自适应图片缩放" class="headerlink" title="自适应图片缩放"></a>自适应图片缩放</h2><p>datasets.py的letterbox函数</p>
+<p><img src="/2020/12/05/YOLOv5%E7%9A%84%E4%B8%80%E4%BA%9B%E7%90%86%E8%A7%A3/11.png" alt="1"></p>
+<h1 id="Backbone"><a href="#Backbone" class="headerlink" title="Backbone"></a>Backbone</h1><h2 id="Focus结构"><a href="#Focus结构" class="headerlink" title="Focus结构"></a>Focus结构</h2><p><img src="/2020/12/05/YOLOv5%E7%9A%84%E4%B8%80%E4%BA%9B%E7%90%86%E8%A7%A3/3.jpg" alt="1"></p>
+<p>common.py的Focus函数</p>
+<h1 id="Neck"><a href="#Neck" class="headerlink" title="Neck"></a>Neck</h1><p><img src="/2020/12/05/YOLOv5%E7%9A%84%E4%B8%80%E4%BA%9B%E7%90%86%E8%A7%A3/4.jpg" alt="1"></p>
+<h1 id="loss-计算"><a href="#loss-计算" class="headerlink" title="loss 计算"></a>loss 计算</h1><p>yolov5的loss设计和前yolo系列差别比较大的地方就是正样本anchor区域计算，其余地方差距很小。分类分支采用的loss是BCE，conf分支也是BCE，当然可以通过h[‘fl_gamma’]参数开启focal Loss,默认配置没有采用focal los，而bbox分支采用的是Ciou loss。</p>
+<p>$b_x = 2\sigma(t_x) - 0.5$</p>
+<p>$b_y = 2\sigma(t_y) - 0.5$</p>
+<p>$b_w = 4\sigma^2(t_w)p_w$</p>
+<p>$b_h = 4\sigma^2(t_h)p_h$</p>
+<h2 id="IOU-Loss"><a href="#IOU-Loss" class="headerlink" title="IOU_Loss"></a>IOU_Loss</h2><p><img src="/2020/12/05/YOLOv5%E7%9A%84%E4%B8%80%E4%BA%9B%E7%90%86%E8%A7%A3/5.jpg" alt="1"></p>
+<p><img src="/2020/12/05/YOLOv5%E7%9A%84%E4%B8%80%E4%BA%9B%E7%90%86%E8%A7%A3/6.jpg" alt="1"></p>
+<h2 id="GIOU-Loss"><a href="#GIOU-Loss" class="headerlink" title="GIOU_Loss"></a>GIOU_Loss</h2><p><img src="/2020/12/05/YOLOv5%E7%9A%84%E4%B8%80%E4%BA%9B%E7%90%86%E8%A7%A3/7.jpg" alt="1"></p>
+<p><img src="/2020/12/05/YOLOv5%E7%9A%84%E4%B8%80%E4%BA%9B%E7%90%86%E8%A7%A3/8.jpg" alt="1"></p>
+<h2 id="DIOU-Loss"><a href="#DIOU-Loss" class="headerlink" title="DIOU_Loss"></a>DIOU_Loss</h2><p><img src="/2020/12/05/YOLOv5%E7%9A%84%E4%B8%80%E4%BA%9B%E7%90%86%E8%A7%A3/9.jpg" alt="1"></p>
+<p><img src="/2020/12/05/YOLOv5%E7%9A%84%E4%B8%80%E4%BA%9B%E7%90%86%E8%A7%A3/10.jpg" alt="1"></p>
+<h2 id="CIOU-Loss"><a href="#CIOU-Loss" class="headerlink" title="CIOU_Loss"></a>CIOU_Loss</h2><script type="math/tex; mode=display">
+\mathrm{CIO}  \mathrm{U}_{-} \operatorname{Loss}=1 - \mathrm{CIO}  \mathrm{U}=1-\left(\mathrm{IO}  \mathrm{U}-\frac{\mathrm{Distance}\_\mathrm{2}^{2}}{\mathrm{Distance}\_\mathrm{C}^{2}}-\frac{v^{2}}{(1-\mathrm{IO}  \mathrm{U})+v}\right)</script><script type="math/tex; mode=display">
+v=\frac{4}{\pi^{2}}\left(\arctan \frac{\mathrm{w}^{g t}}{\mathrm{~h}^{gt}}-\arctan \frac{\mathrm{w}^{\mathrm{p}}}{\mathrm{h}^{\mathrm{p}}}\right)^{2}</script><h1 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h1><p><img src="/2020/12/05/YOLOv5%E7%9A%84%E4%B8%80%E4%BA%9B%E7%90%86%E8%A7%A3/12.jpg" alt="1"></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/10/02/100-numpy-exercises-%E6%80%BB%E7%BB%93%E7%AF%87/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1746,391 +2160,11 @@
 
 
     
-      
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/19/%E9%9D%A2%E8%AF%95%E9%A2%9817-08-%E9%A9%AC%E6%88%8F%E5%9B%A2%E4%BA%BA%E5%A1%94/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lzc">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="I am Art">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/07/19/%E9%9D%A2%E8%AF%95%E9%A2%9817-08-%E9%A9%AC%E6%88%8F%E5%9B%A2%E4%BA%BA%E5%A1%94/" itemprop="url">面试题17.08.马戏团人塔</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-19T22:30:06+08:00">
-                2020-07-19
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%AE%97%E6%B3%95/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-          
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  405
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  1
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="基本思路"><a href="#基本思路" class="headerlink" title="基本思路"></a>基本思路</h1>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/07/19/%E9%9D%A2%E8%AF%95%E9%A2%9817-08-%E9%A9%AC%E6%88%8F%E5%9B%A2%E4%BA%BA%E5%A1%94/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/19/300-%E6%9C%80%E9%95%BF%E4%B8%8A%E5%8D%87%E5%AD%90%E5%BA%8F%E5%88%97/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="lzc">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="I am Art">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/07/19/300-%E6%9C%80%E9%95%BF%E4%B8%8A%E5%8D%87%E5%AD%90%E5%BA%8F%E5%88%97/" itemprop="url">300.最长上升子序列</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-19T22:01:47+08:00">
-                2020-07-19
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%AE%97%E6%B3%95/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-          
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  349
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  1
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="基本思路"><a href="#基本思路" class="headerlink" title="基本思路"></a>基本思路</h1>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/07/19/300-%E6%9C%80%E9%95%BF%E4%B8%8A%E5%8D%87%E5%AD%90%E5%BA%8F%E5%88%97/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/">&gt;</a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/">&gt;</a>
   </nav>
 
 
@@ -2181,7 +2215,7 @@
                 <a href="/archives/">
                 
               
-                  <span class="site-state-item-count">50</span>
+                  <span class="site-state-item-count">52</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2192,7 +2226,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -2203,7 +2237,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">24</span>
+                  <span class="site-state-item-count">26</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -2241,7 +2275,7 @@
     <footer id="footer" class="footer">
       <div class="footer-inner">
         <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-<div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
@@ -2255,7 +2289,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">51.7k</span>
+    <span title="Site words total count">52.9k</span>
   
 </div>
 
