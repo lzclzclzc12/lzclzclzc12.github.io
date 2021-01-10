@@ -70,7 +70,7 @@
 
 
 
-  <meta name="keywords" content="二分查找," />
+  <meta name="keywords" content="操作系统," />
 
 
 
@@ -81,21 +81,22 @@
 
 
 
-<meta name="description" content="基本思路">
+<meta name="description" content="操作系统接口">
 <meta property="og:type" content="article">
-<meta property="og:title" content="面试题10.03.搜索旋转数组">
-<meta property="og:url" content="http://yoursite.com/2020/07/20/%E9%9D%A2%E8%AF%95%E9%A2%9810-03-%E6%90%9C%E7%B4%A2%E6%97%8B%E8%BD%AC%E6%95%B0%E7%BB%84/index.html">
+<meta property="og:title" content="操作系统哈工大李治军学习笔记(2)">
+<meta property="og:url" content="http://yoursite.com/2021/01/10/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%93%88%E5%B7%A5%E5%A4%A7%E6%9D%8E%E6%B2%BB%E5%86%9B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2/index.html">
 <meta property="og:site_name" content="I am Art">
-<meta property="og:description" content="基本思路">
-<meta property="og:image" content="http://yoursite.com/2020/07/20/%E9%9D%A2%E8%AF%95%E9%A2%9810-03-%E6%90%9C%E7%B4%A2%E6%97%8B%E8%BD%AC%E6%95%B0%E7%BB%84/1.png">
-<meta property="og:image" content="http://yoursite.com/2020/07/20/%E9%9D%A2%E8%AF%95%E9%A2%9810-03-%E6%90%9C%E7%B4%A2%E6%97%8B%E8%BD%AC%E6%95%B0%E7%BB%84/2.png">
-<meta property="og:image" content="http://yoursite.com/2020/07/20/%E9%9D%A2%E8%AF%95%E9%A2%9810-03-%E6%90%9C%E7%B4%A2%E6%97%8B%E8%BD%AC%E6%95%B0%E7%BB%84/3.png">
-<meta property="article:published_time" content="2020-07-20T03:36:39.000Z">
-<meta property="article:modified_time" content="2020-07-20T04:46:04.469Z">
+<meta property="og:description" content="操作系统接口">
+<meta property="og:image" content="http://yoursite.com/2021/01/10/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%93%88%E5%B7%A5%E5%A4%A7%E6%9D%8E%E6%B2%BB%E5%86%9B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2/1.png">
+<meta property="og:image" content="http://yoursite.com/2021/01/10/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%93%88%E5%B7%A5%E5%A4%A7%E6%9D%8E%E6%B2%BB%E5%86%9B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2/2.png">
+<meta property="og:image" content="http://yoursite.com/2021/01/10/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%93%88%E5%B7%A5%E5%A4%A7%E6%9D%8E%E6%B2%BB%E5%86%9B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2/3.png">
+<meta property="og:image" content="http://yoursite.com/2021/01/10/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%93%88%E5%B7%A5%E5%A4%A7%E6%9D%8E%E6%B2%BB%E5%86%9B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2/4.png">
+<meta property="article:published_time" content="2021-01-10T08:32:52.000Z">
+<meta property="article:modified_time" content="2021-01-10T08:57:42.801Z">
 <meta property="article:author" content="lzc">
-<meta property="article:tag" content="二分查找">
+<meta property="article:tag" content="操作系统">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://yoursite.com/2020/07/20/%E9%9D%A2%E8%AF%95%E9%A2%9810-03-%E6%90%9C%E7%B4%A2%E6%97%8B%E8%BD%AC%E6%95%B0%E7%BB%84/1.png">
+<meta name="twitter:image" content="http://yoursite.com/2021/01/10/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%93%88%E5%B7%A5%E5%A4%A7%E6%9D%8E%E6%B2%BB%E5%86%9B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2/1.png">
 
 
 
@@ -125,13 +126,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2020/07/20/面试题10-03-搜索旋转数组/"/>
+  <link rel="canonical" href="http://yoursite.com/2021/01/10/操作系统哈工大李治军学习笔记-2/"/>
 
 
 
 
 
-  <title>面试题10.03.搜索旋转数组 | I am Art</title>
+  <title>操作系统哈工大李治军学习笔记(2) | I am Art</title>
   
 
 
@@ -302,7 +303,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/20/%E9%9D%A2%E8%AF%95%E9%A2%9810-03-%E6%90%9C%E7%B4%A2%E6%97%8B%E8%BD%AC%E6%95%B0%E7%BB%84/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/01/10/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%93%88%E5%B7%A5%E5%A4%A7%E6%9D%8E%E6%B2%BB%E5%86%9B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="lzc">
@@ -319,7 +320,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">面试题10.03.搜索旋转数组</h1>
+          <h1 class="post-title" itemprop="name headline">操作系统哈工大李治军学习笔记(2)</h1>
         
 
         <div class="post-meta">
@@ -331,8 +332,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-07-20T11:36:39+08:00">
-                2020-07-20
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-01-10T16:32:52+08:00">
+                2021-01-10
               </time>
             
 
@@ -354,19 +355,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%AE%97%E6%B3%95/leetcode/" itemprop="url" rel="index">
-                    <span itemprop="name">leetcode</span>
+                  <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" itemprop="url" rel="index">
+                    <span itemprop="name">操作系统</span>
                   </a>
                 </span>
 
@@ -401,7 +391,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  439
+                  262
                 </span>
               
 
@@ -438,19 +428,21 @@
       
 
       
-        <h1 id="基本思路"><a href="#基本思路" class="headerlink" title="基本思路"></a>基本思路</h1><a id="more"></a>
-<p>这道题是数组旋转，而不会有局部旋转，所以旋转后的数组一定会形成两段，且前一段中每个元素的值一定大于等于后一段每个元素的值，且两段都是各自升序排列。如果是一段的话，那就是原数组了。</p>
-<p>既然是两段，那么这两段一定会有长度上的区别，我们设$left$为数组左端，$right$为数组右端。如图所示：</p>
-<p><img src="/2020/07/20/%E9%9D%A2%E8%AF%95%E9%A2%9810-03-%E6%90%9C%E7%B4%A2%E6%97%8B%E8%BD%AC%E6%95%B0%E7%BB%84/1.png" alt="1"></p>
-<p><img src="/2020/07/20/%E9%9D%A2%E8%AF%95%E9%A2%9810-03-%E6%90%9C%E7%B4%A2%E6%97%8B%E8%BD%AC%E6%95%B0%E7%BB%84/2.png" alt="1"></p>
+        <h1 id="操作系统接口"><a href="#操作系统接口" class="headerlink" title="操作系统接口"></a>操作系统接口</h1><a id="more"></a>
+<h2 id="用户如何使用os接口"><a href="#用户如何使用os接口" class="headerlink" title="用户如何使用os接口"></a>用户如何使用os接口</h2><p><img src="/2021/01/10/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%93%88%E5%B7%A5%E5%A4%A7%E6%9D%8E%E6%B2%BB%E5%86%9B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2/1.png" alt="1"></p>
 <ul>
-<li>如果$mid$大于$left$，那么第一段长度大于第二段，从$left$到$mid$是一段升序的排列，我们可以通过$target$的值和$v[left]和v[mid]$比较来得出下一步的范围。</li>
-<li>如果$mid$小于$left$，那么第一段长度小于第二顿，从$mid$到$right$是一段降序的排列，我们可以通过$target$的值和$v[left]和v[mid]$比较来得出下一步的范围。</li>
+<li>可通过输入命令行来调用</li>
+<li>可通过一些图形界面来调用</li>
+<li>可通过一些应用程序来调用</li>
 </ul>
-<h2 id="当-v-mid-v-left-时是特殊情况"><a href="#当-v-mid-v-left-时是特殊情况" class="headerlink" title="当$v[mid] == v[left]$时是特殊情况"></a>当$v[mid] == v[left]$时是特殊情况</h2><p>如图所示：</p>
-<p><img src="/2020/07/20/%E9%9D%A2%E8%AF%95%E9%A2%9810-03-%E6%90%9C%E7%B4%A2%E6%97%8B%E8%BD%AC%E6%95%B0%E7%BB%84/3.png" alt="1"></p>
-<p>当$v[mid] == v[left]$时，如果$target != v[mid]$，那么下一步的位置没法直接判断出来，需要$left++$ 来逐一缩小范围。</p>
-<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int search(vector&lt;int&gt;&amp; arr, int target) &#123;</span><br><span class="line">        int left = 0 , right = arr.size() - 1;</span><br><span class="line">        <span class="keyword">while</span>(left &lt; right)&#123;</span><br><span class="line">            <span class="keyword">if</span>(arr[left] == target) <span class="built_in">return</span> left;</span><br><span class="line">            int mid = (left + right) / 2;</span><br><span class="line">            <span class="keyword">if</span>(arr[left] &lt; arr[mid])&#123;</span><br><span class="line">                <span class="keyword">if</span>(arr[left] &lt;= target &amp;&amp; target &lt;= arr[mid])&#123;</span><br><span class="line">                    right = mid;  //target == arr[mid]也是向左缩小范围，因为题目要求值相同的输出最小位置</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span> left = mid + 1;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(arr[left] &gt; arr[mid])&#123;</span><br><span class="line">                <span class="keyword">if</span>(arr[left] &lt;= target || arr[mid] &gt;= target)&#123;</span><br><span class="line">                    right = mid;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span> left = mid;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(arr[left] == arr[mid])&#123;  //特殊情况</span><br><span class="line">                <span class="keyword">if</span>(arr[left] == target)&#123;</span><br><span class="line">                    right = left;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span> left++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">return</span> (arr[left] == target) ? left : -1;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="方式1：命令行"><a href="#方式1：命令行" class="headerlink" title="方式1：命令行"></a>方式1：命令行</h2><p><img src="/2021/01/10/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%93%88%E5%B7%A5%E5%A4%A7%E6%9D%8E%E6%B2%BB%E5%86%9B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2/2.png" alt="1"></p>
+<p>操作系统在启动之后，要么启用图形界面，要么启用shell，shell是一个命令解释程序，它不断地接受命令，我们通过shell来读取用户输入的命令，然后调用exec(cmd)来解释这一段命令。</p>
+<h2 id="方式2：图形按钮"><a href="#方式2：图形按钮" class="headerlink" title="方式2：图形按钮"></a>方式2：图形按钮</h2><p><img src="/2021/01/10/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%93%88%E5%B7%A5%E5%A4%A7%E6%9D%8E%E6%B2%BB%E5%86%9B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2/3.png" alt="1"></p>
+<p>图形按钮基于消息机制，当鼠标点击后，通过中断，将消息放到系统内部的消息队列中，而一个应用程序使用一个循环，每次调用GetMessage函数来从消息队列中取出消息，调用相应的消息处理函数(如图中的OnOk)。</p>
+<h2 id="什么是操作系统接口"><a href="#什么是操作系统接口" class="headerlink" title="什么是操作系统接口"></a>什么是操作系统接口</h2><p><img src="/2021/01/10/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%93%88%E5%B7%A5%E5%A4%A7%E6%9D%8E%E6%B2%BB%E5%86%9B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-2/4.png" alt="1"></p>
+<p>如何使用计算机？ 普通的应用程序+操作系统函数。</p>
+<p>即os接口表现为一些函数调用，称为<strong>系统调用</strong>。</p>
+
       
     </div>
     
@@ -467,7 +459,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/" rel="tag"># 二分查找</a>
+            <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="tag"># 操作系统</a>
           
         </div>
       
@@ -480,8 +472,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/07/19/%E9%9D%A2%E8%AF%95%E9%A2%9817-08-%E9%A9%AC%E6%88%8F%E5%9B%A2%E4%BA%BA%E5%A1%94/" rel="next" title="面试题17.08.马戏团人塔">
-                <i class="fa fa-chevron-left"></i> 面试题17.08.马戏团人塔
+              <a href="/2021/01/09/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%93%88%E5%B7%A5%E5%A4%A7%E6%9D%8E%E6%B2%BB%E5%86%9B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-1/" rel="next" title="操作系统哈工大李治军学习笔记(1)">
+                <i class="fa fa-chevron-left"></i> 操作系统哈工大李治军学习笔记(1)
               </a>
             
           </div>
@@ -489,10 +481,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2020/07/21/719-%E6%89%BE%E5%87%BA%E7%AC%ACk%E5%B0%8F%E7%9A%84%E8%B7%9D%E7%A6%BB%E5%AF%B9/" rel="prev" title="719.找出第k小的距离对">
-                719.找出第k小的距离对 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -629,7 +617,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#基本思路"><span class="nav-number">1.</span> <span class="nav-text">基本思路</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#当-v-mid-v-left-时是特殊情况"><span class="nav-number">1.1.</span> <span class="nav-text">当$v[mid] &#x3D;&#x3D; v[left]$时是特殊情况</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#代码"><span class="nav-number">2.</span> <span class="nav-text">代码</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#操作系统接口"><span class="nav-number">1.</span> <span class="nav-text">操作系统接口</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#用户如何使用os接口"><span class="nav-number">1.1.</span> <span class="nav-text">用户如何使用os接口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#方式1：命令行"><span class="nav-number">1.2.</span> <span class="nav-text">方式1：命令行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#方式2：图形按钮"><span class="nav-number">1.3.</span> <span class="nav-text">方式2：图形按钮</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是操作系统接口"><span class="nav-number">1.4.</span> <span class="nav-text">什么是操作系统接口</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -1186,26 +1174,6 @@
   
 
   
-  
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({
-        tex2jax: {
-          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-          processEscapes: true,
-          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-        }
-      });
-    </script>
-
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for (i=0; i < all.length; i += 1) {
-          all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-      });
-    </script>
-    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
   
 
 
